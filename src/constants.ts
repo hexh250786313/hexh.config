@@ -16,9 +16,9 @@ const _fileConfig = (() => {
 const _toolName = _pkg.name;
 const _prefix = `[${_toolName}]`;
 
-const _envs = ["manjaro", "wsl-ubuntu"];
+const _dotfilesPath = `${homedir}/workspace/dotfiles`;
 
-export const envs = _envs;
+export const dotfilesPath = _dotfilesPath;
 export const pkg = _pkg;
 export const toolName = _toolName;
 export const prefix = _prefix;

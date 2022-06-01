@@ -1,5 +1,3 @@
-export default class {
-  constructor(configs: string[]) {
-    process.stdout.write("wsl " + configs.join("+") + "\n");
-  }
-}
+import Common from "../common";
+
+export default class extends Common {}

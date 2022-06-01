@@ -1,21 +1,28 @@
 import { program } from "commander";
-import { fileConfig, pkg } from "./constants";
-import runCommand from "./utils/run-command";
+import { pkg } from "./constants";
 import Env from "./env";
 
 program.version(pkg.version, "-v, --version").parse(process.argv);
 
 export async function run() {
-  const env: "manjaro" | "wsl" = program.args[0] as any;
-  const configs = program.args.slice(1, program.args.length);
+  const env: keyof typeof Env = program.args[0] as any;
+  const scripts = program.args.slice(1, program.args.length);
 
   const Processor = Env[env];
 
-  if (Processor) {
-    const processor = new Processor(configs);
+  if (Processor && scripts.length) {
+    const processor = new Processor();
 
-    // runCommand(`echo ${env}`);
-    // process.stdout.write(env + "\n");
-    // process.stdout.write(configs.join("+") + "\n");
+    const allScriptsValid = scripts.every(
+      (script) => (processor as any)[script] !== undefined
+    );
+
+    if (allScriptsValid) {
+      const promises = scripts.map((script) => {
+        return (processor as any)[script]();
+      });
+
+      await Promise.all(promises);
+    }
   }
 }
