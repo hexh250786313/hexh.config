@@ -58,6 +58,7 @@ export default class extends Common {
   async rime() {
     const packages = [
       { pkg: "fcitx-rime", testPath: "/usr/lib/fcitx/fcitx-rime.so" },
+      { pkg: "gtest", testPath: "/usr/bin/gtest-config.in" },
     ];
 
     process.stdout.write("Rime installer processing...\n");
@@ -70,8 +71,10 @@ export default class extends Common {
     const profilePath = `${homedir()}/.config/fcitx/profile`;
     const uiPath = `${homedir()}/.config/fcitx/conf/fcitx-classic-ui.config`;
 
-    await generateFcitxDir();
-    // 以下 10 秒後執行
+    if (!existsSync(profilePath)) {
+      await generateFcitxDir();
+      // 以下 10 秒後執行
+    }
 
     let profileText = readFileSync(profilePath).toString();
 
@@ -102,9 +105,11 @@ export default class extends Common {
       });
     }
 
-    // 這一步是爲了生成 rime 的配置文件
-    await generateFcitxDir();
-    // 以下 10 秒後執行
+    if (!existsSync(`${homedir}/.config/fcitx/rime/installation.yaml`)) {
+      // 這一步是爲了生成 rime 的配置文件
+      await generateFcitxDir();
+      // 以下 10 秒後執行
+    }
 
     try {
       await runCommand(
@@ -195,17 +200,17 @@ export default class extends Common {
       mkdirSync(`${homedir}/.config/fcitx/rime/opencc`);
     }
 
-    await runCommand(
-      `wget -O ${homedir}/.config/fcitx/rime/opencc/emoji.json "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji.json"`
-    );
+    // await runCommand(
+    // `wget -O ${homedir}/.config/fcitx/rime/opencc/emoji.json "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji.json"`
+    // );
 
-    await runCommand(
-      `wget -O ${homedir}/.config/fcitx/rime/opencc/emoji_category.txt "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji_category.txt"`
-    );
+    // await runCommand(
+    // `wget -O ${homedir}/.config/fcitx/rime/opencc/emoji_category.txt "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji_category.txt"`
+    // );
 
-    await runCommand(
-      `wget -O ${homedir}/.config/fcitx/rime/opencc/emoji_word.txt "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji_word.txt"`
-    );
+    // await runCommand(
+    // `wget -O ${homedir}/.config/fcitx/rime/opencc/emoji_word.txt "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji_word.txt"`
+    // );
 
     const userYamlPath = `${homedir}/.config/fcitx/rime/user.yaml`;
 
@@ -220,6 +225,31 @@ export default class extends Common {
       }
     });
 
-    // process.stdout.write(uiText);
+    try {
+      // /home/hexh/workspace/hexh.config/lib
+      await runCommand(`mkdir -p ${__dirname}/build`);
+      await runCommand(
+        `git clone https://github.com/rime/librime ${__dirname}/build/librime`
+      );
+      await runCommand(
+        `sh -c "${__dirname}/build/librime/install-plugins.sh hchunhui/librime-lua"`
+      );
+      await runCommand(
+        `sh -c "${__dirname}/build/librime/install-plugins.sh lotem/librime-octagram"`
+      );
+      await runCommand(
+        `make --directory=${__dirname}/build/librime merged-plugins`
+      );
+      await runCommand(
+        `sudo make --directory=${__dirname}/build/librime install`
+      );
+      await runCommand(
+        `ln -s /usr/share/rime-data/build/terra_pinyin.reverse.bin ${dotfilesPath}/.config/fcitx/rime/build/`
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
+
+    // process.stdout.write(__dirname);
   }
 }

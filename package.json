@@ -10,7 +10,7 @@
     "clean": "rimraf lib",
     "watch": "node esbuild.js --watch",
     "build": "node esbuild.js",
-    "prepare": "node esbuild.js"
+    "prepare": "npx rimraf lib && node esbuild.js"
   },
   "repository": {
     "type": "git",
