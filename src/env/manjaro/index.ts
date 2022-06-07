@@ -1,12 +1,10 @@
 import applyMixins from "@/utils/apply-mixins";
-import InputMethod from "../arch/input-method";
 import Common from "../common";
+import InputMethod from "./modules/input-method";
 
 class Manjaro extends Common implements InputMethod {
   // @ts-expect-errors: not-empty
-  fcitx: () => Promise<void>;
-  // @ts-expect-errors: not-empty
-  rime: () => Promise<void>;
+  inputMethod(): () => Promise<void>;
 }
 
 applyMixins(Manjaro, [InputMethod]);

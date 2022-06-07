@@ -1,12 +1,24 @@
 import runCommand from "@/utils/run-command";
 import runYay from "@/utils/run-yay";
-import { existsSync, mkdirSync, readFileSync, writeFile } from "fs-extra";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs-extra";
 import { homedir } from "os";
-import generateFcitxDir from "../manjaro/generate-fcitx-dir";
-import ln from "../manjaro/ln";
+import generateFcitxDir from "./generate-fcitx-dir";
+import ln from "../../ln";
+import { customDictConfig, dictSpChar } from "./sh/custom-dict-config";
 
 export default abstract class InputMethod {
+  async inputMethod() {
+    await this.fcitx();
+    await this.rime();
+  }
+
   async fcitx() {
+    try {
+      await runCommand(`killall fcitx`);
+    } catch (e) {
+      /* handle error */
+    }
+
     const packages = [
       {
         pkg: "fcitx-im",
@@ -43,15 +55,9 @@ export default abstract class InputMethod {
 
     targetText.forEach((text) => {
       if (!xprofileText.includes(text)) {
-        writeFile(xprofilePath, "\n" + text, { flag: "a" }, (err) => {
-          if (err?.message) {
-            process.stdout.write(err?.message);
-          }
-        });
+        writeFileSync(xprofilePath, "\n" + text, { flag: "a" });
       }
     });
-
-    this.rime();
   }
 
   async rime() {
@@ -72,6 +78,7 @@ export default abstract class InputMethod {
     const uiPath = `${homedir()}/.config/fcitx/conf/fcitx-classic-ui.config`;
 
     if (!existsSync(profilePath)) {
+      process.stdout.write("-------1\n");
       await generateFcitxDir();
       // 以下 10 秒後執行
     }
@@ -86,11 +93,7 @@ export default abstract class InputMethod {
       );
       profileText = profileText.replace(/#IMName=/g, "IMName=rime");
 
-      writeFile(profilePath, profileText, (err) => {
-        if (err?.message) {
-          process.stdout.write(err?.message);
-        }
-      });
+      writeFileSync(profilePath, profileText);
     }
 
     let uiText = readFileSync(uiPath).toString();
@@ -98,14 +101,11 @@ export default abstract class InputMethod {
     if (!/SkinType=material/g.test(uiText)) {
       uiText = uiText.replace(/#SkinType=default/g, "SkinType=material");
 
-      writeFile(uiPath, uiText, (err) => {
-        if (err?.message) {
-          process.stdout.write(err?.message);
-        }
-      });
+      writeFileSync(uiPath, uiText);
     }
 
-    if (!existsSync(`${homedir}/.config/fcitx/rime/installation.yaml`)) {
+    if (!existsSync(`${homedir()}/.config/fcitx/rime/installation.yaml`)) {
+      process.stdout.write("-------2\n");
       // 這一步是爲了生成 rime 的配置文件
       await generateFcitxDir();
       // 以下 10 秒後執行
@@ -115,57 +115,52 @@ export default abstract class InputMethod {
     ln("/.config/fcitx/rime/grammar.yaml");
     ln("/.config/fcitx/rime/lua");
     ln("/.config/fcitx/rime/luna_pinyin.custom.punctuator.yaml");
-    ln("/.config/fcitx/rime/luna_pinyin.custom.dict.yaml");
+    // ln("/.config/fcitx/rime/luna_pinyin.custom.dict.yaml");
     ln("/.config/fcitx/rime/luna_pinyin_simp.custom.yaml");
     ln("/.config/fcitx/rime/rime.lua");
     ln("/.config/fcitx/rime/zh-hans-t-essay-bgc.gram");
     ln("/.config/fcitx/rime/zh-hans-t-essay-bgw.gram");
 
-    if (!existsSync(`${homedir}/.config/fcitx/rime/opencc`)) {
-      mkdirSync(`${homedir}/.config/fcitx/rime/opencc`);
+    if (!existsSync(`${homedir()}/.config/fcitx/rime/opencc`)) {
+      mkdirSync(`${homedir()}/.config/fcitx/rime/opencc`);
     }
 
     await runCommand(
-      `wget -O ${homedir}/.config/fcitx/rime/opencc/emoji.json "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji.json"`
+      `wget -O ${homedir()}/.config/fcitx/rime/opencc/emoji.json "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji.json"`
     );
 
     await runCommand(
-      `wget -O ${homedir}/.config/fcitx/rime/opencc/emoji_category.txt "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji_category.txt"`
+      `wget -O ${homedir()}/.config/fcitx/rime/opencc/emoji_category.txt "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji_category.txt"`
     );
 
     await runCommand(
-      `wget -O ${homedir}/.config/fcitx/rime/opencc/emoji_word.txt "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji_word.txt"`
+      `wget -O ${homedir()}/.config/fcitx/rime/opencc/emoji_word.txt "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji_word.txt"`
     );
 
-    const userYamlPath = `${homedir}/.config/fcitx/rime/user.yaml`;
+    const userYamlPath = `${homedir()}/.config/fcitx/rime/user.yaml`;
 
     let userYamlText = readFileSync(userYamlPath).toString();
 
     userYamlText =
       userYamlText + "\n  previously_selected_schema: luna_pinyin_simp";
 
-    writeFile(userYamlPath, userYamlText, (err) => {
-      if (err?.message) {
-        process.stdout.write(err?.message);
-      }
-    });
+    writeFileSync(userYamlPath, userYamlText);
 
     if (
       !existsSync(
-        `${homedir}/.config/fcitx/rime/build/terra_pinyin.reverse.bin`
+        `${homedir()}/.config/fcitx/rime/build/terra_pinyin.reverse.bin`
       )
     ) {
       try {
-        // /home/hexh/workspace/hexh.config/lib
         await runCommand(`mkdir -p ${__dirname}/build`);
         await runCommand(
-          `git clone https://github.com/rime/librime ${__dirname}/build/librime`
+          `git clone https://github.com/hexh250786313/librime ${__dirname}/build/librime`
         );
         await runCommand(
-          `sh -c "${__dirname}/build/librime/install-plugins.sh hchunhui/librime-lua"`
+          `sh -c "${__dirname}/build/librime/install-plugins.sh hexh250786313/librime-lua"`
         );
         await runCommand(
-          `sh -c "${__dirname}/build/librime/install-plugins.sh lotem/librime-octagram"`
+          `sh -c "${__dirname}/build/librime/install-plugins.sh hexh250786313/librime-octagram"`
         );
         await runCommand(
           `make --directory=${__dirname}/build/librime merged-plugins`
@@ -175,7 +170,7 @@ export default abstract class InputMethod {
         );
         try {
           await runCommand(
-            `ln -s /usr/share/rime-data/build/terra_pinyin.reverse.bin ${homedir}/.config/fcitx/rime/build/`
+            `ln -s /usr/share/rime-data/build/terra_pinyin.reverse.bin ${homedir()}/.config/fcitx/rime/build/`
           );
         } catch (e) {
           /* handle error */
@@ -183,8 +178,41 @@ export default abstract class InputMethod {
       } catch (err: any) {
         console.log(err.message);
       } finally {
-        runCommand(`rm -rf ${__dirname}/build`);
+        await runCommand(`rm -rf ${__dirname}/build`);
       }
+    }
+
+    try {
+      try {
+        await runCommand(`rm -rf ${__dirname}/build/scel-rime`);
+      } catch (e) {
+        /* handle error */
+      }
+      await runCommand(
+        `git clone https://github.com/hexh250786313/scel-rime ${__dirname}/build/scel-rime`
+      );
+      await runCommand(`touch ${__dirname}/build/scel-rime/config`);
+      writeFileSync(`${__dirname}/build/scel-rime/config`, customDictConfig, {
+        flag: "a",
+      });
+
+      await runCommand(
+        `touch ${homedir()}/.config/fcitx/rime/luna_pinyin.custom.dict.yaml`
+      );
+      await runCommand(
+        `mkdir -p ${homedir()}/.config/fcitx/rime/luna_pinyin_cells`
+      );
+
+      await runCommand(`sh -c "${__dirname}/build/scel-rime/fetch.sh"`, {
+        cwd: `${__dirname}/build/scel-rime`,
+      });
+    } catch (e: any) {
+      process.stdout.write(e + "\n");
+      await runCommand(
+        `find ${homedir()}/.config/fcitx/rime -type f -name '${dictSpChar}' -delete`
+      );
+    } finally {
+      await runCommand(`rm -rf ${__dirname}/build/scel-rime`);
     }
 
     generateFcitxDir();
