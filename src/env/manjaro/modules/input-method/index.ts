@@ -1,10 +1,11 @@
 import runCommand from "@/utils/run-command";
 import runYay from "@/utils/run-yay";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs-extra";
+import { existsSync, readFileSync, writeFileSync } from "fs-extra";
 import { homedir } from "os";
 import generateFcitxDir from "./generate-fcitx-dir";
 import ln from "../../ln";
-import { customDictConfig, dictSpChar } from "./sh/custom-dict-config";
+import fetchSogouScel from "./fetch-scel";
+import plum from "./plum";
 
 export default abstract class InputMethod {
   async inputMethod() {
@@ -14,7 +15,7 @@ export default abstract class InputMethod {
 
   async fcitx() {
     try {
-      await runCommand(`killall fcitx`);
+      await runCommand(`pkill -e fcitx`);
     } catch (e) {
       /* handle error */
     }
@@ -78,7 +79,6 @@ export default abstract class InputMethod {
     const uiPath = `${homedir()}/.config/fcitx/conf/fcitx-classic-ui.config`;
 
     if (!existsSync(profilePath)) {
-      process.stdout.write("-------1\n");
       await generateFcitxDir();
       // 以下 10 秒後執行
     }
@@ -105,37 +105,23 @@ export default abstract class InputMethod {
     }
 
     if (!existsSync(`${homedir()}/.config/fcitx/rime/installation.yaml`)) {
-      process.stdout.write("-------2\n");
       // 這一步是爲了生成 rime 的配置文件
       await generateFcitxDir();
       // 以下 10 秒後執行
     }
 
-    ln("/.config/fcitx/rime/emoji_suggestion.yaml");
-    ln("/.config/fcitx/rime/grammar.yaml");
     ln("/.config/fcitx/rime/lua");
-    ln("/.config/fcitx/rime/luna_pinyin.custom.punctuator.yaml");
-    // ln("/.config/fcitx/rime/luna_pinyin.custom.dict.yaml");
+    ln("/.config/fcitx/rime/luna_pinyin_simp.custom.punctuator.yaml");
     ln("/.config/fcitx/rime/luna_pinyin_simp.custom.yaml");
     ln("/.config/fcitx/rime/rime.lua");
-    ln("/.config/fcitx/rime/zh-hans-t-essay-bgc.gram");
-    ln("/.config/fcitx/rime/zh-hans-t-essay-bgw.gram");
 
-    if (!existsSync(`${homedir()}/.config/fcitx/rime/opencc`)) {
-      mkdirSync(`${homedir()}/.config/fcitx/rime/opencc`);
-    }
+    process.stdout.write("Plum Processing...\n");
 
-    await runCommand(
-      `wget -O ${homedir()}/.config/fcitx/rime/opencc/emoji.json "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji.json"`
-    );
-
-    await runCommand(
-      `wget -O ${homedir()}/.config/fcitx/rime/opencc/emoji_category.txt "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji_category.txt"`
-    );
-
-    await runCommand(
-      `wget -O ${homedir()}/.config/fcitx/rime/opencc/emoji_word.txt "https://raw.githubusercontent.com/rime/rime-emoji/master/opencc/emoji_word.txt"`
-    );
+    await plum([
+      "hexh250786313/rime-emoji",
+      "hexh250786313/rime-easy-en",
+      "hexh250786313/rime-octagram-data hexh250786313/rime-octagram-data@hans",
+    ]);
 
     const userYamlPath = `${homedir()}/.config/fcitx/rime/user.yaml`;
 
@@ -145,6 +131,8 @@ export default abstract class InputMethod {
       userYamlText + "\n  previously_selected_schema: luna_pinyin_simp";
 
     writeFileSync(userYamlPath, userYamlText);
+
+    process.stdout.write("Installing librime...\n");
 
     if (
       !existsSync(
@@ -178,42 +166,11 @@ export default abstract class InputMethod {
       } catch (err: any) {
         console.log(err.message);
       } finally {
-        await runCommand(`rm -rf ${__dirname}/build`);
+        await runCommand(`rm -rf ${__dirname}/build/librime`);
       }
     }
 
-    try {
-      try {
-        await runCommand(`rm -rf ${__dirname}/build/scel-rime`);
-      } catch (e) {
-        /* handle error */
-      }
-      await runCommand(
-        `git clone https://github.com/hexh250786313/scel-rime ${__dirname}/build/scel-rime`
-      );
-      await runCommand(`touch ${__dirname}/build/scel-rime/config`);
-      writeFileSync(`${__dirname}/build/scel-rime/config`, customDictConfig, {
-        flag: "a",
-      });
-
-      await runCommand(
-        `touch ${homedir()}/.config/fcitx/rime/luna_pinyin.custom.dict.yaml`
-      );
-      await runCommand(
-        `mkdir -p ${homedir()}/.config/fcitx/rime/luna_pinyin_cells`
-      );
-
-      await runCommand(`sh -c "${__dirname}/build/scel-rime/fetch.sh"`, {
-        cwd: `${__dirname}/build/scel-rime`,
-      });
-    } catch (e: any) {
-      process.stdout.write(e + "\n");
-      await runCommand(
-        `find ${homedir()}/.config/fcitx/rime -type f -name '${dictSpChar}' -delete`
-      );
-    } finally {
-      await runCommand(`rm -rf ${__dirname}/build/scel-rime`);
-    }
+    await fetchSogouScel();
 
     generateFcitxDir();
   }

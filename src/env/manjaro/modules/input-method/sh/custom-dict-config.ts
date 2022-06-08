@@ -1,4 +1,4 @@
-const _dictSpChar = "*hexh-dict*";
+const _dictSpChar = "hexh-dict";
 
 const _config = `
 #!/bin/bash
@@ -26,7 +26,7 @@ DICT_SHORTS=(
   "hexh-dict.wangluoliuxingxinci" # 网络流行新词【官方推荐】
   "hexh-dict.yueyuxiaociku" # 粤语小词库
 )
-DICT_PREFIX="luna_pinyin"
+DICT_PREFIX="luna_pinyin_simp"
 DICT_MASTER_NAME="custom"
 COPY="$HOME/.config/fcitx/rime"
 HOOK_AFTER="rime_deployer --build $COPY /usr/share/rime-data $HOME/.config/fcitx/rime/build"

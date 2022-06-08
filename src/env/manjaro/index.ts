@@ -3,7 +3,7 @@ import Common from "../common";
 import InputMethod from "./modules/input-method";
 
 class Manjaro extends Common implements InputMethod {
-  // @ts-expect-errors: not-empty
+  // @ts-expect-errors: is-not-undefined
   inputMethod(): () => Promise<void>;
 }
 
