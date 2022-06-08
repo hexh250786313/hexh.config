@@ -7,10 +7,41 @@ import ln from "../../ln";
 import fetchSogouScel from "./fetch-scel";
 import plum from "./plum";
 
-export default abstract class InputMethod {
-  async inputMethod() {
+export default class InputMethod {
+  async run(args: string[]) {
+    let targets: string[] = JSON.parse(JSON.stringify(args));
+    if (args.length === 0) {
+      targets = ["setup"];
+    }
+
+    const allArgsValid = targets.every((T: string) => {
+      return (this as any)[T] !== undefined;
+    });
+
+    if (allArgsValid) {
+      if (targets.includes("rime")) {
+        targets = ["rime"].concat(targets.filter((T: string) => T !== "rime"));
+      }
+      if (targets.includes("fcitx")) {
+        targets = ["fcitx"].concat(
+          targets.filter((T: string) => T !== "fcitx")
+        );
+      }
+
+      const allPromise = targets.reduce(async (promise: any, T: string) => {
+        return promise.then(() => (this as any)[T]());
+      }, Promise.resolve());
+      await allPromise;
+    }
+
+    generateFcitxDir();
+  }
+
+  async setup() {
     await this.fcitx();
     await this.rime();
+    await this.plum();
+    await this.fetchSogouScel();
   }
 
   async fcitx() {
@@ -115,14 +146,6 @@ export default abstract class InputMethod {
     ln("/.config/fcitx/rime/luna_pinyin_simp.custom.yaml");
     ln("/.config/fcitx/rime/rime.lua");
 
-    process.stdout.write("Plum Processing...\n");
-
-    await plum([
-      "hexh250786313/rime-emoji",
-      "hexh250786313/rime-easy-en",
-      "hexh250786313/rime-octagram-data hexh250786313/rime-octagram-data@hans",
-    ]);
-
     const userYamlPath = `${homedir()}/.config/fcitx/rime/user.yaml`;
 
     let userYamlText = readFileSync(userYamlPath).toString();
@@ -169,9 +192,19 @@ export default abstract class InputMethod {
         await runCommand(`rm -rf ${__dirname}/build/librime`);
       }
     }
+  }
 
+  async plum() {
+    process.stdout.write("Plum Processing...\n");
+
+    await plum([
+      "hexh250786313/rime-emoji",
+      "hexh250786313/rime-easy-en",
+      "hexh250786313/rime-octagram-data hexh250786313/rime-octagram-data@hans",
+    ]);
+  }
+
+  async fetchSogouScel() {
     await fetchSogouScel();
-
-    generateFcitxDir();
   }
 }
