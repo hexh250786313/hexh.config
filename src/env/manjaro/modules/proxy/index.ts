@@ -1,3 +1,6 @@
+import runCommand from "@/utils/run-command";
+import runYay from "@/utils/run-yay";
+
 export default class Proxy {
   async run(args: string[]) {
     let targets: string[] = JSON.parse(JSON.stringify(args));
@@ -18,7 +21,20 @@ export default class Proxy {
   }
 
   async setup() {
-    console.log("setup\n");
-    //
+    await this.clash();
+  }
+
+  async clash() {
+    try {
+      await runCommand(`pkill -e clash`);
+    } catch (e) {
+      /* handle error */
+    }
+
+    runYay({
+      pkg: "clash",
+      testCommand: "clash",
+      // withEnter: true,
+    });
   }
 }

@@ -4,8 +4,9 @@ import { existsSync, readFileSync, writeFileSync } from "fs-extra";
 import { homedir } from "os";
 import generateFcitxDir from "./generate-fcitx-dir";
 import ln from "../../ln";
-import fetchSogouScel from "./fetch-scel";
 import plum from "./plum";
+import { customDictConfig, dictSpChar } from "./sh/custom-dict-config";
+import fetchScel from "./fetch-scel";
 
 export default class InputMethod {
   async run(args: string[]) {
@@ -19,6 +20,8 @@ export default class InputMethod {
     });
 
     if (allArgsValid) {
+      await runCommand(`pkill -e fcitx`);
+
       if (targets.includes("rime")) {
         targets = ["rime"].concat(targets.filter((T: string) => T !== "rime"));
       }
@@ -205,6 +208,34 @@ export default class InputMethod {
   }
 
   async fetchSogouScel() {
-    await fetchSogouScel();
+    process.stdout.write("Scel fetching...\n");
+
+    try {
+      try {
+        await runCommand(`rm -rf ${__dirname}/build/scel-rime`);
+      } catch (e) {
+        /* handle error */
+      }
+      await runCommand(
+        `git clone https://github.com/hexh250786313/scel-rime ${__dirname}/build/scel-rime`
+      );
+      await runCommand(`touch ${__dirname}/build/scel-rime/config`);
+      writeFileSync(`${__dirname}/build/scel-rime/config`, customDictConfig, {
+        flag: "a",
+      });
+
+      await runCommand(
+        `touch ${homedir()}/.config/fcitx/rime/luna_pinyin_simp.custom.dict.yaml`
+      );
+
+      await fetchScel();
+    } catch (e: any) {
+      process.stdout.write(e + "\n");
+      await runCommand(
+        `find ${homedir()}/.config/fcitx/rime -type f -name '*${dictSpChar}*' -delete`
+      );
+    } finally {
+      await runCommand(`rm -rf ${__dirname}/build/scel-rime`);
+    }
   }
 }
