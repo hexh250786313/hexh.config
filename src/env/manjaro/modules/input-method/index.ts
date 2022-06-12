@@ -20,7 +20,12 @@ export default class InputMethod {
     });
 
     if (allArgsValid) {
-      await runCommand(`pkill -e fcitx`);
+      try {
+        await runCommand(`pkill -e fcitx`);
+        process.stdout.write("Fcitx killed...\n");
+      } catch (e) {
+        /* handle error */
+      }
 
       if (targets.includes("rime")) {
         targets = ["rime"].concat(targets.filter((T: string) => T !== "rime"));
@@ -35,9 +40,9 @@ export default class InputMethod {
         return promise.then(() => (this as any)[T]());
       }, Promise.resolve());
       await allPromise;
+      await generateFcitxDir();
+      process.stdout.write("Done. Please restart your fcitx.\n");
     }
-
-    generateFcitxDir();
   }
 
   async setup() {
@@ -48,12 +53,6 @@ export default class InputMethod {
   }
 
   async fcitx() {
-    try {
-      await runCommand(`pkill -e fcitx`);
-    } catch (e) {
-      /* handle error */
-    }
-
     const packages = [
       {
         pkg: "fcitx-im",
