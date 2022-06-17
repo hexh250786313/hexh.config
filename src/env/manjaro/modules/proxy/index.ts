@@ -1,11 +1,17 @@
 import runCommand from "@/utils/run-command";
-import runYay from "@/utils/run-yay";
+import runPacman from "@/utils/run-pacman";
 import { existsSync, readFileSync, writeFileSync } from "fs-extra";
 import { homedir } from "os";
 import generateClashDir from "./generateClashDir";
 import clashConfig from "./yaml/clash-config";
 
 export default class Proxy {
+  private proxyCommand = [
+    'export all_proxy="socks5://127.0.0.1:4780"',
+    'export http_proxy="http://127.0.0.1:4780"',
+    'export https_proxy="http://127.0.0.1:4780"',
+  ];
+
   async run(args: string[]) {
     let targets: string[] = JSON.parse(JSON.stringify(args));
     if (args.length === 0) {
@@ -39,7 +45,7 @@ export default class Proxy {
 
   async clash() {
     await runCommand(`timedatectl set-ntp true`);
-    await runYay({
+    await runPacman({
       pkg: "clash",
       testCommand: "clash",
       // withEnter: true,
@@ -68,24 +74,16 @@ export default class Proxy {
       });
     }, Promise.resolve());
     await promises;
-
-    // targetText.forEach(async (text) => {});
-    //
   }
 
   async xProxySet() {
     const xprofilePath = `${homedir()}/.xprofile`;
-    const targetText = [
-      'export all_proxy="socks://127.0.0.1:4780"',
-      'export http_proxy="http://127.0.0.1:4780"',
-      'export https_proxy="http://127.0.0.1:4780"',
-    ];
     let xprofileText = "";
     if (existsSync(xprofilePath)) {
       xprofileText = readFileSync(xprofilePath).toString();
     }
 
-    targetText.forEach((text) => {
+    this.proxyCommand.forEach((text) => {
       if (!xprofileText.includes(text)) {
         writeFileSync(xprofilePath, "\n" + text, { flag: "a" });
       }
@@ -127,5 +125,8 @@ export default class Proxy {
     await runCommand(
       `perl -0777 -i -pe "s/port(.*\n){8}.*dns:/${clashConfig}/gi" ${homedir()}/.config/clash/config.yaml`
     );
+
+    const command = this.proxyCommand.join(" && ");
+    process.stdout.write("" + command + "\n");
   }
 }

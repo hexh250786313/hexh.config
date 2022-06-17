@@ -35,6 +35,11 @@ export default class Basic {
         testCommand: "cava",
         // withEnter: true,
       },
+      {
+        pkg: "speedtest-cli",
+        testCommand: "speedtest",
+        // withEnter: true,
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
