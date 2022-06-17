@@ -128,5 +128,6 @@ export default class Proxy {
 
     const command = this.proxyCommand.join(" && ");
     process.stdout.write("" + command + "\n");
+    process.stdout.write("https://clash.razord.top/" + "\n");
   }
 }

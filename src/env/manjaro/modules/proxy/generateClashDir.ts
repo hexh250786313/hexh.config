@@ -9,7 +9,6 @@ export default async function generateClashDir(timeout?: number) {
     /* handle error */
   }
 
-  // this step is to generate fcitx diretory and config file: ~/.config/fcitx
   setTimeout(async () => {
     if (!existsSync(`${homedir()}/.config/clash/cache.db`)) {
       process.stdout.write(
