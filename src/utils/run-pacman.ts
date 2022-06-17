@@ -26,7 +26,7 @@ export default async function runPacman({
     await runCommand(
       `${
         withEnter ? "echo y |" : ""
-      } echo $'\n' | LANG=C sudo pacman --noprovides --answerdiff None --answerclean None --mflags --noconfirm -S ${pkg}`
+      } echo $'\n' | LANG=C sudo pacman --noconfirm -S ${pkg}`
     );
     process.stdout.write(`${pkg} installed!\n`);
   }
