@@ -19,7 +19,7 @@ export default async function generateClashDir(timeout?: number) {
     } else {
       await runCommand("pkill -e clash");
       process.stdout.write(
-        "Done generating clash directory, please your clash and click https://clash.razord.top to select a global proxy.\n"
+        "OJBK generating clash directory, please your clash and click https://clash.razord.top to select a global proxy.\n"
       );
     }
   }, timeout || 60000);

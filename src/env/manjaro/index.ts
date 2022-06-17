@@ -1,7 +1,9 @@
 // import applyMixins from "@/utils/apply-mixins";
 // import Common from "../common";
+import Editor from "./modules/editor";
 import InputMethod from "./modules/input-method";
 import Proxy from "./modules/proxy";
+import Basic from "./modules/basic";
 
 // class Manjaro extends Common implements InputMethod {
 // // @ts-expect-errors: is-not-undefined
@@ -13,6 +15,8 @@ import Proxy from "./modules/proxy";
 const Manjaro = {
   inputMethod: InputMethod,
   proxy: Proxy,
+  editor: Editor,
+  basic: Basic,
 };
 
 export default Manjaro;

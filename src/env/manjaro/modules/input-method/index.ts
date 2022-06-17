@@ -41,7 +41,7 @@ export default class InputMethod {
       }, Promise.resolve());
       await allPromise;
       await generateFcitxDir();
-      process.stdout.write("Done. Please restart your fcitx.\n");
+      process.stdout.write("OJBK. Please restart your fcitx.\n");
     }
   }
 

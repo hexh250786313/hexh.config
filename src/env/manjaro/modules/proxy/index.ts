@@ -1,6 +1,6 @@
 import runCommand from "@/utils/run-command";
 import runYay from "@/utils/run-yay";
-import { existsSync } from "fs-extra";
+import { existsSync, readFileSync, writeFileSync } from "fs-extra";
 import { homedir } from "os";
 import generateClashDir from "./generateClashDir";
 import clashConfig from "./yaml/clash-config";
@@ -27,33 +27,93 @@ export default class Proxy {
         return promise.then(() => (this as any)[T]());
       }, Promise.resolve());
       await allPromise;
-      process.stdout.write("Done. Please restart your clash.\n");
+      process.stdout.write("OJBK. Please restart your clash.\n");
     }
   }
 
   async setup() {
     await this.clash();
+    await this.fetchYaml();
+    await this.systemProxySet();
   }
 
   async clash() {
-    try {
-      await runCommand(`pkill -e clash`);
-    } catch (e) {
-      /* handle error */
-    }
-
-    runYay({
+    await runCommand(`timedatectl set-ntp true`);
+    await runYay({
       pkg: "clash",
       testCommand: "clash",
       // withEnter: true,
     });
   }
 
-  async fetchYaml() {
-    await runCommand(
-      `unset all_proxy && unset http_proxy && unset https_proxy`
-    );
+  async systemProxySet() {
+    const systemProxyPath = `/etc/sudoers.d/05_proxy`;
+    const targetText = ['Defaults env_keep += "*_proxy *_PROXY"'];
+    let systemProxyText = "";
+    try {
+      systemProxyText = await runCommand(`sudo cat ${systemProxyPath}`);
+    } catch (e) {
+      /* handle error */
+    }
 
+    const promises = targetText.reduce(async (promise: Promise<any>, text) => {
+      return promise.then(async () => {
+        if (!systemProxyText.includes(text)) {
+          console.log(systemProxyText, text);
+          // echo not work for root file even if use sudo, so use tee
+          // await runCommand(`sudo echo '${text}' > ${systemProxyPath}`);
+          await runCommand(`echo '${text}' | sudo tee ${systemProxyPath}`); // # add -a for append (>>)
+          console.log("OJBK for system proxy");
+        }
+      });
+    }, Promise.resolve());
+    await promises;
+
+    // targetText.forEach(async (text) => {});
+    //
+  }
+
+  async xProxySet() {
+    const xprofilePath = `${homedir()}/.xprofile`;
+    const targetText = [
+      'export all_proxy="socks://127.0.0.1:4780"',
+      'export http_proxy="http://127.0.0.1:4780"',
+      'export https_proxy="http://127.0.0.1:4780"',
+    ];
+    let xprofileText = "";
+    if (existsSync(xprofilePath)) {
+      xprofileText = readFileSync(xprofilePath).toString();
+    }
+
+    targetText.forEach((text) => {
+      if (!xprofileText.includes(text)) {
+        writeFileSync(xprofilePath, "\n" + text, { flag: "a" });
+      }
+    });
+  }
+
+  async xProxyUnset() {
+    const xprofilePath = `${homedir()}/.xprofile`;
+    const targetText = [
+      'export all_proxy="socks://127.0.0.1:4780"',
+      'export http_proxy="http://127.0.0.1:4780"',
+      'export https_proxy="http://127.0.0.1:4780"',
+    ];
+    let xprofileText = "";
+    if (existsSync(xprofilePath)) {
+      xprofileText = readFileSync(xprofilePath).toString();
+    }
+
+    targetText.forEach((text) => {
+      if (xprofileText.includes(text)) {
+        xprofileText = xprofileText.replace(text, "");
+      }
+    });
+
+    writeFileSync(xprofilePath, xprofileText);
+  }
+
+  async fetchYaml() {
     if (!existsSync(`${homedir()}/.config/clash/cache.db`)) {
       process.stdout.write("No clash cache.db found, generating...\n");
       await generateClashDir();
@@ -61,15 +121,11 @@ export default class Proxy {
 
     process.stdout.write("Fetching yaml file...\n");
     await runCommand(
-      `curl -L -o ${homedir()}/.config/clash/config.yaml https://api.dogeconfig.com/link/gBTCS4Rfy9y1Xr4z?clash=1`
+      `unset all_proxy && unset http_proxy && unset https_proxy && curl -L -o ${homedir()}/.config/clash/config.yaml https://api.dogeconfig.com/link/gBTCS4Rfy9y1Xr4z?clash=1`
     );
 
     await runCommand(
       `perl -0777 -i -pe "s/port(.*\n){8}.*dns:/${clashConfig}/gi" ${homedir()}/.config/clash/config.yaml`
-    );
-
-    await runCommand(
-      `export all_proxy="socks://127.0.0.1:4780" && export http_proxy="http://127.0.0.1:4780" && export https_proxy="http://127.0.0.1:4780"`
     );
   }
 }
