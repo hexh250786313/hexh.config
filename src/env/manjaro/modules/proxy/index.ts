@@ -39,6 +39,7 @@ export default class Proxy {
 
   async setup() {
     await this.clash();
+    await this.generate();
     await this.fetchYaml();
     await this.systemProxySet();
   }
@@ -111,11 +112,21 @@ export default class Proxy {
     writeFileSync(xprofilePath, xprofileText);
   }
 
-  async fetchYaml() {
+  async generate() {
     if (!existsSync(`${homedir()}/.config/clash/cache.db`)) {
       process.stdout.write("No clash cache.db found, generating...\n");
       await generateClashDir();
     }
+  }
+
+  async fetchYaml() {
+    try {
+      await runCommand("pkill -e clash");
+    } catch (e) {
+      /* handle error */
+    }
+
+    await this.generate();
 
     process.stdout.write("Fetching yaml file...\n");
     await runCommand(
