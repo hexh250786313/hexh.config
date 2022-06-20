@@ -183,9 +183,9 @@ export default class InputMethod {
         await runCommand(
           `make --directory=${__dirname}/build/librime merged-plugins`
         );
-        await runCommand(
-          `sudo make --directory=${__dirname}/build/librime install`
-        );
+        // await runCommand(
+        // `sudo make --directory=${__dirname}/build/librime install`
+        // );
         try {
           await runCommand(
             `ln -s /usr/share/rime-data/build/terra_pinyin.reverse.bin ${homedir()}/.config/fcitx/rime/build/`
