@@ -35,7 +35,7 @@ export default class Basic {
   async initPacman() {
     await runCommand(`sudo pacman-key --init`);
     await runCommand(`sudo pacman-key --populate`);
-    await runCommand(`sudo pacman-key --Syyu`);
+    await runSpawn(`sudo pacman-key --Syyu`);
   }
 
   // 貌似没用
