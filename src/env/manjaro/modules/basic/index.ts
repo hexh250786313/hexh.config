@@ -38,6 +38,12 @@ export default class Basic {
   }
 
   async vmTools() {
+    try {
+      await runCommand(`sudo rm /etc/vmware-tools/scripts/vmware/network`);
+    } catch (e) {
+      /* handle error */
+    }
+
     await runCommand(`timedatectl set-ntp true`);
     await runPacman({ pkg: "net-tools", testCommand: "ifconfig" });
 
