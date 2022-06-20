@@ -51,15 +51,18 @@ export default class Basic {
 
     await runCommand(`timedatectl set-ntp true`);
     await runPacman({ pkg: "net-tools", testCommand: "ifconfig" });
-
-    await runCommand(`sudo mkdir /etc/init.d`);
-    const promises = [0, 1, 2, 3, 4, 5, 6].reduce((promise, number) => {
-      promise.then(
-        async () => await runCommand(`sudo mkdir /etc/rc${number}.d`)
-      );
-      return promise;
-    }, Promise.resolve());
-    await promises;
+    try {
+      await runCommand(`sudo mkdir /etc/init.d`);
+      const promises = [0, 1, 2, 3, 4, 5, 6].reduce((promise, number) => {
+        promise.then(
+          async () => await runCommand(`sudo mkdir /etc/rc${number}.d`)
+        );
+        return promise;
+      }, Promise.resolve());
+      await promises;
+    } catch (e) {
+      /* handle error */
+    }
 
     await runCommand(`tar xvf ./*VMware*tar.gz`, {
       cwd: `${homedir()}/下载`,
