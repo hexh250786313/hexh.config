@@ -39,7 +39,7 @@ export default class Basic {
 
   async vmTools() {
     try {
-      await runCommand(`sudo rm /etc/vmware-tools/scripts/vmware/network`);
+      await runCommand(`sudo rm -rf /etc/vmware-tools`);
     } catch (e) {
       /* handle error */
     }
