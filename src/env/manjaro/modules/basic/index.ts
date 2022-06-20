@@ -34,7 +34,7 @@ export default class Basic {
 
   // pacman 初始化更新报错时运行, 否则不运行
   async resetPacmanKey() {
-    await runCommand(
+    await runSpawn(
       `sudo pacman-key --init && sudo pacman-key --populate && sudo pacman -Syyu`
     );
   }
