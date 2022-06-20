@@ -44,6 +44,11 @@ export default class Basic {
       /* handle error */
     }
     try {
+      await runCommand(`sudo rm -rf /usr/bin/vmtoolsd`);
+    } catch (e) {
+      /* handle error */
+    }
+    try {
       await runCommand(`sudo rm -rf ${homedir()}/下载/vmware-tools-distrib`);
     } catch (e) {
       /* handle error */
@@ -67,9 +72,10 @@ export default class Basic {
     await runCommand(`tar xvf ./*VMware*tar.gz`, {
       cwd: `${homedir()}/下载`,
     });
-    await runCommand(`sudo ./vmware-install.pl`, {
-      cwd: `${homedir()}/下载/vmware-tools-distrib`,
-    });
+
+    process.stdout.write(
+      "sudo ~/下载/vmware-tools-distrib/vmware-install.pl\n"
+    );
   }
 
   async software() {
