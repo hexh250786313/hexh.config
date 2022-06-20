@@ -1,4 +1,7 @@
+import runCommand from "@/utils/run-command";
+import runPacman from "@/utils/run-pacman";
 import runYay from "@/utils/run-yay";
+import { homedir } from "os";
 
 export default class Basic {
   async run(args: string[]) {
@@ -26,6 +29,33 @@ export default class Basic {
 
   async dkms() {
     // https://blog.hexuhua.vercel.app/post/19
+  }
+
+  async initPacman() {
+    await runCommand(`sudo pacman-key --init`);
+    await runCommand(`sudo pacman-key --populate`);
+    await runCommand(`sudo pacman-key --Syyu`);
+  }
+
+  async vmTools() {
+    await runCommand(`timedatectl set-ntp true`);
+    await runPacman({ pkg: "net-tools", testCommand: "ifconfig" });
+
+    await runCommand(`sudo mkdir /etc/init.d`);
+    const promises = [0, 1, 2, 3, 4, 5, 6].reduce((promise, number) => {
+      promise.then(
+        async () => await runCommand(`sudo mkdir /etc/rc${number}.d`)
+      );
+      return promise;
+    }, Promise.resolve());
+    await promises;
+
+    await runCommand(`tar xvf ./*VMware*tar.gz`, {
+      cwd: `${homedir()}/下载`,
+    });
+    await runCommand(`sudo ./vmware-install.pl`, {
+      cwd: `${homedir()}/下载/vmware-tools-distrib`,
+    });
   }
 
   async software() {
