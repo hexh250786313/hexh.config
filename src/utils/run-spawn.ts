@@ -34,7 +34,6 @@ export default function (
       if (args[0]) {
         exec.stdin.write(args[0]);
       }
-      console.log(args);
     });
 
     exec.stdout.on("data", (data) => process.stdout.write(data.toString()));

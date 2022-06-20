@@ -77,9 +77,11 @@ export default class Basic {
       cwd: `${homedir()}/下载/vmware-tools-distrib`,
     });
 
-    // process.stdout.write(
-    // "sudo ~/下载/vmware-tools-distrib/vmware-install.pl\n"
-    // );
+    try {
+      await runCommand(`sudo rm -rf ${homedir()}/下载/vmware-tools-distrib`);
+    } catch (e) {
+      /* handle error */
+    }
   }
 
   async test() {
