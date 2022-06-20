@@ -49,8 +49,16 @@ export default class Basic {
   }
 
   async needed() {
-    await runPacman({ pkg: "yay", testCommand: "yay" });
-    await runPacman({ pkg: "cmake", testCommand: "cmake" });
+    const pkgs = [
+      { pkg: "yay", testCommand: "yay" },
+      { pkg: "cmake", testCommand: "cmake" },
+      { pkg: "boost", testPath: "/usr/bin/b2" },
+    ];
+    const promises = pkgs.reduce((promise, pkg) => {
+      promise.then(async () => await runPacman(pkg));
+      return promise;
+    }, Promise.resolve());
+    await promises;
     await runSpawn(`sudo pacman -S base-devel`);
   }
 
