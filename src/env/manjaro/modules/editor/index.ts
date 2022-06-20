@@ -53,7 +53,7 @@ export default class Editor {
 
     process.stdout.write("Fetching nightly-nvim...\n");
     await runCommand(
-      `git clone https://github.com/neovim/neovim ${__dirname}/build/neovim`
+      `git clone https://github.com/neovim/neovim ${__dirname}/build`
     );
 
     await installNvim();
