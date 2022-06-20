@@ -183,9 +183,9 @@ export default class InputMethod {
         await runCommand(
           `make --directory=${__dirname}/build/librime merged-plugins`
         );
-        // await runCommand(
-        // `sudo make --directory=${__dirname}/build/librime install`
-        // );
+        await runCommand(
+          `sudo make --directory=${__dirname}/build/librime install`
+        );
         try {
           await runCommand(
             `ln -s /usr/share/rime-data/build/terra_pinyin.reverse.bin ${homedir()}/.config/fcitx/rime/build/`
@@ -195,11 +195,11 @@ export default class InputMethod {
         }
       } catch (err: any) {
         console.log(err.message);
-        // await runCommand(`rm -rf ${__dirname}/build/librime`);
+        await runCommand(`rm -rf ${__dirname}/build/librime`);
         throw new Error("librime install failed");
       }
       try {
-        // await runCommand(`rm -rf ${__dirname}/build/librime`);
+        await runCommand(`rm -rf ${__dirname}/build/librime`);
       } catch (e) {
         /* handle error */
       }

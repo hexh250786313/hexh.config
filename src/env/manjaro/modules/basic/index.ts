@@ -25,6 +25,7 @@ export default class Basic {
 
   async setup() {
     // await this.resetPacmanKey();
+    await this.needed();
     await this.dkms();
     await this.dotfiles();
     await this.software();
@@ -47,8 +48,10 @@ export default class Basic {
     // await runCommand(`git clone `);
   }
 
-  async yay() {
+  async needed() {
     await runPacman({ pkg: "yay", testCommand: "yay" });
+    await runPacman({ pkg: "cmake", testCommand: "cmake" });
+    await runSpawn(`sudo pacman -Syu base-devel --needed`);
   }
 
   // pacman 初始化 gpg key 报错时运行, 否则不运行
