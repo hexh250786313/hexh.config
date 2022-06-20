@@ -39,6 +39,7 @@ export default class Basic {
 
   async vmTools() {
     try {
+      await runCommand(`sudo rm -rf ${homedir()}/下载/vmware-tools-distrib`);
       await runCommand(`sudo rm /etc/vmware-tools/scripts/vmware/network`);
     } catch (e) {
       /* handle error */
