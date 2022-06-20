@@ -20,15 +20,11 @@ export default function (
       process.stdout.write(data.toString());
     });
 
-    exec.on("end", () => resolve(cmd + " end!\n"));
-    exec.on("close", () => resolve(cmd + " close!\n"));
-
     exec.stderr.on("error", (err) =>
       reject(new Error(`exited with ${err.message}\n`))
     );
 
-    exec.stdout.on("data", (data) => {
-      process.stdout.write(data.toString());
-    });
+    exec.on("end", () => resolve(cmd + " end!\n"));
+    exec.on("close", () => resolve(cmd + " close!\n"));
   });
 }
