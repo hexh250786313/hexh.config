@@ -50,6 +50,11 @@ export default class InputMethod {
     await this.rime();
     await this.plum();
     await this.fetchSogouScel();
+    await this.ln();
+  }
+
+  async ln() {
+    //
   }
 
   async fcitx() {
