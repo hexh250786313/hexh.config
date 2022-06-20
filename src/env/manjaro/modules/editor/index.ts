@@ -12,9 +12,12 @@ export default class Editor {
     });
 
     if (allArgsValid) {
-      const allPromise = targets.reduce(async (promise: any, T: string) => {
-        return promise.then(() => (this as any)[T]());
-      }, Promise.resolve());
+      const allPromise = targets.reduce(
+        async (promise: Promise<any>, T: string) => {
+          return promise.then(() => (this as any)[T]());
+        },
+        Promise.resolve()
+      );
       await allPromise;
       process.stdout.write("OJBK.\n");
     }

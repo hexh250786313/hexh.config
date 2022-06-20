@@ -36,7 +36,7 @@ export default class InputMethod {
         );
       }
 
-      const allPromise = targets.reduce(async (promise: any, T: string) => {
+      const allPromise = targets.reduce(async (promise, T: string) => {
         return promise.then(() => (this as any)[T]());
       }, Promise.resolve());
       await allPromise;

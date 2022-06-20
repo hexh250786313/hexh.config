@@ -15,9 +15,12 @@ export default class Basic {
     });
 
     if (allArgsValid) {
-      const allPromise = targets.reduce(async (promise: any, T: string) => {
-        return promise.then(() => (this as any)[T]());
-      }, Promise.resolve());
+      const allPromise = targets.reduce(
+        async (promise: Promise<any>, T: string) => {
+          return promise.then(() => (this as any)[T]());
+        },
+        Promise.resolve()
+      );
       await allPromise;
       process.stdout.write("OJBK.\n");
     }
@@ -55,7 +58,7 @@ export default class Basic {
       { pkg: "boost", testPath: "/usr/bin/b2" },
     ];
     const promises = pkgs.reduce(async (promise, pkg) => {
-      return promise.then(async () => await runPacman(pkg));
+      return promise.then(() => runPacman(pkg));
     }, Promise.resolve());
     await promises;
     await runSpawn(`sudo pacman -S base-devel`);

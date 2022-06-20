@@ -29,7 +29,7 @@ export default class Proxy {
       } catch (e) {
         /* handle error */
       }
-      const allPromise = targets.reduce(async (promise: any, T: string) => {
+      const allPromise = targets.reduce(async (promise, T: string) => {
         return promise.then(() => (this as any)[T]());
       }, Promise.resolve());
       await allPromise;
@@ -66,11 +66,12 @@ export default class Proxy {
     const promises = targetText.reduce(async (promise: Promise<any>, text) => {
       return promise.then(async () => {
         if (!systemProxyText.includes(text)) {
-          console.log(systemProxyText, text);
           // echo not work for root file even if use sudo, so use tee
           // await runCommand(`sudo echo '${text}' > ${systemProxyPath}`);
-          await runCommand(`echo '${text}' | sudo tee ${systemProxyPath}`); // # add -a for append (>>)
-          console.log("OJBK for system proxy");
+          return runCommand(`echo '${text}' | sudo tee ${systemProxyPath}`) // # add -a for append (>>)
+            .then(() => {
+              console.log("OJBK for system proxy");
+            });
         }
       });
     }, Promise.resolve());
