@@ -38,51 +38,52 @@ export default class Basic {
     await runCommand(`sudo pacman-key --Syyu`);
   }
 
-  async vmTools() {
-    try {
-      await runCommand(`sudo rm -rf /etc/vmware-tools`);
-    } catch (e) {
-      /* handle error */
-    }
-    try {
-      await runCommand(`sudo rm -rf /usr/bin/vmtoolsd`);
-    } catch (e) {
-      /* handle error */
-    }
-    try {
-      await runCommand(`sudo rm -rf ${homedir()}/下载/vmware-tools-distrib`);
-    } catch (e) {
-      /* handle error */
-    }
+  // 貌似没用
+  // async vmTools() {
+  // try {
+  // await runCommand(`sudo rm -rf /etc/vmware-tools`);
+  // } catch (e) {
+  // /* handle error */
+  // }
+  // try {
+  // await runCommand(`sudo rm -rf /usr/bin/vmtoolsd`);
+  // } catch (e) {
+  // /* handle error */
+  // }
+  // try {
+  // await runCommand(`sudo rm -rf ${homedir()}/下载/vmware-tools-distrib`);
+  // } catch (e) {
+  // /* handle error */
+  // }
 
-    await runCommand(`timedatectl set-ntp true`);
-    await runPacman({ pkg: "net-tools", testCommand: "ifconfig" });
-    try {
-      await runCommand(`sudo mkdir /etc/init.d`);
-      const promises = [0, 1, 2, 3, 4, 5, 6].reduce((promise, number) => {
-        promise.then(
-          async () => await runCommand(`sudo mkdir /etc/rc${number}.d`)
-        );
-        return promise;
-      }, Promise.resolve());
-      await promises;
-    } catch (e) {
-      /* handle error */
-    }
+  // await runCommand(`timedatectl set-ntp true`);
+  // await runPacman({ pkg: "net-tools", testCommand: "ifconfig" });
+  // try {
+  // await runCommand(`sudo mkdir /etc/init.d`);
+  // const promises = [0, 1, 2, 3, 4, 5, 6].reduce((promise, number) => {
+  // promise.then(
+  // async () => await runCommand(`sudo mkdir /etc/rc${number}.d`)
+  // );
+  // return promise;
+  // }, Promise.resolve());
+  // await promises;
+  // } catch (e) {
+  // /* handle error */
+  // }
 
-    await runCommand(`tar xvf ./*VMware*tar.gz`, {
-      cwd: `${homedir()}/下载`,
-    });
-    await runSpawn("sudo ./vmware-install.pl", {
-      cwd: `${homedir()}/下载/vmware-tools-distrib`,
-    });
+  // await runCommand(`tar xvf ./*VMware*tar.gz`, {
+  // cwd: `${homedir()}/下载`,
+  // });
+  // await runSpawn("sudo ./vmware-install.pl", {
+  // cwd: `${homedir()}/下载/vmware-tools-distrib`,
+  // });
 
-    try {
-      await runCommand(`sudo rm -rf ${homedir()}/下载/vmware-tools-distrib`);
-    } catch (e) {
-      /* handle error */
-    }
-  }
+  // try {
+  // await runCommand(`sudo rm -rf ${homedir()}/下载/vmware-tools-distrib`);
+  // } catch (e) {
+  // /* handle error */
+  // }
+  // }
 
   async test() {
     await runSpawn(`yay -Syu --devel`);
