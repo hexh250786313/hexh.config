@@ -2,7 +2,6 @@ import runCommand from "@/utils/run-command";
 import runPacman from "@/utils/run-pacman";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
-import { homedir } from "os";
 
 export default class Basic {
   async run(args: string[]) {
@@ -32,7 +31,7 @@ export default class Basic {
     // https://blog.hexuhua.vercel.app/post/19
   }
 
-  // pacman 初始化更新报错时运行, 否则不运行
+  // pacman 初始化 gpg key 报错时运行, 否则不运行
   async resetPacmanKey() {
     await runPacman({ pkg: "haveged", testPath: "/usr/bin/haveged" });
     await runCommand(`systemctl start haveged`);
