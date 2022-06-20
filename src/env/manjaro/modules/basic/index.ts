@@ -83,6 +83,10 @@ export default class Basic {
     // );
   }
 
+  async test() {
+    await runSpawn("sudo pacman -S qq");
+  }
+
   async software() {
     const packages = [
       {
