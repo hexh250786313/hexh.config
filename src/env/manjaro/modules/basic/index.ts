@@ -1,6 +1,8 @@
 import runCommand from "@/utils/run-command";
 import runPacman from "@/utils/run-pacman";
+import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
+import { spawn } from "child_process";
 import { homedir } from "os";
 
 export default class Basic {
@@ -72,10 +74,13 @@ export default class Basic {
     await runCommand(`tar xvf ./*VMware*tar.gz`, {
       cwd: `${homedir()}/下载`,
     });
+    await runSpawn("sudo ./vmware-install.pl", {
+      cwd: `${homedir()}/下载/vmware-tools-distrib`,
+    });
 
-    process.stdout.write(
-      "sudo ~/下载/vmware-tools-distrib/vmware-install.pl\n"
-    );
+    // process.stdout.write(
+    // "sudo ~/下载/vmware-tools-distrib/vmware-install.pl\n"
+    // );
   }
 
   async software() {
