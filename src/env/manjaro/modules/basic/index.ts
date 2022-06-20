@@ -34,6 +34,16 @@ export default class Basic {
 
   // pacman 初始化更新报错时运行, 否则不运行
   async resetPacmanKey() {
+    await runPacman({ pkg: "haveged", testPath: "/usr/bin/haveged" });
+    await runCommand(`systemctl start haveged`);
+    await runCommand(`systemctl enable haveged`);
+
+    try {
+      await runCommand(`sudo rm -fr /etc/pacman.d/gnupg`);
+    } catch (e) {
+      /* handle error */
+    }
+
     await runSpawn(`sudo pacman-key --init`);
     await runSpawn(`sudo pacman-key --populate`);
     await runSpawn(`sudo pacman -Syyu`);
