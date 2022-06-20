@@ -45,15 +45,15 @@ export default function (
     exec.stderr.on("data", (data) => process.stdout.write(data.toString()));
 
     exec.on("end", () => {
-      // process.stdin.setRawMode(false);
-      // process.stdin.removeAllListeners("keypress");
-      process.stdin.destroy();
+      process.stdin.setRawMode(false);
+      process.stdin.removeAllListeners("keypress");
+      // process.stdin.destroy();
       resolve(cmd + " end!\n");
     });
     exec.on("close", () => {
-      // process.stdin.setRawMode(false);
-      // process.stdin.removeAllListeners("keypress");
-      process.stdin.destroy();
+      process.stdin.setRawMode(false);
+      process.stdin.removeAllListeners("keypress");
+      // process.stdin.destroy();
       resolve(cmd + " close!\n");
     });
   });
