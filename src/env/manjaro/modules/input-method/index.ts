@@ -126,6 +126,7 @@ export default class InputMethod {
         /EnabledIMList=fcitx-keyboard-cn:True,/g,
         "EnabledIMList=fcitx-keyboard-cn:True,rime:True,"
       );
+      profileText = profileText.replace(/#IMName=/g, "IMName=rime");
       profileText = profileText.replace(/IMName=/g, "IMName=rime");
 
       writeFileSync(profilePath, profileText);
