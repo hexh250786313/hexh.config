@@ -24,6 +24,9 @@ export default class Basic {
   }
 
   async setup() {
+    // await this.resetPacmanKey();
+    await this.dkms();
+    await this.dotfiles();
     await this.software();
   }
 
@@ -37,6 +40,15 @@ export default class Basic {
       await runSpawn(`sudo pacman -S ${kernel}-headers dkms`);
     }
     // https://blog.hexuhua.vercel.app/post/19
+  }
+
+  async dotfiles() {
+    await runCommand(`mkdir -p ~/workspace`);
+    // await runCommand(`git clone `);
+  }
+
+  async yay() {
+    await runPacman({ pkg: "yay", testCommand: "yay" });
   }
 
   // pacman 初始化 gpg key 报错时运行, 否则不运行
