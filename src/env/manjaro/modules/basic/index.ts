@@ -32,10 +32,11 @@ export default class Basic {
     // https://blog.hexuhua.vercel.app/post/19
   }
 
-  async initPacman() {
-    await runCommand(`sudo pacman-key --init`);
-    await runCommand(`sudo pacman-key --populate`);
-    await runSpawn(`sudo pacman-key --Syyu`);
+  // pacman 初始化更新报错时运行, 否则不运行
+  async resetPacmanKey() {
+    await runCommand(
+      `sudo pacman-key --init && sudo pacman-key --populate && sudo pacman -Syyu`
+    );
   }
 
   // 貌似没用
