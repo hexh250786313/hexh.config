@@ -28,6 +28,14 @@ export default class Basic {
   }
 
   async dkms() {
+    await runSpawn(`sudo pacman -Syu base-devel --needed`);
+    const linuxInfo = await runCommand(`mhwd-kernel -li`);
+    const kernelMatch = linuxInfo.match(/(linux\d+(?<!=(\*\s)))(?=((\s)+))/g);
+    if (Array.isArray(kernelMatch) && kernelMatch.length > 0) {
+      const kernel = kernelMatch[0];
+      // console.log(kernel === "linux515");
+      await runSpawn(`sudo pacman -S ${kernel}-headers dkms`);
+    }
     // https://blog.hexuhua.vercel.app/post/19
   }
 
