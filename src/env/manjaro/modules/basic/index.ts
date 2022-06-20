@@ -2,7 +2,6 @@ import runCommand from "@/utils/run-command";
 import runPacman from "@/utils/run-pacman";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
-import { spawn } from "child_process";
 import { homedir } from "os";
 
 export default class Basic {
@@ -84,7 +83,7 @@ export default class Basic {
   }
 
   async test() {
-    await runSpawn("sudo pacman -S qq");
+    await runSpawn(`yay -Syu --devel`);
   }
 
   async software() {
