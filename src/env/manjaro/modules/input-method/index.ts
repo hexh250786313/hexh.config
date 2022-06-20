@@ -195,11 +195,11 @@ export default class InputMethod {
         }
       } catch (err: any) {
         console.log(err.message);
-        await runCommand(`rm -rf ${__dirname}/build/librime`);
+        // await runCommand(`rm -rf ${__dirname}/build/librime`);
         throw new Error("librime install failed");
       }
       try {
-        await runCommand(`rm -rf ${__dirname}/build/librime`);
+        // await runCommand(`rm -rf ${__dirname}/build/librime`);
       } catch (e) {
         /* handle error */
       }
