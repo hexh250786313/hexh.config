@@ -51,7 +51,7 @@ export default class Basic {
   async needed() {
     await runPacman({ pkg: "yay", testCommand: "yay" });
     await runPacman({ pkg: "cmake", testCommand: "cmake" });
-    await runSpawn(`sudo pacman -Syu base-devel --needed`);
+    await runSpawn(`sudo pacman -S base-devel`);
   }
 
   // pacman 初始化 gpg key 报错时运行, 否则不运行
