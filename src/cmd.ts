@@ -1,6 +1,8 @@
 import { program } from "commander";
+import { existsSync } from "fs";
 import { pkg } from "./constants";
 import Env from "./env";
+import runCommand from "./utils/run-command";
 
 program.version(pkg.version, "-v, --version").parse(process.argv);
 
@@ -15,6 +17,11 @@ export async function run() {
     const moduleValid = (P as any)[module] !== undefined;
     if (moduleValid) {
       const processer = new (P as any)[module]();
+
+      if (!existsSync(`${__dirname}/build`)) {
+        await runCommand(`mkdir -p ${__dirname}/build`);
+      }
+
       processer.run(args);
     }
   }
