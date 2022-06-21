@@ -34,7 +34,8 @@ export default class Git {
 
   async init() {
     await runCommand(`ssh-keygen -t rsa -C "250786313@qq.com"`);
-    await runCommand(`cat ${homedir()}/.ssh/id_rsa.pub`);
+    const output = await runCommand(`cat ${homedir()}/.ssh/id_rsa.pub`);
+    process.stdout.write(output + "\n");
     process.stdout.write(
       `GitHub SSH key setting url is: https://github.com/settings/keys\n`
     );
