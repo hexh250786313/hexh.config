@@ -54,7 +54,8 @@ export default class Basic {
       await runSpawn(`ssh-keygen -t rsa -C "250786313@qq.com"`);
     }
     const output = await runCommand(`cat ${homedir()}/.ssh/id_rsa.pub`);
-    process.stdout.write(output + "\n");
+    await runCommand(`echo "${output}" | xclip -selection clipboard`);
+    process.stdout.write("Copy ssh key to clipboard" + "\n");
   }
 
   async dotfiles() {
@@ -71,6 +72,8 @@ export default class Basic {
       { pkg: "yay", testCommand: "yay" },
       { pkg: "cmake", testCommand: "cmake" },
       { pkg: "boost", testPath: "/usr/bin/b2" },
+      { pkg: "xclip", testCommand: "xclip" },
+      { pkg: "xsel", testCommand: "xsel" },
     ];
     const promises = pkgs.reduce(async (promise, pkg) => {
       return promise.then(() => runPacman(pkg));
