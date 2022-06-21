@@ -48,6 +48,15 @@ export default class Basic {
     // https://blog.hexuhua.vercel.app/post/19
   }
 
+  async ssh() {
+    if (!existsSync(`${homedir()}/.ssh`)) {
+      process.stdout.write("Initial ssh" + "\n");
+      await runCommand(`ssh-keygen -t rsa -C "250786313@qq.com"`);
+      const output = await runCommand(`cat ${homedir()}/.ssh/id_rsa.pub`);
+      process.stdout.write(output + "\n");
+    }
+  }
+
   async dotfiles() {
     if (!existsSync(`${homedir()}/workspace`)) {
       await runCommand(`mkdir -p ${homedir()}/workspace`);

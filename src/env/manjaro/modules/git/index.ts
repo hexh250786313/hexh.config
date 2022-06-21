@@ -1,4 +1,5 @@
 import runCommand from "@/utils/run-command";
+import { existsSync } from "fs-extra";
 import { homedir } from "os";
 import ln from "../../ln";
 import Basic from "../basic";
@@ -24,18 +25,16 @@ export default class Git {
   }
 
   async setup() {
-    await this.init();
-    // await this.proxy();
-    // await this.unProxy();
     const basic = new Basic();
+    await basic.ssh();
+    await this.init();
     await basic.dotfiles();
     await this.ln();
+    // await this.proxy();
+    // await this.unProxy();
   }
 
   async init() {
-    await runCommand(`ssh-keygen -t rsa -C "250786313@qq.com"`);
-    const output = await runCommand(`cat ${homedir()}/.ssh/id_rsa.pub`);
-    process.stdout.write(output + "\n");
     process.stdout.write(
       `GitHub SSH key setting url is: https://github.com/settings/keys\n`
     );
