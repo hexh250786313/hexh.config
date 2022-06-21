@@ -1,9 +1,11 @@
+import { dotfilesPath } from "@/constants";
 import runCommand from "@/utils/run-command";
 import runPacman from "@/utils/run-pacman";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
 import { existsSync } from "fs-extra";
 import { homedir } from "os";
+import ln from "../../ln";
 
 export default class Basic {
   async run(args: string[]) {
@@ -59,13 +61,26 @@ export default class Basic {
   }
 
   async dotfiles() {
+    await runYay({ pkg: "nmap-netcat", testCommand: "ncat" });
     if (!existsSync(`${homedir()}/workspace`)) {
       await runCommand(`mkdir -p ${homedir()}/workspace`);
     }
     if (!existsSync(`${homedir()}/workspace/dotfiles`)) {
       await runCommand(
+        `git clone https://github.com:hexh250786313/dotfiles ${homedir()}/下载/dotfiles`
+      );
+      try {
+        await runCommand(`rm -rf ${homedir()}/.ssh/config`);
+        await runCommand(
+          `ln -s ${homedir()}/下载/dotfiles/.ssh/config ${homedir()}/.ssh/config`
+        );
+      } catch (e) {
+        /* handle error */
+      }
+      await runCommand(
         `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
       );
+      ln(`/.ssh/config`);
     }
   }
 

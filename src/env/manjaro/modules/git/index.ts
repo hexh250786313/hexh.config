@@ -1,6 +1,4 @@
 import runCommand from "@/utils/run-command";
-import { existsSync } from "fs-extra";
-import { homedir } from "os";
 import ln from "../../ln";
 import Basic from "../basic";
 
