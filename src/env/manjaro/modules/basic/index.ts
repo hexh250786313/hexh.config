@@ -54,7 +54,7 @@ export default class Basic {
       await runSpawn(`ssh-keygen -t rsa -C "250786313@qq.com"`);
     }
     const output = await runCommand(`cat ${homedir()}/.ssh/id_rsa.pub`);
-    await runCommand(`echo "${output}" | xclip -selection clipboard`);
+    await runSpawn(`echo "${output}" | xclip -selection clipboard`);
     process.stdout.write("Copy ssh key to clipboard" + "\n");
   }
 
