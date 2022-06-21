@@ -61,11 +61,11 @@ export default class Basic {
   async dotfiles() {
     if (!existsSync(`${homedir()}/workspace`)) {
       await runCommand(`mkdir -p ${homedir()}/workspace`);
-      if (!existsSync(`${homedir()}/workspace/dotfiles`)) {
-        await runCommand(
-          `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
-        );
-      }
+    }
+    if (!existsSync(`${homedir()}/workspace/dotfiles`)) {
+      await runCommand(
+        `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
+      );
     }
   }
 
