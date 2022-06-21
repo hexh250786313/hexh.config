@@ -2,6 +2,8 @@ import runCommand from "@/utils/run-command";
 import runPacman from "@/utils/run-pacman";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
+import { existsSync } from "fs-extra";
+import { homedir } from "os";
 
 export default class Basic {
   async run(args: string[]) {
@@ -47,8 +49,12 @@ export default class Basic {
   }
 
   async dotfiles() {
-    await runCommand(`mkdir -p ~/workspace`);
-    // await runCommand(`git clone `);
+    if (!existsSync(`${homedir()}/workspace`)) {
+      await runCommand(`mkdir -p ${homedir()}/workspace`);
+      await runCommand(
+        `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
+      );
+    }
   }
 
   async needed() {

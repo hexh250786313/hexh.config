@@ -50,11 +50,13 @@ export default class InputMethod {
     await this.rime();
     await this.plum();
     await this.fetchSogouScel();
-    await this.ln();
   }
 
   async ln() {
-    //
+    ln("/.config/fcitx/rime/lua");
+    ln("/.config/fcitx/rime/luna_pinyin_simp.custom.punctuator.yaml");
+    ln("/.config/fcitx/rime/luna_pinyin_simp.custom.yaml");
+    ln("/.config/fcitx/rime/rime.lua");
   }
 
   async fcitx() {
@@ -153,10 +155,7 @@ export default class InputMethod {
       // 以下 10 秒後執行
     }
 
-    ln("/.config/fcitx/rime/lua");
-    ln("/.config/fcitx/rime/luna_pinyin_simp.custom.punctuator.yaml");
-    ln("/.config/fcitx/rime/luna_pinyin_simp.custom.yaml");
-    ln("/.config/fcitx/rime/rime.lua");
+    this.ln();
 
     const userYamlPath = `${homedir()}/.config/fcitx/rime/user.yaml`;
 
