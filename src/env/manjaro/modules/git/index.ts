@@ -39,6 +39,7 @@ export default class Git {
       `GitHub SSH key setting url is: https://github.com/settings/keys\n`
     );
     process.stdout.write(`Then run: "ssh -T git@github.com"\n`);
+    process.stdout.write(`Remind : input "YES" to confirm. Default is "No"\n`);
   }
 
   async ln() {
