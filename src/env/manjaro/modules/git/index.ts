@@ -28,8 +28,8 @@ export default class Git {
     const basic = new Basic();
     await basic.ssh();
     await this.init();
-    await basic.dotfiles();
-    await this.ln();
+    // await basic.dotfiles();
+    // await this.ln();
     // await this.proxy();
     // await this.unProxy();
   }

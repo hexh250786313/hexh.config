@@ -52,9 +52,9 @@ export default class Basic {
     if (!existsSync(`${homedir()}/.ssh`)) {
       process.stdout.write("Initial ssh" + "\n");
       await runSpawn(`ssh-keygen -t rsa -C "250786313@qq.com"`);
-      const output = await runCommand(`cat ${homedir()}/.ssh/id_rsa.pub`);
-      process.stdout.write(output + "\n");
     }
+    const output = await runCommand(`cat ${homedir()}/.ssh/id_rsa.pub`);
+    process.stdout.write(output + "\n");
   }
 
   async dotfiles() {
