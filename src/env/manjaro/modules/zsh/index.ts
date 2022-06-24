@@ -1,4 +1,3 @@
-import runSpawn from "@/utils/run-spawn";
 import ln from "../../ln";
 
 export default class Zsh {
@@ -31,8 +30,8 @@ export default class Zsh {
   }
 
   async ohmyzsh() {
-    await runSpawn(
-      `curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh`
+    process.stdout.write(
+      'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"\n'
     );
   }
 }
