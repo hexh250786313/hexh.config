@@ -2,6 +2,7 @@ import runCommand from "@/utils/run-command";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
 import commandExists from "command-exists";
+import { write } from "fs";
 import ln from "../../ln";
 
 export default class Zsh {
@@ -64,7 +65,7 @@ export default class Zsh {
       await runSpawn(
         `git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf`
       );
-      await runSpawn(`~/.fzf/install`);
+      process.stdout.write(`~/.fzf/install\n`);
     }
   }
 
