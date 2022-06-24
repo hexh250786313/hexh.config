@@ -21,3 +21,4 @@
 22. [gh ssh keys](https://github.com/settings/keys)
 23. `ssh -T git@github.com`: input `yes`
 24. `hexh-config manjaro basic dotfiles`
+25. `hexh-config manjaro zsh`

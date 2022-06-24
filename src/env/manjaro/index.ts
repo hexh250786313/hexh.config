@@ -5,6 +5,7 @@ import InputMethod from "./modules/input-method";
 import Proxy from "./modules/proxy";
 import Basic from "./modules/basic";
 import Git from "./modules/git";
+import Zsh from "./modules/zsh";
 
 // class Manjaro extends Common implements InputMethod {
 // // @ts-expect-errors: is-not-undefined
@@ -19,6 +20,7 @@ const Manjaro = {
   editor: Editor,
   basic: Basic,
   git: Git,
+  zsh: Zsh,
 };
 
 export default Manjaro;
