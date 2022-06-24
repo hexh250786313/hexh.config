@@ -1,4 +1,5 @@
 import runCommand from "@/utils/run-command";
+import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
 import commandExists from "command-exists";
 import ln from "../../ln";
@@ -56,15 +57,26 @@ export default class Zsh {
     await promises;
   }
 
+  async fzf() {
+    try {
+      await commandExists("fzf");
+    } catch (e) {
+      await runSpawn(
+        `git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ~/.fzf/install`
+      );
+    }
+  }
+
   async colorls() {
     try {
       await commandExists("colorls");
     } catch (e) {
       await runCommand(`rbenv install 3.1.0`);
-      await runCommand(`rbenv shell 3.1.0`);
-      await runCommand(`rbenv global 3.1.0`);
-      await runCommand(`rbenv local 3.1.0`);
-      await runCommand(`gem install colorls`);
+      process.stdout.write(`zsh`);
+      process.stdout.write(`rbenv shell 3.1.0\n`);
+      process.stdout.write(`rbenv global 3.1.0\n`);
+      process.stdout.write(`rbenv local 3.1.0\n`);
+      process.stdout.write(`gem install colorls\n`);
     }
   }
 }

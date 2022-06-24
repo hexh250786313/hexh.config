@@ -23,8 +23,14 @@
 24. `hexh-config manjaro basic dotfiles`
 25. `hexh-config manjaro zsh`
 27. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-28. `hexh-config manjaro zsh ln`
-29. `hexh-config manjaro zsh colorls`
-30. `zsh`
-31. 重启
-32. `clash`
+28. back to bash
+29. `hexh-config manjaro zsh ln`
+30. `hexh-config manjaro zsh colorls`
+31. `zsh`
+32. `rbenv shell 3.1.0 && rbenv global 3.1.0 && rbenv local 3.1.0`
+33. `gem install colorls`
+34. `hexh-config manjaro zsh fzf`
+35. `hexh-config manjaro proxy ln`
+36. 重启
+37. `sudo systemctl restart vmtoolsd.service`
+38. `curl www.google.com.hk`

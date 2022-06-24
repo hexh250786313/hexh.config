@@ -96,6 +96,7 @@ export default class Basic {
       { pkg: "boost", testPath: "/usr/bin/b2" },
       { pkg: "xclip", testCommand: "xclip" },
       { pkg: "xsel", testCommand: "xsel" },
+      { pkg: "net-tools", testCommand: "ifconfig" },
     ];
     const promises = pkgs.reduce(async (promise, pkg) => {
       return promise.then(() => runPacman(pkg));
