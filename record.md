@@ -9,3 +9,7 @@
 9. `cd /home/hexh/desktop/hexh.config`
 10. `yarn && npm link`
 11. `hexh-config manjaro proxy`
+12. `echo 'export all_proxy="socks5://127.0.0.1:4780"' >> /home/hexh/.bashrc`
+13. `echo 'export http_proxy="socks5://127.0.0.1:4780"' >> /home/hexh/.bashrc`
+14. `echo 'export https_proxy="socks5://127.0.0.1:4780"' >> /home/hexh/.bashrc`
+13. `source ~/.bashrc`

@@ -43,7 +43,22 @@ export default class Proxy {
     await this.generate();
     await this.fetchYaml();
     await this.systemProxySet();
+    this.bashProxySet();
     await this.ln();
+  }
+
+  bashProxySet() {
+    const path = `${homedir()}/.bashrc`;
+    let target = "";
+    if (existsSync(path)) {
+      target = readFileSync(path).toString();
+    }
+
+    this.proxyCommand.forEach((text) => {
+      if (!target.includes(text)) {
+        writeFileSync(path, "\n" + text, { flag: "a" });
+      }
+    });
   }
 
   async ln() {
