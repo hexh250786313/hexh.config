@@ -32,7 +32,7 @@ export default class Zsh {
 
   async ohmyzsh() {
     await runSpawn(
-      `sh -c '$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'`
+      `$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'`
     );
   }
 }
