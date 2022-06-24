@@ -43,6 +43,10 @@ export default class Editor {
         pkg: "python-pip",
         testPath: "/usr/bin/pip3",
       },
+      {
+        pkg: "go",
+        testPath: "/usr/bin/go",
+      },
     ];
     const promises = pkgs.reduce(async (promise, pkg) => {
       return promise.then(() => runYay(pkg));
