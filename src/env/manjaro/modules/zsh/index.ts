@@ -45,7 +45,7 @@ export default class Zsh {
         testPath: "/usr/bin/rbenv",
       },
       {
-        pkg: "rbenv-build-git",
+        pkg: "ruby-build-git",
         testPath: "/usr/bin/ruby-build",
       },
     ];
