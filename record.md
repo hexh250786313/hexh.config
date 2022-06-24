@@ -29,7 +29,7 @@
 31. `zsh`
 32. `rbenv shell 3.1.0 && rbenv global 3.1.0 && rbenv local 3.1.0`
 33. `gem install colorls`
-34. `hexh-config manjaro zsh fzf`: `~/.fzf/install`
+34. `hexh-config manjaro zsh fzf`
 35. `hexh-config manjaro proxy ln`
 36. 重启
 37. `sudo systemctl restart vmtoolsd.service`
