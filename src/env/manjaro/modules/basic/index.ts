@@ -90,6 +90,10 @@ export default class Basic {
       await runCommand(
         `git clone git@github.com:hexh250786313/hexh.config.git ${homedir()}/workspace/hexh.config`
       );
+      await runCommand(`npm uninstall -g hexh-config`);
+      await runCommand(`npm install -g ${homedir()}/workspace/hexh.config`, {
+        cwd: `${homedir()}/workspace/hexh.config`,
+      });
     }
     await ln(`/.ssh/config`);
   }
