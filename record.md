@@ -34,3 +34,4 @@
 36. 重启
 37. `sudo systemctl restart vmtoolsd.service`
 38. `curl www.google.com.hk`
+39. `hexh-config manjaro node`
