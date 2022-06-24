@@ -76,21 +76,17 @@ export default class Basic {
       }
       try {
         await runCommand(`rm -rf ${homedir()}/.ssh/config`);
-        await runCommand(
-          `ln -s ${homedir()}/下载/dotfiles/.ssh/config ${homedir()}/.ssh/config`
-        );
       } catch (e) {
         /* handle error */
       }
-      try {
-        await runCommand(
-          `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
-        );
-      } catch (e) {
-        /* handle error */
-      }
-      await ln(`/.ssh/config`);
+      await runCommand(
+        `ln -s ${homedir()}/下载/dotfiles/.ssh/config ${homedir()}/.ssh/config`
+      );
+      await runCommand(
+        `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
+      );
     }
+    await ln(`/.ssh/config`);
   }
 
   async needed() {
