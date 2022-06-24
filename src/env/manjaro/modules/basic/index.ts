@@ -82,11 +82,10 @@ export default class Basic {
       } catch (e) {
         /* handle error */
       }
-      await runCommand(
-        `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
-      );
       try {
-        await runCommand(`rm -rf ${homedir()}/.ssh/config`);
+        await runCommand(
+          `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
+        );
       } catch (e) {
         /* handle error */
       }
