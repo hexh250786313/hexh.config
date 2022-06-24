@@ -35,3 +35,5 @@
 37. `sudo systemctl restart vmtoolsd.service`
 38. `curl www.google.com.hk`
 39. `hexh-config manjaro node`
+40. `npm list -g --depth=0`
+41. `hexh-config manjaro editor`

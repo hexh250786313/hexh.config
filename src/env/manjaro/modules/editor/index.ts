@@ -25,7 +25,6 @@ export default class Editor {
   }
 
   async deps() {
-    await runCommand(`pip3 install neovim`);
     const pkgs = [
       {
         pkg: "fd",
@@ -39,12 +38,16 @@ export default class Editor {
         pkg: "ripgrep",
         testPath: "/usr/bin/rg",
       },
+      {
+        pkg: "python-pip",
+        testPath: "/usr/bin/pip3",
+      },
     ];
-
     const promises = pkgs.reduce(async (promise, pkg) => {
       return promise.then(() => runYay(pkg));
     }, Promise.resolve());
     await promises;
+    await runCommand(`pip3 install neovim`);
   }
 
   async setup() {

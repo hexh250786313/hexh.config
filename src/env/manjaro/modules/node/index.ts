@@ -23,6 +23,7 @@ export default class Node {
   async setup() {
     await this.packages();
     await this.nvm();
+    await this.npm();
   }
 
   async npm() {
