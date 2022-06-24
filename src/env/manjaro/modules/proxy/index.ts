@@ -44,7 +44,7 @@ export default class Proxy {
     await this.fetchYaml();
     await this.systemProxySet();
     this.bashProxySet();
-    await this.ln();
+    // await this.ln();
   }
 
   bashProxySet() {
@@ -61,7 +61,7 @@ export default class Proxy {
     });
   }
 
-  async ln() {
+  public async ln() {
     await ln("/.config/autostart/clash.desktop");
   }
 

@@ -9,7 +9,15 @@
 9. `cd /home/hexh/desktop/hexh.config`
 10. `yarn && npm link`
 11. `hexh-config manjaro proxy`
-12. `echo 'export all_proxy="socks5://127.0.0.1:4780"' >> /home/hexh/.bashrc`
-13. `echo 'export http_proxy="socks5://127.0.0.1:4780"' >> /home/hexh/.bashrc`
-14. `echo 'export https_proxy="socks5://127.0.0.1:4780"' >> /home/hexh/.bashrc`
 13. `source ~/.bashrc`
+14. `clash`
+15. `firefox`
+16. [clash](https://clash.razord.top/)
+17. `hexh-config manjaro basic resetPacmanKey`
+18. `hexh-config manjaro basic needed`
+19. `yay -Syu --devel`
+20. `hexh-config manjaro basic dkms`
+21. `hexh-config manjaro git`
+22. [gh ssh keys](https://github.com/settings/keys)
+23. `ssh -T git@github.com`: input `yes`
+24. `hexh-config manjaro basic dotfiles`

@@ -1,4 +1,3 @@
-import { dotfilesPath } from "@/constants";
 import runCommand from "@/utils/run-command";
 import runPacman from "@/utils/run-pacman";
 import runSpawn from "@/utils/run-spawn";
@@ -31,7 +30,7 @@ export default class Basic {
   }
 
   async setup() {
-    // await this.resetPacmanKey();
+    await this.resetPacmanKey();
     await this.needed();
     await this.dkms();
     await this.dotfiles();
@@ -50,7 +49,7 @@ export default class Basic {
     // https://blog.hexuhua.vercel.app/post/19
   }
 
-  async ssh() {
+  public async ssh() {
     if (!existsSync(`${homedir()}/.ssh`)) {
       process.stdout.write("Initial ssh" + "\n");
       await runSpawn(`ssh-keygen -t rsa -C "250786313@qq.com"`);
@@ -66,9 +65,15 @@ export default class Basic {
       await runCommand(`mkdir -p ${homedir()}/workspace`);
     }
     if (!existsSync(`${homedir()}/workspace/dotfiles`)) {
-      await runCommand(
-        `git clone https://github.com:hexh250786313/dotfiles ${homedir()}/下载/dotfiles`
-      );
+      try {
+        await runCommand(
+          `git clone https://github.com/hexh250786313/dotfiles ${homedir()}/下载/dotfiles`
+        );
+      } catch (e) {
+        /* handle error */
+      } finally {
+        await runCommand(`rm -fr ${homedir()}/下载/dotfiles`);
+      }
       try {
         await runCommand(`rm -rf ${homedir()}/.ssh/config`);
         await runCommand(
@@ -80,6 +85,11 @@ export default class Basic {
       await runCommand(
         `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
       );
+      try {
+        await runCommand(`rm -rf ${homedir()}/.ssh/config`);
+      } catch (e) {
+        /* handle error */
+      }
       await ln(`/.ssh/config`);
     }
   }
@@ -113,7 +123,7 @@ export default class Basic {
 
     await runSpawn(`sudo pacman-key --init`);
     await runSpawn(`sudo pacman-key --populate`);
-    await runSpawn(`sudo pacman -Syyu`);
+    // await runSpawn(`sudo pacman -Syyu`);
   }
 
   // 貌似没用
