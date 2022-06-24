@@ -22,9 +22,9 @@
 23. `ssh -T git@github.com`: input `yes`
 24. `hexh-config manjaro basic dotfiles`
 25. `hexh-config manjaro zsh`
-26. `hexh-config manjaro zsh colorls`
 27. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 28. `hexh-config manjaro zsh ln`
-29. `zsh`
-30. 重启
-31. `clash`
+29. `hexh-config manjaro zsh colorls`
+30. `zsh`
+31. 重启
+32. `clash`

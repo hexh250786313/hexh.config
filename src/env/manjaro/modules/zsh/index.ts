@@ -57,8 +57,9 @@ export default class Zsh {
   }
 
   async colorls() {
-    const flag = await commandExists("colorls");
-    if (!flag) {
+    try {
+      await commandExists("colorls");
+    } catch (e) {
       await runCommand(`rbenv install 3.1.0`);
       await runCommand(`rbenv shell 3.1.0`);
       await runCommand(`rbenv global 3.1.0`);
