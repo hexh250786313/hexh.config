@@ -1,5 +1,6 @@
 import runCommand from "@/utils/run-command";
 import runYay from "@/utils/run-yay";
+import ln from "../../ln";
 
 export default class Editor {
   async run(args: string[]) {
@@ -52,6 +53,10 @@ export default class Editor {
 
   async setup() {
     await this.nightly();
+  }
+
+  async ln() {
+    await ln("/.config/nvim");
   }
 
   async nightly() {
