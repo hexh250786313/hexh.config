@@ -1,4 +1,5 @@
 import runCommand from "@/utils/run-command";
+import runYay from "@/utils/run-yay";
 
 export default class Editor {
   async run(args: string[]) {
@@ -23,11 +24,35 @@ export default class Editor {
     }
   }
 
+  async deps() {
+    await runCommand(`pip3 install neovim`);
+    const pkgs = [
+      {
+        pkg: "fd",
+        testCommand: "fd",
+      },
+      {
+        pkg: "highlight",
+        testPath: "/usr/bin/highlight-gui",
+      },
+      {
+        pkg: "ripgrep",
+        testPath: "/usr/bin/rg",
+      },
+    ];
+
+    const promises = pkgs.reduce(async (promise, pkg) => {
+      return promise.then(() => runYay(pkg));
+    }, Promise.resolve());
+    await promises;
+  }
+
   async setup() {
     await this.nightly();
   }
 
   async nightly() {
+    await this.deps();
     try {
       await runCommand(`rm -rf ${__dirname}/build/neovim`);
     } catch (e) {
@@ -63,7 +88,7 @@ export default class Editor {
   }
 
   async release() {
-    //
+    await this.deps();
   }
 }
 

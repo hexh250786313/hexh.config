@@ -37,6 +37,7 @@ export default class Node {
   }
 
   async packages() {
+    const allPkgs = await runCommand("npm list -g --depth=0");
     const pkgs = [
       "@fsouza/prettierd",
       "babel-eslint",
@@ -57,7 +58,11 @@ export default class Node {
       "yarn",
     ];
     const promises = pkgs.reduce(async (promise: Promise<any>, pkg) => {
-      return promise.then(() => runCommand(`npm install -g ${pkg}`));
+      if (allPkgs.includes(pkg)) {
+        return promise;
+      } else {
+        return promise.then(() => runCommand(`npm install -g ${pkg}`));
+      }
     }, Promise.resolve());
     await promises;
   }
