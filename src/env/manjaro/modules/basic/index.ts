@@ -91,6 +91,9 @@ export default class Basic {
         `git clone git@github.com:hexh250786313/hexh.config.git ${homedir()}/workspace/hexh.config`
       );
       await runCommand(`npm uninstall -g hexh-config`);
+      await runCommand(`yarn`, {
+        cwd: `${homedir()}/workspace/hexh.config`,
+      });
       await runCommand(`npm link`, {
         cwd: `${homedir()}/workspace/hexh.config`,
       });
