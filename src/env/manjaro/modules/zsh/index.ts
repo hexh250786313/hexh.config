@@ -26,6 +26,7 @@ export default class Zsh {
   async setup() {
     await this.env();
     await this.ohmyzsh();
+    // await this.colorls();
   }
 
   async ln() {
@@ -53,6 +54,9 @@ export default class Zsh {
       return promise.then(() => runYay(pkg));
     }, Promise.resolve());
     await promises;
+  }
+
+  async colorls() {
     const flag = await commandExists("colorls");
     if (!flag) {
       await runCommand(`rbenv install 3.1.0`);
