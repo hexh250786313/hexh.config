@@ -61,9 +61,10 @@ export default class Zsh {
     try {
       await commandExists("fzf");
     } catch (e) {
-      process.stdout.write(
-        `git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ~/.fzf/install`
+      await runSpawn(
+        `git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf`
       );
+      await runSpawn(`~/.fzf/install`);
     }
   }
 
