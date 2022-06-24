@@ -41,7 +41,7 @@ export default class Git {
   }
 
   async ln() {
-    ln("/.gitconfig");
+    await ln("/.gitconfig");
   }
 
   async proxy() {

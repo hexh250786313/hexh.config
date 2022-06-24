@@ -80,7 +80,7 @@ export default class Basic {
       await runCommand(
         `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
       );
-      ln(`/.ssh/config`);
+      await ln(`/.ssh/config`);
     }
   }
 

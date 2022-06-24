@@ -2,6 +2,7 @@ import runCommand from "@/utils/run-command";
 import runPacman from "@/utils/run-pacman";
 import { existsSync, readFileSync, writeFileSync } from "fs-extra";
 import { homedir } from "os";
+import ln from "../../ln";
 import generateClashDir from "./generateClashDir";
 import clashConfig from "./yaml/clash-config";
 
@@ -42,6 +43,11 @@ export default class Proxy {
     await this.generate();
     await this.fetchYaml();
     await this.systemProxySet();
+    await this.ln();
+  }
+
+  async ln() {
+    await ln("/.config/autostart/clash.desktop");
   }
 
   async clash() {
