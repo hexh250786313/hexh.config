@@ -33,7 +33,7 @@ export default class Editor {
       },
       {
         pkg: "highlight",
-        testPath: "/usr/bin/highlight-gui",
+        testPath: "/usr/bin/highlight",
       },
       {
         pkg: "ripgrep",

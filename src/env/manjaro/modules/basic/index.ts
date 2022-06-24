@@ -86,6 +86,11 @@ export default class Basic {
         `git clone git@github.com:hexh250786313/dotfiles.git ${homedir()}/workspace/dotfiles`
       );
     }
+    if (!existsSync(`${homedir()}/workspace/hexh.config`)) {
+      await runCommand(
+        `git clone git@github.com:hexh250786313/hexh.config.git ${homedir()}/workspace/hexh.config`
+      );
+    }
     await ln(`/.ssh/config`);
   }
 
