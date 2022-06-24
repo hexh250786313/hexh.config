@@ -1,3 +1,6 @@
+import runCommand from "@/utils/run-command";
+import runYay from "@/utils/run-yay";
+import commandExists from "command-exists";
 import ln from "../../ln";
 
 export default class Zsh {
@@ -21,7 +24,7 @@ export default class Zsh {
   }
 
   async setup() {
-    await this.ln();
+    await this.env();
     await this.ohmyzsh();
   }
 
@@ -33,5 +36,30 @@ export default class Zsh {
     process.stdout.write(
       'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"\n'
     );
+  }
+
+  async env() {
+    const pkgs = [
+      {
+        pkg: "rbenv-git",
+        testPath: "/usr/bin/rbenv",
+      },
+      {
+        pkg: "rbenv-build-git",
+        testPath: "/usr/bin/ruby-build",
+      },
+    ];
+    const promises = pkgs.reduce(async (promise, pkg) => {
+      return promise.then(() => runYay(pkg));
+    }, Promise.resolve());
+    await promises;
+    const flag = await commandExists("colorls");
+    if (!flag) {
+      await runCommand(`rbenv install 3.1.0`);
+      await runCommand(`rbenv shell 3.1.0`);
+      await runCommand(`rbenv global 3.1.0`);
+      await runCommand(`rbenv local 3.1.0`);
+      await runCommand(`gem install colorls`);
+    }
   }
 }
