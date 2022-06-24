@@ -66,7 +66,7 @@ export default class Zsh {
       await runSpawn(
         `git clone --depth 1 https://github.com/junegunn/fzf.git ${homedir()}/.fzf`
       );
-      await runSpawn(`${homedir()}/.fzf/install`);
+      process.stdout.write(`${homedir()}/.fzf/install\n`);
     }
   }
 
