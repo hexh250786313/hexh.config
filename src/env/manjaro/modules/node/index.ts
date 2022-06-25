@@ -41,7 +41,7 @@ export default class Node {
     const allPkgs = await runCommand("npm list -g --depth=0");
     const pkgs = [
       "@fsouza/prettierd",
-      "babel-eslint",
+      "@babel/eslint-parser",
       "diagnostic-languageserver",
       "eslint_d",
       "eslint",
