@@ -115,17 +115,12 @@ export default class Proxy {
 
   async xProxyUnset() {
     const xprofilePath = `${homedir()}/.xprofile`;
-    const targetText = [
-      'export all_proxy="socks://127.0.0.1:4780"',
-      'export http_proxy="http://127.0.0.1:4780"',
-      'export https_proxy="http://127.0.0.1:4780"',
-    ];
     let xprofileText = "";
     if (existsSync(xprofilePath)) {
       xprofileText = readFileSync(xprofilePath).toString();
     }
 
-    targetText.forEach((text) => {
+    this.proxyCommand.forEach((text) => {
       if (xprofileText.includes(text)) {
         xprofileText = xprofileText.replace(text, "");
       }

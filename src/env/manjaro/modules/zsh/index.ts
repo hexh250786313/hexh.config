@@ -2,7 +2,6 @@ import runCommand from "@/utils/run-command";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
 import commandExists from "command-exists";
-import { write } from "fs";
 import { homedir } from "os";
 import ln from "../../ln";
 
