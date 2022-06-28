@@ -38,4 +38,4 @@
 40. `npm list -g --depth=0`
 41. `hexh-config manjaro editor`
 42. `hexh-config manjaro editor ln`
-43. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript`
+43. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript python`
