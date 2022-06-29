@@ -46,6 +46,7 @@ export default class InputMethod {
   }
 
   async setup() {
+    await this.font();
     await this.fcitx();
     await this.rime();
     await this.plum();
@@ -57,6 +58,40 @@ export default class InputMethod {
     await ln("/.config/fcitx/rime/luna_pinyin_simp.custom.punctuator.yaml");
     await ln("/.config/fcitx/rime/luna_pinyin_simp.custom.yaml");
     await ln("/.config/fcitx/rime/rime.lua");
+  }
+
+  async font() {
+    const packages = [
+      {
+        pkg: "wqy-bitmapfont",
+        testPath: "/usr/share/fontconfig/conf.avail/85-wqy-bitmapsong.conf",
+      },
+      {
+        pkg: "wqy-zenhei",
+        testPath: "/usr/bin/zenheiset",
+      },
+      {
+        pkg: "noto-fonts-emoji",
+        testPath: "/usr/share/fonts/noto/NotoColorEmoji.ttf",
+      },
+    ];
+
+    const allPromise = packages.reduce(async (promise, params) => {
+      return promise.then(() => runYay(params));
+    }, Promise.resolve());
+    await allPromise;
+
+    if (!existsSync(`/usr/share/fonts/custom`)) {
+      process.stdout.write(`Handling big fonts...\n`);
+      await runCommand(`sudo mkdir -p /usr/share/fonts/custom`);
+      await runCommand(
+        `sudo mv ${homedir()}/桌面/share/fonts/mingliub.ttc ${homedir()}/桌面/share/fonts/Sun-ExtA.ttf ${homedir()}/桌面/share/fonts/Sun-ExtB.ttf /usr/share/fonts/custom`
+      );
+      await runCommand(`sudo chmod 744 /usr/share/fonts/custom/*.ttc`);
+      await runCommand(`sudo mkfontscale`, { cwd: "/usr/share/fonts/custom" });
+      await runCommand(`sudo mkfontdir`, { cwd: "/usr/share/fonts/custom" });
+      await runCommand(`sudo fc-cache -fv`, { cwd: "/usr/share/fonts/custom" });
+    }
   }
 
   async fcitx() {
@@ -149,7 +184,7 @@ export default class InputMethod {
       writeFileSync(uiPath, uiText);
     }
 
-    if (!existsSync(`${homedir()}/.config/fcitx/rime/installation.yaml`)) {
+    if (!existsSync(`${homedir()}/.config/fcitx/rime/user.yaml`)) {
       // 這一步是爲了生成 rime 的配置文件
       await generateFcitxDir();
       // 以下 10 秒後執行

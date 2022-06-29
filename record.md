@@ -20,6 +20,7 @@
 21. `hexh-config manjaro git`
 22. [gh ssh keys](https://github.com/settings/keys)
 23. `ssh -T git@github.com`: input `yes`
+21. `hexh-config manjaro git ln`
 24. `hexh-config manjaro basic dotfiles`
 25. `hexh-config manjaro zsh`
 27. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
@@ -38,4 +39,17 @@
 40. `npm list -g --depth=0`
 41. `hexh-config manjaro editor`
 42. `hexh-config manjaro editor ln`
-43. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript python`
+43. `hexh-config manjaro hosts`
+44. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript python`
+45. `:Copilot setup`
+46. `hexh-config manjaro pamac config`
+47. chongqi
+48. `hexh-config manjaro pamac flatpak`
+49. `flatpak update`
+49. `hexh-config manjaro pamac snap`
+50. `hexh-config manjaro nutstore` denglu, ~/zhuomian/share
+51. `hexh-config manjaro nutstore config`
+52. `hexh-config manjaro nutstore clipman`: tongbulujin ~/.cache/xfce4/clipman
+53. chongqi
+54. `hexh-config manjaro inputMethod`
+55. chongqi

@@ -53,6 +53,7 @@ export default class Editor {
     }, Promise.resolve());
     await promises;
     await runCommand(`pip3 install neovim`);
+    await runCommand(`pip3 install Send2Trash`);
   }
 
   async setup() {

@@ -7,6 +7,9 @@ import Basic from "./modules/basic";
 import Git from "./modules/git";
 import Zsh from "./modules/zsh";
 import Node from "./modules/node";
+import Hosts from "./modules/hosts";
+import Pamac from "./modules/pamac";
+import Nutstore from "./modules/nutstore";
 
 // class Manjaro extends Common implements InputMethod {
 // // @ts-expect-errors: is-not-undefined
@@ -23,6 +26,9 @@ const Manjaro = {
   git: Git,
   zsh: Zsh,
   node: Node,
+  hosts: Hosts,
+  pamac: Pamac,
+  nutstore: Nutstore,
 };
 
 export default Manjaro;
