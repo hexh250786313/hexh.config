@@ -92,6 +92,68 @@ export default class InputMethod {
       await runCommand(`sudo mkfontdir`, { cwd: "/usr/share/fonts/custom" });
       await runCommand(`sudo fc-cache -fv`, { cwd: "/usr/share/fonts/custom" });
     }
+
+    if (!existsSync(`${homedir()}/.local/share/fonts/NerdFonts`)) {
+      process.stdout.write(`Fetching NerdFonts...\n`);
+      try {
+        await runCommand(
+          `rm -rf ${__dirname}/build/nerd-fonts/nerd-fonts-master`
+        );
+      } catch (e) {
+        /* handle error */
+      }
+      try {
+        await runCommand(`mkdir -p ${__dirname}/build/nerd-fonts`);
+      } catch (e) {
+        /* handle error */
+      }
+      if (!existsSync(`${__dirname}/build/nerd-fonts/fonts.zip`)) {
+        await runCommand(
+          `curl -L -o ${__dirname}/build/nerd-fonts/fonts.zip https://github.com/ryanoasis/nerd-fonts/archive/refs/heads/master.zip `
+        );
+      }
+      await runCommand(`7z x fonts.zip -r -o./`, {
+        cwd: `${__dirname}/build/nerd-fonts`,
+      });
+
+      await runCommand(`./install.sh`, {
+        cwd: `${__dirname}/build/nerd-fonts/nerd-fonts-master`,
+      });
+      await runCommand(`rm -rf ${__dirname}/build/nerd-fonts`);
+    }
+
+    if (
+      !existsSync(
+        `${homedir()}/.local/share/fonts/NerdFonts/Caskaydia Cove Bold Nerd Font Complete.otf`
+      )
+    ) {
+      process.stdout.write(`Fetching CascadiaCode...\n`);
+      try {
+        await runCommand(`rm -rf ${__dirname}/build/CascadiaCode`);
+      } catch (e) {
+        /* handle error */
+      }
+      await runCommand(`mkdir -p ${__dirname}/build/CascadiaCode`);
+      await runCommand(
+        `curl -L -o ${__dirname}/build/CascadiaCode/CascadiaCode.zip https://github.com/ryanoasis/nerd-fonts/releases/download/2.2.0-RC/CascadiaCode.zip`
+      );
+      await runCommand(
+        `unzip ${__dirname}/build/CascadiaCode/CascadiaCode.zip`,
+        {
+          cwd: `${__dirname}/build/CascadiaCode`,
+        }
+      );
+      await runCommand(`mv *.otf ${homedir()}/.local/share/fonts/NerdFonts`, {
+        cwd: `${__dirname}/build/CascadiaCode`,
+      });
+      await runCommand(`rm -rf ${__dirname}/build/CascadiaCode`);
+    }
+
+    await runYay({
+      pkg: "nerd-fonts-sarasa-mono",
+      testPath:
+        "/usr/share/fonts/nerd-fonts-sarasa-mono/sarasa-mono-sc-nerd-bold.ttf",
+    });
   }
 
   async fcitx() {

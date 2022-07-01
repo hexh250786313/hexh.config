@@ -43,13 +43,14 @@
 44. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript python`
 45. `:Copilot setup`
 46. `hexh-config manjaro pamac config`
-47. chongqi
+47. 重启
 48. `hexh-config manjaro pamac flatpak`
 49. `flatpak update`
 49. `hexh-config manjaro pamac snap`
-50. `hexh-config manjaro nutstore` denglu, ~/zhuomian/share
+50. `hexh-config manjaro nutstore` 登录, ~/桌面/share
 51. `hexh-config manjaro nutstore config`
-52. `hexh-config manjaro nutstore clipman`: tongbulujin ~/.cache/xfce4/clipman
-53. chongqi
+52. `hexh-config manjaro nutstore clipman`: 同步路径 ~/.cache/xfce4/clipman
+53. 重启
 54. `hexh-config manjaro inputMethod`
-55. chongqi
+55. 重启
+56. `hexh-config manjaro tmux`

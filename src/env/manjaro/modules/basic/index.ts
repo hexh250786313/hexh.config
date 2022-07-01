@@ -56,6 +56,8 @@ export default class Basic {
     }
     // await runSpawn(`xclip -sel clip ${homedir()}/.ssh/id_rsa.pub`);
     await runCommand(`xsel --clipboard < ${homedir()}/.ssh/id_rsa.pub`);
+    await runCommand(`sudo systemctl enable sshd.service`);
+    await runCommand(`sudo systemctl start sshd.service`);
     process.stdout.write("Copy ssh key to clipboard" + "\n");
   }
 
@@ -120,8 +122,8 @@ export default class Basic {
   // pacman 初始化 gpg key 报错时运行, 否则不运行
   async resetPacmanKey() {
     await runPacman({ pkg: "haveged", testPath: "/usr/bin/haveged" });
-    await runCommand(`systemctl start haveged`);
-    await runCommand(`systemctl enable haveged`);
+    await runCommand(`sudo systemctl start haveged`);
+    await runCommand(`sudo systemctl enable haveged`);
 
     try {
       await runCommand(`sudo rm -fr /etc/pacman.d/gnupg`);
@@ -188,6 +190,14 @@ export default class Basic {
   async software() {
     const packages = [
       {
+        pkg: "google-chrome-stable",
+        testCommand: "google-chrome",
+      },
+      {
+        pkg: "flameshot-git",
+        testCommand: "flameshot",
+      },
+      {
         pkg: "cava-git",
         testCommand: "cava",
         // withEnter: true,
@@ -197,22 +207,153 @@ export default class Basic {
         testCommand: "speedtest",
         // withEnter: true,
       },
-    ];
-
-    const allPromise = packages.reduce(async (promise, params) => {
-      return promise.then(() => runYay(params));
-    }, Promise.resolve());
-    await allPromise;
-
-    await this.inputRemapper();
-  }
-
-  async inputRemapper() {
-    const packages = [
       {
-        pkg: "input-remapper-git",
-        testCommand: "/usr/bin/input-remapper-control",
-        // withEnter: true,
+        pkg: "alacritty-git",
+        testCommand: "alacritty",
+      },
+      {
+        pkg: "xunlei-bin",
+        testCommand: "xunlei",
+      },
+      {
+        pkg: "landrop-git",
+        testCommand: "landrop",
+      },
+      {
+        pkg: "utools",
+        testCommand: "utools",
+      },
+      {
+        pkg: "pcmanfm-qt",
+        testCommand: "pcmanfm-qt",
+      },
+      {
+        pkg: "telegram-desktop-bin",
+        testCommand: "telegram-desktop",
+      },
+      {
+        pkg: "hid-nintendo-dkms",
+        testPath: "/usr/src/hid-nintendo-3.2/dkms.conf",
+      },
+      {
+        pkg: "joycond-git",
+        testCommand: "joycond",
+      },
+      {
+        pkg: "neofetch",
+        testCommand: "neofetch",
+      },
+      {
+        pkg: "bucklespring-git",
+        testCommand: "buckle",
+      },
+      {
+        pkg: "tilda-git",
+        testCommand: "tilda",
+      },
+      {
+        pkg: "nyancat-git",
+        testCommand: "nyancat",
+      },
+      {
+        pkg: "cajviewer",
+        testCommand: "cajviewer",
+      },
+      {
+        pkg: "vmware-workstation",
+        testCommand: "vmware",
+      },
+      {
+        pkg: "listen1-desktop-appimage",
+        testPath: "/opt/appimages/listen1.AppImage",
+      },
+      {
+        pkg: "wemeet-bin",
+        testCommand: "wemeet",
+      },
+      {
+        pkg: "jq",
+        testCommand: "jq",
+      },
+      {
+        pkg: "zoom",
+        testCommand: "zoom",
+      },
+      {
+        pkg: "mpd-git",
+        testCommand: "mpd",
+      },
+      {
+        pkg: "imwheel",
+        testCommand: "imwheel",
+      },
+      {
+        pkg: "timidity++",
+        testPath: "/usr/bin/timidity",
+      },
+      {
+        pkg: "mpdevil-git",
+        testCommand: "mpdeil",
+      },
+      {
+        pkg: "farge-git",
+        testCommand: "farge",
+      },
+      {
+        pkg: "xcolor-git",
+        testCommand: "xcolor",
+      },
+      {
+        pkg: "simplescreenrecorder",
+        testCommand: "simplescreenrecorder",
+      },
+      {
+        pkg: "deno",
+        testCommand: "deno",
+      },
+      {
+        pkg: "ttf-wps-fonts",
+        testPath: "/usr/share/fonts/wps-fonts/WEBDINGS.TTF",
+      },
+      {
+        pkg: "ttf-ms-fonts",
+        testPath: "/usr/share/fonts/TTF/AndaleMo.TTF",
+      },
+      {
+        pkg: "wps-office-fonts",
+        testPath: "/usr/share/fonts/wps-office/FZCCHK.TTF",
+      },
+      {
+        pkg: "wps-office-cn",
+        testPath: "/usr/bin/wps",
+      },
+      {
+        pkg: "wps-office-mime-cn",
+        testPath: "/usr/share/mime/packages/wps-office-et.xml",
+      },
+      {
+        pkg: "wps-office-mui-zh-cn",
+        testPath: "/usr/lib/office6/mui/en_US/resource/help/common.chm",
+      },
+      {
+        pkg: "watchman-bin",
+        testCommand: "watchman",
+      },
+      {
+        pkg: "postman-bin",
+        testCommand: "postman",
+      },
+      {
+        pkg: "postman-bin",
+        testCommand: "postman",
+      },
+      {
+        pkg: "screenkey",
+        testCommand: "screenkey",
+      },
+      {
+        pkg: "mpv-build-git",
+        testCommand: "mpv",
       },
     ];
 
@@ -220,5 +361,10 @@ export default class Basic {
       return promise.then(() => runYay(params));
     }, Promise.resolve());
     await allPromise;
+
+    await runCommand(
+      `flatpak install --assumeyes flathub me.hyliu.fluentreader`
+    );
+    await runCommand(`flatpak install flathub com.github.debauchee.barrier`);
   }
 }
