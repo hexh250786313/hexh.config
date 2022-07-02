@@ -392,6 +392,10 @@ export default class Basic {
         pkg: "i3lock-color-git",
         testCommand: "i3lock",
       },
+      {
+        pkg: "barrier",
+        testCommand: "barrier",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
@@ -429,9 +433,9 @@ export default class Basic {
       `flatpak install --assumeyes flathub me.hyliu.fluentreader`
     );
     await ln(`/.config/autostart/fluent_proxy.desktop`);
-    await runCommand(
-      `flatpak install --assumeyes flathub com.github.debauchee.barrier`
-    );
+    // await runCommand(
+    // `flatpak install --assumeyes flathub com.github.debauchee.barrier`
+    // );
     await ln(`/.config/gh-repo-sync`);
     await ln(`/.config/autostart/work.desktop`);
     await ln(`/.config/autostart/hexh.desktop`);
