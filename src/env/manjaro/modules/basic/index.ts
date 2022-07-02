@@ -2,6 +2,7 @@ import runCommand from "@/utils/run-command";
 import runPacman from "@/utils/run-pacman";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
+import commandExists from "command-exists";
 import { existsSync } from "fs-extra";
 import { homedir } from "os";
 import ln from "../../ln";
@@ -190,12 +191,24 @@ export default class Basic {
   async software() {
     const packages = [
       {
-        pkg: "google-chrome-stable",
-        testCommand: "google-chrome",
+        pkg: "google-chrome",
+        testCommand: "google-chrome-stable",
+      },
+      {
+        pkg: "qt5-base",
+        testPath: "/usr/bin/moc-qt5",
+      },
+      {
+        pkg: "qt5-tools",
+        testPath: "/usr/bin/designer-qt5",
       },
       {
         pkg: "flameshot-git",
         testCommand: "flameshot",
+      },
+      {
+        pkg: "vim",
+        testCommand: "vim",
       },
       {
         pkg: "cava-git",
@@ -252,7 +265,7 @@ export default class Basic {
         testCommand: "tilda",
       },
       {
-        pkg: "nyancat-git",
+        pkg: "nyancat",
         testCommand: "nyancat",
       },
       {
@@ -293,7 +306,7 @@ export default class Basic {
       },
       {
         pkg: "mpdevil-git",
-        testCommand: "mpdeil",
+        testCommand: "mpdevil",
       },
       {
         pkg: "farge-git",
@@ -352,8 +365,32 @@ export default class Basic {
         testCommand: "screenkey",
       },
       {
-        pkg: "mpv-build-git",
-        testCommand: "mpv",
+        pkg: "github-cli",
+        testCommand: "gh",
+      },
+      {
+        pkg: "powder",
+        testCommand: "powder",
+      },
+      {
+        pkg: "input-remapper-git",
+        testCommand: "input-remapper-control",
+      },
+      {
+        pkg: "lazygit-git",
+        testCommand: "lazygit",
+      },
+      {
+        pkg: "charles-bin",
+        testCommand: "charles4",
+      },
+      {
+        pkg: "visual-studio-code-bin",
+        testCommand: "code",
+      },
+      {
+        pkg: "i3lock-color-git",
+        testCommand: "i3lock",
       },
     ];
 
@@ -361,10 +398,45 @@ export default class Basic {
       return promise.then(() => runYay(params));
     }, Promise.resolve());
     await allPromise;
+    try {
+      await commandExists(`mpv`);
+    } catch (e) {
+      await runSpawn(`yay -S mpv-build-git`);
+    }
 
+    await ln(`/.config/alacritty`);
+    await ln(`/.config/autostart/utools.desktop`);
+    await ln(`/.config/pcmanfm-qt`);
+    await ln(`/.config/tilda`);
+    await ln(`/.config/autostart/tilda.desktop`);
+    await runCommand(`sudo modprobe -a vmw_vmci vmmon`);
+    await runCommand(`sudo systemctl enable --now vmware-networks.service`);
+    await runCommand(
+      `sudo systemctl enable --now vmware-usbarbitrator.service`
+    );
+    await runCommand(`sudo systemctl enable --now joycond`);
+    if (!existsSync(`${homedir()}/.mpd`)) {
+      await runCommand(
+        `mkdir -p ${homedir()}/.mpd && mkdir -p ${homedir()}/.mpd/playlists && touch ${homedir()}/.mpd/database && touch ${homedir()}/.mpd/log && touch ${homedir()}/.mpd/state && chmod +x ${homedir()}/.mpd`
+      );
+    }
+    await ln(`/.config/mpd`);
+    await ln(`/.config/autostart/mpd.desktop`);
+    await ln(`/.config/input-remapper`);
+    await ln(`/.imwheelrc`);
+    await ln(`/.config/autostart/imwheel.desktop`);
     await runCommand(
       `flatpak install --assumeyes flathub me.hyliu.fluentreader`
     );
-    await runCommand(`flatpak install flathub com.github.debauchee.barrier`);
+    await ln(`/.config/autostart/fluent_proxy.desktop`);
+    await runCommand(
+      `flatpak install --assumeyes flathub com.github.debauchee.barrier`
+    );
+    await ln(`/.config/gh-repo-sync`);
+    await ln(`/.config/autostart/work.desktop`);
+    await ln(`/.config/autostart/hexh.desktop`);
+    await ln(`/.config/autostart/utools.desktop`);
+    await ln(`/.config/autostart/buckle.desktop`);
+    await ln(`/.config/autostart/landrop.desktop`);
   }
 }

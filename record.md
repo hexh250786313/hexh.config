@@ -54,3 +54,4 @@
 54. `hexh-config manjaro inputMethod`
 55. 重启
 56. `hexh-config manjaro tmux`
+57. `hexh-config manjaro basic software`
