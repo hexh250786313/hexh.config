@@ -56,10 +56,10 @@ export default class System {
       return promise.then(() => runYay(pkg));
     }, Promise.resolve());
     await promises;
-    await runSpawn(`sudo pacman --remove xfdesktop`);
-    await runSpawn(
+    await runCommand(
       `xfconf-query -c xfce4-session -p /sessions/Failsafe/Client0_Command -t string -sa i3`
     );
+    await runSpawn(`sudo pacman --remove xfdesktop`);
     try {
       await runCommand(`pkill -e xfconfd`);
     } catch (e) {
@@ -77,19 +77,21 @@ export default class System {
   }
 
   async recover() {
+    await runYay({
+      pkg: "xfdesktop",
+      testPath: "/usr/bin/xfdesktop",
+    });
+    await runCommand(
+      `xfconf-query -c xfce4-session -p /sessions/Failsafe/Client0_Command -t string -sa xfwm`
+    );
     try {
       await runCommand(`pkill -e xfconfd`);
     } catch (e) {
       /* handle error */
     }
-    await runYay({
-      pkg: "xfdesktop",
-      testPath: "/usr/bin/xfdesktop",
-    });
     await runCommand(`rm -rf ${homedir()}/.config/xfce4`);
     await runCommand(`cp -r /etc/skel/.config/xfce4 ${homedir()}/.config`);
     await runSpawn(`yay --remove i3-gaps-next-git`);
-    await runSpawn(`yay --remove xfce4-i3-workspaces-plugin-git`);
     try {
       await runCommand(`rm -rf ${homedir()}/.config/autostart/feh.desktop`);
     } catch (e) {
@@ -100,9 +102,6 @@ export default class System {
     } catch (e) {
       /* handle error */
     }
-    await runSpawn(
-      `xfconf-query -c xfce4-session -p /sessions/Failsafe/Client0_Command -t string -sa xfwm`
-    );
     process.stdout.write(`Reboot to apply changes.\n`);
   }
 }
