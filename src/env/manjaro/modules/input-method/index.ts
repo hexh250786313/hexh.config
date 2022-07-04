@@ -85,7 +85,7 @@ export default class InputMethod {
       process.stdout.write(`Handling big fonts...\n`);
       await runCommand(`sudo mkdir -p /usr/share/fonts/custom`);
       await runCommand(
-        `sudo mv ${homedir()}/桌面/share/fonts/mingliub.ttc ${homedir()}/桌面/share/fonts/Sun-ExtA.ttf ${homedir()}/桌面/share/fonts/Sun-ExtB.ttf /usr/share/fonts/custom`
+        `sudo cp ${homedir()}/桌面/share/fonts/mingliub.ttc ${homedir()}/桌面/share/fonts/Sun-ExtA.ttf ${homedir()}/桌面/share/fonts/Sun-ExtB.ttf /usr/share/fonts/custom`
       );
       await runCommand(`sudo chmod 744 /usr/share/fonts/custom/*.ttc`);
       await runCommand(`sudo mkfontscale`, { cwd: "/usr/share/fonts/custom" });
@@ -143,7 +143,7 @@ export default class InputMethod {
           cwd: `${__dirname}/build/CascadiaCode`,
         }
       );
-      await runCommand(`mv *.otf ${homedir()}/.local/share/fonts/NerdFonts`, {
+      await runCommand(`cp *.otf ${homedir()}/.local/share/fonts/NerdFonts`, {
         cwd: `${__dirname}/build/CascadiaCode`,
       });
       await runCommand(`rm -rf ${__dirname}/build/CascadiaCode`);

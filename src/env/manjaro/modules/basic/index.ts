@@ -203,10 +203,6 @@ export default class Basic {
         testPath: "/usr/bin/designer-qt5",
       },
       {
-        pkg: "flameshot-git",
-        testCommand: "flameshot",
-      },
-      {
         pkg: "vim",
         testCommand: "vim",
       },
@@ -396,6 +392,18 @@ export default class Basic {
         pkg: "barrier",
         testCommand: "barrier",
       },
+      {
+        pkg: "kguiaddons",
+        testCommand: "/usr/bin/kde-geo-uri-handler",
+      },
+      {
+        pkg: "flameshot-git",
+        testCommand: "flameshot",
+      },
+      {
+        pkg: "ventoy-bin",
+        testCommand: "ventoy",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
@@ -407,6 +415,11 @@ export default class Basic {
     } catch (e) {
       await runSpawn(`yay -S mpv-build-git`);
     }
+    // try {
+    // await commandExists(`flameshot`);
+    // } catch (e) {
+    // await runSpawn(`yay -S flameshot-git`);
+    // }
 
     await ln(`/.config/alacritty`);
     await ln(`/.config/autostart/utools.desktop`);

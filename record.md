@@ -52,6 +52,6 @@
 52. `hexh-config manjaro nutstore clipman`: 同步路径 ~/.cache/xfce4/clipman
 53. 重启
 54. `hexh-config manjaro inputMethod`
-55. 重启
-56. `hexh-config manjaro tmux`
-57. `hexh-config manjaro basic software`
+55. `hexh-config manjaro tmux`
+56. `hexh-config manjaro basic software`
+57. 重启
