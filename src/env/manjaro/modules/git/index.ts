@@ -1,4 +1,5 @@
 import runCommand from "@/utils/run-command";
+import { homedir } from "os";
 import ln from "../../ln";
 import Basic from "../basic";
 
@@ -33,6 +34,12 @@ export default class Git {
   }
 
   async init() {
+    try {
+      await runCommand(`rm -rf ${homedir()}/.git-dude`);
+    } catch (e) {
+      /* handle error */
+    }
+    await runCommand(`mkdir -p ${homedir()}/.git-dude`);
     process.stdout.write(
       `GitHub SSH key setting url is: https://github.com/settings/keys\n`
     );
@@ -42,6 +49,7 @@ export default class Git {
 
   async ln() {
     await ln("/.gitconfig");
+    await ln("/.config/autostart/git-dude.desktop");
   }
 
   async proxy() {

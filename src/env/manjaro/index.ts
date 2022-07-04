@@ -11,6 +11,7 @@ import Hosts from "./modules/hosts";
 import Pamac from "./modules/pamac";
 import Nutstore from "./modules/nutstore";
 import Tmux from "./modules/tmux";
+import System from "./modules/system";
 
 // class Manjaro extends Common implements InputMethod {
 // // @ts-expect-errors: is-not-undefined
@@ -31,6 +32,7 @@ const Manjaro = {
   pamac: Pamac,
   nutstore: Nutstore,
   tmux: Tmux,
+  system: System,
 };
 
 export default Manjaro;
