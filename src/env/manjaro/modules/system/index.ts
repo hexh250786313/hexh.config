@@ -1,3 +1,4 @@
+import { dotfilesPath } from "@/constants";
 import runCommand from "@/utils/run-command";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
@@ -66,7 +67,11 @@ export default class System {
     } catch (e) {
       /* handle error */
     }
-    await ln(`/.config/xfce4`);
+    // await ln(`/.config/xfce4`);
+    await runCommand(`rm -rf ${homedir()}/.config/xfce4`);
+    await runCommand(
+      `cp -r ${dotfilesPath}/.config/xfce4 ${homedir()}/.config`
+    );
     await ln(`/.config/i3`);
     await ln(`/.config/picom`);
     await ln(`/.config/autostart/feh.desktop`);
