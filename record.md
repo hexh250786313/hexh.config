@@ -55,4 +55,4 @@
 55. `hexh-config manjaro tmux`
 56. `hexh-config manjaro basic software`
 57. 重启
-56. `hexh-config manjaro system`
+58. `hexh-config manjaro system config`

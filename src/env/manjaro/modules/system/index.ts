@@ -29,15 +29,14 @@ export default class System {
     await this.config();
   }
 
-  async config() {
+  async deps() {
+    await runCommand(`pip3 install i3-py`);
+    await runCommand(`pip3 install pynput`);
+    await runCommand(`pip3 install i3ipc`);
     const pkgs = [
       {
         pkg: "xfce4-i3-workspaces-plugin-git",
         testPath: "/usr/lib/xfce4/panel/plugins/libi3workspaces.so",
-      },
-      {
-        pkg: "i3-gaps-next-git",
-        testPath: "/usr/bin/i3",
       },
       {
         pkg: "nitrogen",
@@ -50,6 +49,20 @@ export default class System {
       {
         pkg: "feh-git",
         testCommand: "feh",
+      },
+    ];
+    const promises = pkgs.reduce(async (promise, pkg) => {
+      return promise.then(() => runYay(pkg));
+    }, Promise.resolve());
+    await promises;
+  }
+
+  async config() {
+    await this.deps();
+    const pkgs = [
+      {
+        pkg: "i3-gaps-next-git",
+        testPath: "/usr/bin/i3",
       },
     ];
     const promises = pkgs.reduce(async (promise, pkg) => {
