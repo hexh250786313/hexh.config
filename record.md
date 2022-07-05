@@ -54,7 +54,7 @@
 54. `hexh-config manjaro inputMethod`
 55. `hexh-config manjaro tmux`
 56. `hexh-config manjaro basic software`
-57. 重启
-58. `hexh-config manjaro system config`
-59. `hexh-config manjaro system face`
-60. `hexh-config manjaro system lockWallpaper`
+59. `hexh-config manjaro system config`
+60. 重启
+61. `hexh-config manjaro system face`
+62. `hexh-config manjaro system lockWallpaper`
