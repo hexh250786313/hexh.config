@@ -56,3 +56,5 @@
 56. `hexh-config manjaro basic software`
 57. 重启
 58. `hexh-config manjaro system config`
+59. `hexh-config manjaro system face`
+60. `hexh-config manjaro system lockWallpaper`

@@ -2,8 +2,10 @@ import { dotfilesPath } from "@/constants";
 import runCommand from "@/utils/run-command";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
+import { existsSync } from "fs-extra";
 import { homedir } from "os";
 import ln from "../../ln";
+import { wallpaper } from "./lock-wallpaper-config";
 
 export default class System {
   async run(args: string[]) {
@@ -87,6 +89,23 @@ export default class System {
     await ln(`/.config/picom`);
     await ln(`/.config/autostart/feh.desktop`);
     await ln(`/.config/autostart/picom.desktop`);
+  }
+
+  async face() {
+    await runCommand(`mugshot`);
+  }
+
+  async lockWallpaper() {
+    if (
+      !existsSync(`/usr/share/backgrounds/illyria-default-lockscreen.jpg.bak`)
+    ) {
+      await runCommand(
+        `sudo mv /usr/share/backgrounds/illyria-default-lockscreen.jpg /usr/share/backgrounds/illyria-default-lockscreen.jpg.bak`
+      );
+    }
+    await runCommand(
+      `sudo cp ${wallpaper} /usr/share/backgrounds/illyria-default-lockscreen.jpg`
+    );
   }
 
   async recover() {
