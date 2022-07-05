@@ -460,4 +460,10 @@ export default class Basic {
     await ln(`/.config/autostart/buckle.desktop`);
     await ln(`/.config/autostart/landrop.desktop`);
   }
+
+  async vmware() {
+    await runCommand(
+      `echo 'mks.gl.allowBlacklistedDrivers = "TRUE"' >> ${homedir()}/.vmware/preferences`
+    );
+  }
 }
