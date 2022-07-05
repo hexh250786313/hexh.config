@@ -58,3 +58,5 @@
 60. 重启
 61. `hexh-config manjaro system face`
 62. `hexh-config manjaro system lockWallpaper`
+63. `hexh-config manjaro system defaultApp`
+64. `hexh-config manjaro system bluetooth`
