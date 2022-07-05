@@ -128,6 +128,24 @@ export default class System {
     await promises;
   }
 
+  async bluetooth() {
+    const path = `/etc/bluetooth/main.conf`;
+    const targetText = "AutoEnable=true";
+    let text = "";
+    try {
+      text = await runCommand(`sudo cat ${path}`);
+    } catch (e) {
+      /* handle error */
+    }
+
+    process.stdout.write("Bluetooth enabled.\n");
+    if (/#?\u0020*AutoEnable=.*/g.test(text)) {
+      await runCommand(
+        `sudo perl -0777 -i -pe 's/#?\u0020*AutoEnable=.*/${targetText}/g' ${path}`
+      );
+    }
+  }
+
   async recover() {
     await runYay({
       pkg: "xfdesktop",
