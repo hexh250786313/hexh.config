@@ -1,3 +1,4 @@
+import { dotfilesPath } from "@/constants";
 import runCommand from "@/utils/run-command";
 import runPacman from "@/utils/run-pacman";
 import runSpawn from "@/utils/run-spawn";
@@ -419,15 +420,14 @@ export default class Basic {
     } catch (e) {
       await runSpawn(`yay -S mpv-build-git`);
     }
-    // try {
-    // await commandExists(`flameshot`);
-    // } catch (e) {
-    // await runSpawn(`yay -S flameshot-git`);
-    // }
 
     await ln(`/.config/alacritty`);
     await ln(`/.config/autostart/utools.desktop`);
-    await ln(`/.config/pcmanfm-qt`);
+    await runCommand(`rm -rf ${homedir()}/.config/pcmanfm-qt`);
+    await runCommand(
+      `cp -r ${dotfilesPath}/.config/pcmanfm-qt ${homedir()}/.config/`
+    );
+    // await ln(`/.config/pcmanfm-qt`);
     await ln(`/.config/tilda`);
     await ln(`/.config/autostart/tilda.desktop`);
     await runCommand(`sudo modprobe -a vmw_vmci vmmon`);

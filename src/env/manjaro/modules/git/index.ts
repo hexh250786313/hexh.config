@@ -1,7 +1,23 @@
 import runCommand from "@/utils/run-command";
+import { existsSync, readdirSync } from "fs-extra";
 import { homedir } from "os";
 import ln from "../../ln";
 import Basic from "../basic";
+import config from "./config";
+
+async function clone(url: string, cwd: string) {
+  cwd = cwd.replace(/\/$/g, "");
+  const folder = url.split("/").pop()?.replace(".git", "");
+  const path = cwd + "/" + folder + ".git/";
+  if (!existsSync(path)) {
+    process.stdout.write(`Cloning ${folder} ...\n`);
+    try {
+      await runCommand(`git clone --mirror ${url}`, { cwd });
+    } catch (e) {
+      await runCommand(`rm -rf ${folder}`, { cwd });
+    }
+  }
+}
 
 export default class Git {
   async run(args: string[]) {
@@ -34,12 +50,33 @@ export default class Git {
   }
 
   async init() {
-    try {
-      await runCommand(`rm -rf ${homedir()}/.git-dude`);
-    } catch (e) {
-      /* handle error */
+    if (!existsSync(homedir() + "/.git-dude")) {
+      await runCommand(`mkdir -p ${homedir()}/.git-dude`);
     }
-    await runCommand(`mkdir -p ${homedir()}/.git-dude`);
+    const promises = config.reduce(async (promise, repo) => {
+      return promise.then(() =>
+        clone("https://github.com/" + repo, homedir() + "/.git-dude")
+      );
+    }, Promise.resolve());
+    await promises;
+
+    const deletes = readdirSync(homedir() + "/.git-dude").reduce(
+      async (promise: Promise<any>, fileName) => {
+        return promise.then(() => {
+          if (
+            !config.some(
+              (repo) => repo.split("/").pop() === fileName.replace(/\.git/g, "")
+            )
+          ) {
+            return runCommand(`rm -rf ${homedir()}/.git-dude/${fileName}`);
+          }
+          return Promise.resolve("");
+        });
+      },
+      Promise.resolve()
+    );
+    await deletes;
+
     process.stdout.write(
       `GitHub SSH key setting url is: https://github.com/settings/keys\n`
     );
