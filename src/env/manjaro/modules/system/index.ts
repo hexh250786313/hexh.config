@@ -108,6 +108,26 @@ export default class System {
     );
   }
 
+  async defaultApp() {
+    const pkgs = [
+      "firefox",
+      "gtkhash-thunar",
+      "thunar-archive-plugin",
+      "thunar-media-tags-plugin",
+      "thunar-volman",
+      "thunar",
+    ];
+    const promises = pkgs.reduce(
+      async (promise: Promise<any>, pkg) =>
+        promise.then(() => {
+          process.stdout.write(`Removing ${pkg}...\n`);
+          return runSpawn(`yay --remove ${pkg}`);
+        }),
+      Promise.resolve()
+    );
+    await promises;
+  }
+
   async recover() {
     await runYay({
       pkg: "xfdesktop",
