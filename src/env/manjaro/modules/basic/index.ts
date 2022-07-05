@@ -364,10 +364,10 @@ export default class Basic {
         pkg: "github-cli",
         testCommand: "gh",
       },
-      {
-        pkg: "powder",
-        testCommand: "powder",
-      },
+      // {
+      // pkg: "powder",
+      // testCommand: "powder",
+      // },
       {
         pkg: "input-remapper-git",
         testCommand: "input-remapper-control",
@@ -403,6 +403,10 @@ export default class Basic {
       {
         pkg: "ventoy-bin",
         testCommand: "ventoy",
+      },
+      {
+        pkg: "wechat-uos",
+        testCommand: "wechat-uos",
       },
     ];
 
