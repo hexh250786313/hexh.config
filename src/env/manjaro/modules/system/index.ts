@@ -75,6 +75,14 @@ export default class System {
       `xfconf-query -c xfce4-session -p /sessions/Failsafe/Client0_Command -t string -sa i3`
     );
     // await runSpawn(`sudo pacman --remove xfdesktop`);
+    await this.updateConfig();
+    await ln(`/.config/i3`);
+    await ln(`/.config/picom`);
+    await ln(`/.config/autostart/feh.desktop`);
+    await ln(`/.config/autostart/picom.desktop`);
+  }
+
+  async updateConfig() {
     try {
       await runCommand(`pkill -e xfconfd`);
     } catch (e) {
@@ -85,10 +93,6 @@ export default class System {
     await runCommand(
       `cp -r ${dotfilesPath}/.config/xfce4 ${homedir()}/.config`
     );
-    await ln(`/.config/i3`);
-    await ln(`/.config/picom`);
-    await ln(`/.config/autostart/feh.desktop`);
-    await ln(`/.config/autostart/picom.desktop`);
   }
 
   async face() {
