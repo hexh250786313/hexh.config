@@ -409,6 +409,10 @@ export default class Basic {
         pkg: "wechat-uos",
         testCommand: "wechat-uos",
       },
+      {
+        pkg: "rofi",
+        testCommand: "rofi",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {

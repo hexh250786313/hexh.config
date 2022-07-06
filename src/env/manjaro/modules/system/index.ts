@@ -74,7 +74,7 @@ export default class System {
     await runCommand(
       `xfconf-query -c xfce4-session -p /sessions/Failsafe/Client0_Command -t string -sa i3`
     );
-    await runSpawn(`sudo pacman --remove xfdesktop`);
+    // await runSpawn(`sudo pacman --remove xfdesktop`);
     try {
       await runCommand(`pkill -e xfconfd`);
     } catch (e) {
@@ -147,10 +147,10 @@ export default class System {
   }
 
   async recover() {
-    await runYay({
-      pkg: "xfdesktop",
-      testPath: "/usr/bin/xfdesktop",
-    });
+    // await runYay({
+    // pkg: "xfdesktop",
+    // testPath: "/usr/bin/xfdesktop",
+    // });
     await runCommand(
       `xfconf-query -c xfce4-session -p /sessions/Failsafe/Client0_Command -t string -sa xfwm`
     );
