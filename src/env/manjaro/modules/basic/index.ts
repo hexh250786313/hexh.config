@@ -4,7 +4,7 @@ import runPacman from "@/utils/run-pacman";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
 import commandExists from "command-exists";
-import { existsSync } from "fs-extra";
+import { existsSync, readFileSync } from "fs-extra";
 import { homedir } from "os";
 import ln from "../../ln";
 
@@ -466,8 +466,30 @@ export default class Basic {
   }
 
   async vmware() {
-    await runCommand(
-      `echo 'mks.gl.allowBlacklistedDrivers = "TRUE"' >> ${homedir()}/.vmware/preferences`
-    );
+    const preferencesText = readFileSync(
+      `${homedir()}/.vmware/preferences`
+    ).toString();
+    const configs = [
+      `mks.gl.allowBlacklistedDrivers = "TRUE"`,
+      `pref.hotkey.control = "false"`,
+      `pref.hotkey.shift = "false"`,
+      `pref.hotkey.alt = "true"`,
+      `pref.hotkey.gui = "false"`,
+    ];
+    const promises = configs.reduce(async (promise: Promise<any>, cmd) => {
+      if (preferencesText.includes(cmd.split(" = ")[0])) {
+        return promise.then(() =>
+          runCommand(
+            `perl -0777 -i -pe 's/${cmd
+              .split(" = ")
+              .shift()}.*/${cmd}/g' ${homedir()}/.vmware/preferences`
+          )
+        );
+      }
+      return promise.then(() =>
+        runCommand(`echo '${cmd}' >> ~/.vmware/preferences`)
+      );
+    }, Promise.resolve());
+    await promises;
   }
 }
