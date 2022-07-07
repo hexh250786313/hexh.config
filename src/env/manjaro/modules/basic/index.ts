@@ -413,6 +413,14 @@ export default class Basic {
         pkg: "rofi",
         testCommand: "rofi",
       },
+      {
+        pkg: "wmctrl",
+        testCommand: "wmctrl",
+      },
+      {
+        pkg: "xdotool",
+        testCommand: "xdotool",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {

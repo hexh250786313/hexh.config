@@ -52,6 +52,10 @@ export default class System {
         pkg: "feh-git",
         testCommand: "feh",
       },
+      // {
+      // pkg: "alttab-git",
+      // testCommand: "alttab",
+      // },
     ];
     const promises = pkgs.reduce(async (promise, pkg) => {
       return promise.then(() => runYay(pkg));
