@@ -41,22 +41,24 @@
 42. `hexh-config manjaro editor ln`
 43. `hexh-config manjaro hosts`
 44. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript python`
-45. `:Copilot setup`
-46. `hexh-config manjaro pamac config`
-47. 重启
-48. `hexh-config manjaro pamac flatpak`
-49. `flatpak update`
-49. `hexh-config manjaro pamac snap`
-50. `hexh-config manjaro nutstore` 登录, ~/桌面/share
-51. `hexh-config manjaro nutstore config`
-52. `hexh-config manjaro nutstore clipman`: 同步路径 ~/.cache/xfce4/clipman
-53. 重启
-54. `hexh-config manjaro inputMethod`
-55. `hexh-config manjaro tmux`
-56. `hexh-config manjaro basic software`
+45. `hexh-config manjaro editor latexConfig`
+46. `:Copilot setup`
+47. `hexh-config manjaro pamac config`
+48. 重启
+49. `hexh-config manjaro pamac flatpak`
+50. `flatpak update`
+51. `hexh-config manjaro pamac snap`
+52. `hexh-config manjaro nutstore` 登录, ~/桌面/share
+53. `hexh-config manjaro nutstore config`
+54. `hexh-config manjaro nutstore clipman`: 同步路径 ~/.cache/xfce4/clipman
+55. 重启
+56. `hexh-config manjaro inputMethod`
+57. `hexh-config manjaro tmux`
+58. `hexh-config manjaro basic software`
 59. `hexh-config manjaro system config`
 60. 重启
 61. `hexh-config manjaro system face`
 62. `hexh-config manjaro system lockWallpaper`
 63. `hexh-config manjaro system defaultApp`
 64. `hexh-config manjaro system bluetooth`
+65. 启动, 再 vmware: `hexh-config manjaro system vmware`
