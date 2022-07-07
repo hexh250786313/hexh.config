@@ -1,5 +1,7 @@
 import runCommand from "@/utils/run-command";
 import runYay from "@/utils/run-yay";
+import { existsSync, readFileSync, writeFileSync } from "fs-extra";
+import { homedir } from "os";
 import ln from "../../ln";
 
 export default class Editor {
@@ -98,10 +100,38 @@ export default class Editor {
     );
 
     await installNvim();
+    await this.latexConfig();
   }
 
   async release() {
     await this.deps();
+  }
+
+  async latexConfig() {
+    const path = `${homedir()}/.local/state/mume/katex_config.js`;
+    if (existsSync(path)) {
+      const text = readFileSync(path).toString();
+      if (text && /.*module\.exports.*/g.test(text)) {
+        let nextText = text;
+        if (/(\t|\u0020)*strict(\t|\u0020)*:(\t|\u0020)*true/g.test(nextText)) {
+          nextText = nextText.replace(
+            /(\t|\u0020)*strict(\t|\u0020)*:(\t|\u0020)*true/,
+            "\u0020\u0020strict: false"
+          );
+        }
+        if (
+          !/(\t|\u0020)*strict(\t|\u0020)*:(\t|\u0020)*(true|false)/g.test(
+            nextText
+          )
+        ) {
+          nextText = nextText.replace(
+            /(?<=(module.exports(\t|\u0020)*=(\t|\u0020)*)){/g,
+            "{\u0020\u0020strict: false,"
+          );
+        }
+        writeFileSync(path, nextText);
+      }
+    }
   }
 }
 
