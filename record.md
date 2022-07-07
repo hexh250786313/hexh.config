@@ -61,4 +61,5 @@
 62. `hexh-config manjaro system lockWallpaper`
 63. `hexh-config manjaro system defaultApp`
 64. `hexh-config manjaro system bluetooth`
-65. 启动, 再 vmware: `hexh-config manjaro system vmware`
+65. 启动 vmware, 再 `hexh-config manjaro system vmware`
+66. 启动 code, 同步, 再执行 `Enable Monkey Patch`
