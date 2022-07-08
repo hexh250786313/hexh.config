@@ -58,5 +58,9 @@
 59. `hexh-config manjaro system config`
 61. `hexh-config manjaro system init`
 60. 重启
-65. 启动 vmware, 再 `hexh-config manjaro system vmware`
+65. 启动 vmware, 再 `hexh-config manjaro basic vmware`
 66. 启动 code, 同步, 再执行 `Enable Monkey Patch`
+67. `hexh-config manjaro howdy`
+68. `src/env/manjaro/modules/howdy/config.ts` 改变设备路径, 然后
+69. `hexh-config manjaro howdy config`
+70. 重启
