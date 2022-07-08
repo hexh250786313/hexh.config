@@ -189,4 +189,12 @@ export default class System {
     }
     process.stdout.write(`Reboot to apply changes.\n`);
   }
+
+  async copyXfceConfig() {
+    await runCommand(`rm -rf ${dotfilesPath}/.config/xfce4`);
+    await runCommand(
+      `cp -r ${homedir()}/.config/xfce4 ${dotfilesPath}/.config`
+    );
+    await runCommand(`git add .`, { cwd: `${dotfilesPath}/.config/xfce4` });
+  }
 }
