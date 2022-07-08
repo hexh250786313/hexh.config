@@ -197,4 +197,11 @@ export default class System {
     );
     await runCommand(`git add .`, { cwd: `${dotfilesPath}/.config/xfce4` });
   }
+
+  async diffXfceConfig() {
+    await runCommand(`rm -rf ${dotfilesPath}/.config/xfce4`);
+    await runCommand(
+      `cp -r ${homedir()}/.config/xfce4 ${dotfilesPath}/.config`
+    );
+  }
 }
