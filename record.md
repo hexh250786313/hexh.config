@@ -51,7 +51,6 @@
 52. `hexh-config manjaro nutstore` 登录, ~/桌面/share
 53. `hexh-config manjaro nutstore config`
 54. `hexh-config manjaro nutstore clipman`: 同步路径 ~/.cache/xfce4/clipman
-55. 重启
 56. `hexh-config manjaro inputMethod`
 57. `hexh-config manjaro tmux`
 58. `hexh-config manjaro basic software`
@@ -63,4 +62,5 @@
 67. `hexh-config manjaro howdy`
 68. `src/env/manjaro/modules/howdy/config.ts` 改变设备路径, 然后
 69. `hexh-config manjaro howdy config`
-70. 重启
+70. `hexh-config manjaro asus`: `https://github.com/mohamed-badaoui/asus-touchpad-numpad-driver`
+71. 重启

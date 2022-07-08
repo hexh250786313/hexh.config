@@ -13,6 +13,7 @@ import Nutstore from "./modules/nutstore";
 import Tmux from "./modules/tmux";
 import System from "./modules/system";
 import Howdy from "./modules/howdy";
+import Asus from "./modules/asus";
 
 // class Manjaro extends Common implements InputMethod {
 // // @ts-expect-errors: is-not-undefined
@@ -35,6 +36,7 @@ const Manjaro = {
   tmux: Tmux,
   system: System,
   howdy: Howdy,
+  asus: Asus,
 };
 
 export default Manjaro;
