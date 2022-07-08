@@ -78,7 +78,7 @@ export default class System {
     await runCommand(
       `xfconf-query -c xfce4-session -p /sessions/Failsafe/Client0_Command -t string -sa i3`
     );
-    // await runSpawn(`sudo pacman --remove xfdesktop`);
+    await runSpawn(`sudo pacman --remove xfdesktop`);
     await this.updateConfig();
     await ln(`/.config/i3`);
     await ln(`/.config/picom`);
@@ -97,6 +97,13 @@ export default class System {
     await runCommand(
       `cp -r ${dotfilesPath}/.config/xfce4 ${homedir()}/.config`
     );
+  }
+
+  async init() {
+    await this.face();
+    await this.lockWallpaper();
+    await this.defaultApp();
+    await this.bluetooth();
   }
 
   async face() {
@@ -155,10 +162,10 @@ export default class System {
   }
 
   async recover() {
-    // await runYay({
-    // pkg: "xfdesktop",
-    // testPath: "/usr/bin/xfdesktop",
-    // });
+    await runYay({
+      pkg: "xfdesktop",
+      testPath: "/usr/bin/xfdesktop",
+    });
     await runCommand(
       `xfconf-query -c xfce4-session -p /sessions/Failsafe/Client0_Command -t string -sa xfwm`
     );

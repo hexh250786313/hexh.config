@@ -41,7 +41,7 @@
 42. `hexh-config manjaro editor ln`
 43. `hexh-config manjaro hosts`
 44. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript python`
-45. `hexh-config manjaro editor latexConfig`
+45. `nvim ~/.desktop/test.md`: `:CocCommand markdown-preview-enhanced.openKaTeXConfig`, `hexh-config manjaro editor latexConfig`
 46. `:Copilot setup`
 47. `hexh-config manjaro pamac config`
 48. 重启
@@ -56,10 +56,7 @@
 57. `hexh-config manjaro tmux`
 58. `hexh-config manjaro basic software`
 59. `hexh-config manjaro system config`
+61. `hexh-config manjaro system init`
 60. 重启
-61. `hexh-config manjaro system face`
-62. `hexh-config manjaro system lockWallpaper`
-63. `hexh-config manjaro system defaultApp`
-64. `hexh-config manjaro system bluetooth`
 65. 启动 vmware, 再 `hexh-config manjaro system vmware`
 66. 启动 code, 同步, 再执行 `Enable Monkey Patch`
