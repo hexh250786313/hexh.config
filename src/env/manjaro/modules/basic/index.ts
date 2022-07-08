@@ -118,6 +118,9 @@ export default class Basic {
       return promise.then(() => runPacman(pkg));
     }, Promise.resolve());
     await promises;
+    await runCommand(
+      `echo "kernel.sysrq=1" | sudo tee /etc/sysctl.d/99-sysrq.conf` // enable sysrq: Alt + PrtSc + k
+    );
     await runSpawn(`sudo pacman -S base-devel`);
   }
 
