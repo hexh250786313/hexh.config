@@ -9,58 +9,58 @@
 9. `cd /home/hexh/desktop/hexh.config`
 10. `yarn && npm link`
 11. `hexh-config manjaro proxy`
-13. `source ~/.bashrc`
-14. `clash`
-15. `firefox`
-16. [clash](https://clash.razord.top/)
-17. `hexh-config manjaro basic resetPacmanKey`
-18. `hexh-config manjaro basic needed`
-19. `yay -Syu --devel`
-20. `hexh-config manjaro basic dkms`
-21. `hexh-config manjaro git`
-22. [gh ssh keys](https://github.com/settings/keys)
-23. `ssh -T git@github.com`: input `yes`
-21. `hexh-config manjaro git ln`
+12. `source ~/.bashrc`
+13. `clash`
+14. `firefox`
+15. [clash](https://clash.razord.top/)
+16. `hexh-config manjaro basic resetPacmanKey`
+17. `hexh-config manjaro basic needed`
+18. `yay -Syu --devel`
+19. `hexh-config manjaro basic dkms`
+20. `hexh-config manjaro git`
+21. [gh ssh keys](https://github.com/settings/keys)
+22. `ssh -T git@github.com`: input `yes`
+23. `hexh-config manjaro git ln`
 24. `hexh-config manjaro basic dotfiles`
 25. `hexh-config manjaro zsh`
-27. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-28. back to bash
-29. `hexh-config manjaro zsh ln`
-30. `hexh-config manjaro zsh colorls`
-31. `zsh`
-32. `rbenv shell 3.1.0 && rbenv global 3.1.0 && rbenv local 3.1.0`
-33. `gem install colorls`
-34. `hexh-config manjaro zsh fzf`: `~/.fzf/install`
-35. `hexh-config manjaro proxy ln`
-36. 重启
-37. `sudo systemctl restart vmtoolsd.service`
-38. `curl www.google.com.hk`
-39. `hexh-config manjaro node`
-40. `npm list -g --depth=0`
-41. `hexh-config manjaro editor`
-42. `hexh-config manjaro editor ln`
-43. `hexh-config manjaro hosts`
-44. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript python`
-45. `nvim ~/.desktop/test.md`: `:CocCommand markdown-preview-enhanced.openKaTeXConfig`, `hexh-config manjaro editor latexConfig`
-46. `:Copilot setup`
-47. `hexh-config manjaro pamac config`
-48. 重启
-49. `hexh-config manjaro pamac flatpak`
-50. `flatpak update`
-51. `hexh-config manjaro pamac snap`
-52. `hexh-config manjaro nutstore` 登录, ~/桌面/share
-53. `hexh-config manjaro nutstore config`
-54. `hexh-config manjaro nutstore clipman`: 同步路径 ~/.cache/xfce4/clipman
-56. `hexh-config manjaro inputMethod`
-57. `hexh-config manjaro tmux`
-58. `hexh-config manjaro basic software`
-59. `hexh-config manjaro system config`
-61. `hexh-config manjaro system init`
-60. 重启
-65. 启动 vmware, 再 `hexh-config manjaro basic vmware`
-66. 启动 code, 同步, 再执行 `Enable Monkey Patch`
-67. `hexh-config manjaro howdy`
-68. `src/env/manjaro/modules/howdy/config.ts` 改变设备路径, 然后
-69. `hexh-config manjaro howdy config`
-70. `hexh-config manjaro asus`: https://github.com/mohamed-badaoui/asus-touchpad-numpad-driver
-71. 重启
+26. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+27. back to bash
+28. `hexh-config manjaro zsh ln`
+29. `hexh-config manjaro zsh colorls`
+30. `zsh`
+31. `rbenv shell 3.1.0 && rbenv global 3.1.0 && rbenv local 3.1.0`
+32. `gem install colorls`
+33. `hexh-config manjaro zsh fzf`: `~/.fzf/install`
+34. `hexh-config manjaro proxy ln`
+35. 重启
+36. `sudo systemctl restart vmtoolsd.service`
+37. `curl www.google.com.hk`
+38. `hexh-config manjaro node`
+39. `npm list -g --depth=0`
+40. `hexh-config manjaro editor`
+41. `hexh-config manjaro editor ln`
+42. `hexh-config manjaro hosts`
+43. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript python`
+44. `nvim ~/.desktop/test.md`: `:CocCommand markdown-preview-enhanced.openKaTeXConfig`, `hexh-config manjaro editor latexConfig`
+45. `:Copilot setup`
+46. `hexh-config manjaro pamac config`
+47. 重启
+48. `hexh-config manjaro pamac flatpak`
+49. `flatpak update`
+50. `hexh-config manjaro pamac snap`
+51. `hexh-config manjaro nutstore` 登录, ~/桌面/share
+52. `hexh-config manjaro nutstore config`
+53. `hexh-config manjaro nutstore clipman`: 同步路径 ~/.cache/xfce4/clipman
+54. `hexh-config manjaro inputMethod`
+55. `hexh-config manjaro tmux`
+56. `hexh-config manjaro basic software`
+57. `hexh-config manjaro system config`
+58. `hexh-config manjaro system init`
+59. 重启
+60. 启动 vmware, 再 `hexh-config manjaro basic vmware`
+61. 启动 code, 同步, 再执行 `Enable Monkey Patch`
+62. `hexh-config manjaro howdy`
+63. `src/env/manjaro/modules/howdy/config.ts` 改变设备路径, 然后
+64. `hexh-config manjaro howdy config`
+65. `hexh-config manjaro asus`: https://github.com/mohamed-badaoui/asus-touchpad-numpad-driver
+66. 重启
