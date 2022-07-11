@@ -55,7 +55,6 @@ export default class InputMethod {
 
   async ln() {
     await ln("/.config/fcitx/rime/lua");
-    await ln("/.config/fcitx/rime/luna_pinyin_simp.custom.punctuator.yaml");
     await ln("/.config/fcitx/rime/luna_pinyin_simp.custom.yaml");
     await ln("/.config/fcitx/rime/rime.lua");
   }
