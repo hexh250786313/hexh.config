@@ -42,11 +42,7 @@ export default class Tmux {
   }
 
   async tmux() {
-    try {
-      await runCommand(`rm -rf ${homedir()}/.tmux`);
-    } catch (e) {
-      /* handle error */
-    }
+    await runCommand(`rm -rf ${homedir()}/.tmux`);
     await runCommand(
       `git clone https://github.com/gpakosz/.tmux.git ${homedir()}/.tmux`
     );

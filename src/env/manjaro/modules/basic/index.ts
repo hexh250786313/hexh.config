@@ -78,11 +78,7 @@ export default class Basic {
       } finally {
         await runCommand(`rm -fr ${homedir()}/下载/dotfiles`);
       }
-      try {
-        await runCommand(`rm -rf ${homedir()}/.ssh/config`);
-      } catch (e) {
-        /* handle error */
-      }
+      await runCommand(`rm -rf ${homedir()}/.ssh/config`);
       await runCommand(
         `ln -s ${homedir()}/下载/dotfiles/.ssh/config ${homedir()}/.ssh/config`
       );

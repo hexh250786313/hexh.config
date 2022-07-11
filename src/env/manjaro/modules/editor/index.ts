@@ -68,11 +68,7 @@ export default class Editor {
 
   async nightly() {
     await this.deps();
-    try {
-      await runCommand(`rm -rf ${__dirname}/build/neovim`);
-    } catch (e) {
-      /* handle error */
-    }
+    await runCommand(`rm -rf ${__dirname}/build/neovim`);
 
     try {
       const paths = await runCommand(`zsh -c "where nvim"`);

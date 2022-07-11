@@ -177,16 +177,8 @@ export default class System {
     await runCommand(`rm -rf ${homedir()}/.config/xfce4`);
     await runCommand(`cp -r /etc/skel/.config/xfce4 ${homedir()}/.config`);
     await runSpawn(`yay --remove i3-gaps-next-git`);
-    try {
-      await runCommand(`rm -rf ${homedir()}/.config/autostart/feh.desktop`);
-    } catch (e) {
-      /* handle error */
-    }
-    try {
-      await runCommand(`rm -rf ${homedir()}/.config/autostart/picom.desktop`);
-    } catch (e) {
-      /* handle error */
-    }
+    await runCommand(`rm -rf ${homedir()}/.config/autostart/feh.desktop`);
+    await runCommand(`rm -rf ${homedir()}/.config/autostart/picom.desktop`);
     process.stdout.write(`Reboot to apply changes.\n`);
   }
 

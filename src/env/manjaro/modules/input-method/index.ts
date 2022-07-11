@@ -128,11 +128,7 @@ export default class InputMethod {
       )
     ) {
       process.stdout.write(`Fetching CascadiaCode...\n`);
-      try {
-        await runCommand(`rm -rf ${__dirname}/build/CascadiaCode`);
-      } catch (e) {
-        /* handle error */
-      }
+      await runCommand(`rm -rf ${__dirname}/build/CascadiaCode`);
       await runCommand(`mkdir -p ${__dirname}/build/CascadiaCode`);
       await runCommand(
         `curl -L -o ${__dirname}/build/CascadiaCode/CascadiaCode.zip https://github.com/ryanoasis/nerd-fonts/releases/download/2.2.0-RC/CascadiaCode.zip`
@@ -299,11 +295,7 @@ export default class InputMethod {
         await runCommand(`rm -rf ${__dirname}/build/librime`);
         throw new Error("librime install failed");
       }
-      try {
-        await runCommand(`rm -rf ${__dirname}/build/librime`);
-      } catch (e) {
-        /* handle error */
-      }
+      await runCommand(`rm -rf ${__dirname}/build/librime`);
     }
   }
 
@@ -321,11 +313,7 @@ export default class InputMethod {
     process.stdout.write("Scel fetching...\n");
 
     try {
-      try {
-        await runCommand(`rm -rf ${__dirname}/build/scel-rime`);
-      } catch (e) {
-        /* handle error */
-      }
+      await runCommand(`rm -rf ${__dirname}/build/scel-rime`);
       await runCommand(
         `git clone https://github.com/hexh250786313/scel-rime ${__dirname}/build/scel-rime`
       );
