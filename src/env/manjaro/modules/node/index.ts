@@ -38,7 +38,12 @@ export default class Node {
   }
 
   async packages() {
-    const allPkgs = await runCommand("npm list -g --depth=0");
+    const allPkgsStr = await runCommand("npm list -g --depth=0");
+    const allPkgs = allPkgsStr
+      .split("\n")
+      .map((pkg) =>
+        pkg.replace(/(├──\u0020)|(└──\u0020)|(@(?!(.*@.*)).*$)/g, "")
+      );
     const pkgs = [
       "@fsouza/prettierd",
       "@babel/eslint-parser",
@@ -57,11 +62,13 @@ export default class Node {
       "standard",
       "typescript-language-server",
       "yarn",
+      "pnpm",
     ];
     const promises = pkgs.reduce(async (promise: Promise<any>, pkg) => {
       if (allPkgs.includes(pkg)) {
         return promise;
       } else {
+        process.stdout.write(`Installing ${pkg}...\n`);
         return promise.then(() => runCommand(`npm install -g ${pkg}`));
       }
     }, Promise.resolve());
