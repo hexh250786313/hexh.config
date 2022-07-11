@@ -486,6 +486,8 @@ export default class Basic {
       `pref.hotkey.shift = "false"`,
       `pref.hotkey.alt = "true"`,
       `pref.hotkey.gui = "false"`,
+      `pref.motionGrab = "FALSE"`,
+      `pref.motionUngrab = "FALSE"`,
     ];
     const promises = configs.reduce(async (promise: Promise<any>, cmd) => {
       if (preferencesText.includes(cmd.split(" = ")[0])) {
