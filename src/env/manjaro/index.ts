@@ -14,6 +14,7 @@ import Tmux from "./modules/tmux";
 import System from "./modules/system";
 import Howdy from "./modules/howdy";
 import Asus from "./modules/asus";
+import Theme from "./modules/theme";
 
 // class Manjaro extends Common implements InputMethod {
 // // @ts-expect-errors: is-not-undefined
@@ -37,6 +38,7 @@ const Manjaro = {
   system: System,
   howdy: Howdy,
   asus: Asus,
+  theme: Theme,
 };
 
 export default Manjaro;

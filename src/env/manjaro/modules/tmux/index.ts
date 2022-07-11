@@ -28,6 +28,19 @@ export default class Tmux {
     await this.tmux();
   }
 
+  public async updateConfig() {
+    await runCommand(`rm -rf ${homedir()}/.tmux.conf`);
+    await runCommand(`rm -rf ${homedir()}/.tmux.conf.local`);
+    await runCommand(
+      `ln -s ${homedir()}/.tmux/.tmux.conf ${homedir()}/.tmux.conf`
+    );
+    await runCommand(`cp ${homedir()}/.tmux/.tmux.conf.local ${homedir()}/`);
+    await runCommand(
+      `cat ${dotfilesPath}/.tmux.conf.local >> ${homedir()}/.tmux.conf.local`
+    );
+    await runCommand(`tmux source-file ${homedir()}/.tmux.conf`);
+  }
+
   async tmux() {
     try {
       await runCommand(`rm -rf ${homedir()}/.tmux`);
@@ -37,27 +50,11 @@ export default class Tmux {
     await runCommand(
       `git clone https://github.com/gpakosz/.tmux.git ${homedir()}/.tmux`
     );
-    try {
-      await runCommand(`rm -rf ${homedir()}/.tmux.conf`);
-    } catch (e) {
-      /* handle error */
-    }
-    await runCommand(
-      `ln -s ${homedir()}/.tmux/.tmux.conf ${homedir()}/.tmux.conf`
-    );
-    try {
-      await runCommand(`rm -rf ${homedir()}/.tmux.conf.local`);
-    } catch (e) {
-      /* handle error */
-    }
-    await runCommand(`cp ${homedir()}/.tmux/.tmux.conf.local ${homedir()}/`);
-    await runCommand(
-      `cat ${dotfilesPath}/.tmux.conf.local >> ${homedir()}/.tmux.conf.local`
-    );
     await runYay({
       pkg: "tmux",
       testCommand: "tmux",
     });
+    await this.updateConfig();
 
     await ln(`/.config/autostart/work.desktop`);
     await ln(`/.config/autostart/hexh.desktop`);
