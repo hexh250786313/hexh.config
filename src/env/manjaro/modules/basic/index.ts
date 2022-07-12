@@ -420,6 +420,10 @@ export default class Basic {
         pkg: "xdotool",
         testCommand: "xdotool",
       },
+      {
+        pkg: "brave-bin",
+        testCommand: "brave",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
