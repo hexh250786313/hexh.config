@@ -424,6 +424,10 @@ export default class Basic {
         pkg: "brave-bin",
         testCommand: "brave",
       },
+      {
+        pkg: "baidunetdisk-electron",
+        testCommand: "baidunetdisk",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
