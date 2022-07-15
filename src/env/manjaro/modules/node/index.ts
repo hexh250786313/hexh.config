@@ -63,6 +63,7 @@ export default class Node {
       "typescript-language-server",
       "yarn",
       "pnpm",
+      "ts-node",
     ];
     const promises = pkgs.reduce(async (promise: Promise<any>, pkg) => {
       if (allPkgs.includes(pkg)) {
