@@ -4,8 +4,9 @@ import { homedir } from "os";
 import ln from "../../ln";
 import Basic from "../basic";
 import config from "./config";
+import workspace from "./workspace";
 
-async function clone(url: string, cwd: string) {
+async function cloneMirror(url: string, cwd: string) {
   cwd = cwd.replace(/\/$/g, "");
   const folder = url.split("/").pop()?.replace(".git", "");
   const path = cwd + "/" + folder + ".git/";
@@ -13,6 +14,20 @@ async function clone(url: string, cwd: string) {
     process.stdout.write(`Cloning ${folder} ...\n`);
     try {
       await runCommand(`git clone --mirror ${url}`, { cwd });
+    } catch (e) {
+      await runCommand(`rm -rf ${folder}`, { cwd });
+    }
+  }
+}
+
+async function clone(url: string, cwd: string, args: string[] = []) {
+  cwd = cwd.replace(/\/$/g, "");
+  const folder = url.split("/").pop()?.replace(".git", "");
+  const path = cwd + "/" + folder;
+  if (!existsSync(path)) {
+    process.stdout.write(`Cloning ${folder} ...\n`);
+    try {
+      await runCommand(`git clone ${args.join(" ")} ${url}`, { cwd });
     } catch (e) {
       await runCommand(`rm -rf ${folder}`, { cwd });
     }
@@ -55,7 +70,7 @@ export default class Git {
     }
     const promises = config.reduce(async (promise, repo) => {
       return promise.then(() =>
-        clone("https://github.com/" + repo, homedir() + "/.git-dude")
+        cloneMirror("https://github.com/" + repo, homedir() + "/.git-dude")
       );
     }, Promise.resolve());
     await promises;
@@ -97,5 +112,15 @@ export default class Git {
   async unProxy() {
     await runCommand(`git config --global --unset http.proxy`);
     await runCommand(`git config --global --unset https.proxy`);
+  }
+
+  async workspace() {
+    if (!existsSync(homedir() + "/workspace")) {
+      await runCommand(`mkdir -p ${homedir()}/workspace`);
+    }
+    const promises = workspace.reduce(async (promise, repo) => {
+      return promise.then(() => clone(repo, homedir() + "/workspace"));
+    }, Promise.resolve());
+    await promises;
   }
 }
