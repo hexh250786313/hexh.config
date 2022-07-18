@@ -10,6 +10,7 @@ const workspace = [
   "git@github.com:hexh250786313/mpd-web-api.git",
   "git@github.com:hexh250786313/mpd-web-ui.git",
   "git@github.com:hexh250786313/vscode.nvim",
+  "https://github.com/ondras/cyp",
   "idev@10.10.2.13:/home/idev/sources/silver_ins/yxb_policy_detail_analyzer",
   "idev@10.10.2.13:/home/idev/sources/yxb/silver_ins/management_frontend",
   "idev@10.10.2.13:/home/idev/sources/yxb/silver_ins/management_information_frontend",
