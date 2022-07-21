@@ -2,7 +2,7 @@ import { dotfilesPath } from "@/constants";
 import runCommand from "@/utils/run-command";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
-import { existsSync } from "fs-extra";
+import { existsSync, readFileSync } from "fs-extra";
 import { homedir } from "os";
 import ln from "../../ln";
 import { wallpaper } from "./lock-wallpaper-config";
@@ -195,5 +195,57 @@ export default class System {
     await runCommand(
       `cp -r ${homedir()}/.config/xfce4 ${dotfilesPath}/.config`
     );
+  }
+
+  async customCursor() {
+    const name = `oreo_white_cursors`;
+    if (!existsSync(`/usr/share/icons/${name}`)) {
+      const file = `${homedir()}/下载/${name}`;
+      await runCommand(`tar -xzf ${file}.tar.gz -C ${homedir()}/下载`);
+      await runCommand(`sudo mv ${file} /usr/share/icons/`);
+    }
+    const output1 = readFileSync(
+      `/usr/share/icons/default/index.theme`
+    ).toString();
+    if (output1) {
+      const next = output1.replace(
+        /\n(?<=(\[icon theme\]\n))(.*\n?)*$/gm,
+        "\nInherits=" + name
+      );
+      await runCommand(
+        `echo '${next}' | sudo tee /usr/share/icons/default/index.theme`
+      );
+    }
+
+    const output2 = readFileSync(
+      `${homedir()}/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml`
+    ).toString();
+    if (output2) {
+      const next = output2.replace(
+        /(?<=(CursorThemeName.*"))\S+(?=("\/>))/g,
+        name
+      );
+      try {
+        await runCommand(`pkill -e xfconfd`);
+      } catch (e) {
+        /* handle error */
+      }
+      await runCommand(
+        `echo '${next}' | sudo tee ${homedir()}/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml`
+      );
+    }
+
+    const output3 = readFileSync(
+      `/etc/lightdm/lightdm-gtk-greeter.conf`
+    ).toString();
+    if (output3) {
+      const next = output3.replace(
+        /(?<=(cursor-theme-name\u0020=\u0020))\S+/g,
+        name
+      );
+      await runCommand(
+        `echo '${next}' | sudo tee /etc/lightdm/lightdm-gtk-greeter.conf`
+      );
+    }
   }
 }
