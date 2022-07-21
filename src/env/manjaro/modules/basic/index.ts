@@ -428,6 +428,14 @@ export default class Basic {
         pkg: "baidunetdisk-electron",
         testCommand: "baidunetdisk",
       },
+      {
+        pkg: "lollypop",
+        testCommand: "lollypop",
+      },
+      {
+        pkg: "kid3",
+        testCommand: "kid3",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
