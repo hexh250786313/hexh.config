@@ -425,16 +425,16 @@ export default class Basic {
         testCommand: "brave",
       },
       {
-        pkg: "baidunetdisk-electron",
-        testCommand: "baidunetdisk",
-      },
-      {
         pkg: "lollypop",
         testCommand: "lollypop",
       },
       {
         pkg: "kid3",
         testCommand: "kid3",
+      },
+      {
+        pkg: "spek-wxgtk3",
+        testCommand: "spek",
       },
     ];
 
@@ -446,6 +446,18 @@ export default class Basic {
       await commandExists(`mpv`);
     } catch (e) {
       await runSpawn(`yay -S mpv-build-git`);
+    }
+
+    // try {
+    // await commandExists(`spek-git`);
+    // } catch (e) {
+    // await runSpawn(`yay -S spek-git`);
+    // }
+
+    try {
+      await commandExists(`baidunetdisk`);
+    } catch (e) {
+      await runSpawn(`yay -S baidunetdisk-electron`);
     }
 
     await ln(`/.config/alacritty`);

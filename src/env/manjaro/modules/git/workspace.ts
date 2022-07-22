@@ -17,6 +17,7 @@ const workspace = [
   "idev@10.10.2.13:/home/idev/sources/yxb/silver_ins/mobile_frontend",
   "idev@10.10.2.13:/home/idev/sources/yxb/silver_ins/core",
   "idev@10.10.2.13:/home/idev/sources/yxb/silver_ins/mobile_business_card_decomposer",
+  "idev@10.10.2.13:/home/idev/sources/silver_ins/website",
 ];
 
 export default workspace;
