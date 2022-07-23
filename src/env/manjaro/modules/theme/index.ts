@@ -102,7 +102,7 @@ export default class Theme {
     if (alacrittyText) {
       await runCommand(
         // eslint-disable-next-line no-useless-escape
-        `perl -0777 -i -pe 's/colors:\u0020\*.*/colors:\u0020\*${colors}/gi' ${path}`
+        `perl -0777 -i -pe 's/^colors:\u0020\*.*/colors:\u0020\*${colors}/gi' ${path}`
       );
     }
   }
@@ -203,5 +203,13 @@ export default class Theme {
     await this.everforest("medium");
     await this.tilda("everforest_light_medium");
     await this.tmux("everforest_light_medium");
+  }
+
+  async gruvbox() {
+    await this.nvimPlugin("gruvbox-material");
+    await this.nvimColorScheme("gruvbox-material", "dark");
+    await this.alacritty("gruvbox_dark");
+    await this.tilda("gruvbox_dark");
+    await this.tmux("gruvbox_dark");
   }
 }
