@@ -51,6 +51,7 @@ export default class InputMethod {
     await this.rime();
     await this.plum();
     await this.fetchSogouScel();
+    await this.emoji();
   }
 
   async ln() {
@@ -334,5 +335,11 @@ export default class InputMethod {
     } finally {
       await runCommand(`rm -rf ${__dirname}/build/scel-rime`);
     }
+  }
+
+  async emoji() {
+    await runCommand(
+      `perl -0777 -i -pe 's/tips:.*//g' ${homedir()}/.config/fcitx/rime/emoji_suggestion.yaml`
+    );
   }
 }
