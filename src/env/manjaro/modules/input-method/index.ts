@@ -58,6 +58,8 @@ export default class InputMethod {
     await ln("/.config/fcitx/rime/lua");
     await ln("/.config/fcitx/rime/luna_pinyin_simp.custom.yaml");
     await ln("/.config/fcitx/rime/rime.lua");
+    await ln("/.config/fcitx/rime/default.custom.yaml");
+    await ln("/.config/fcitx/rime/double_pinyin_abc.custom.yaml");
   }
 
   async font() {
@@ -306,6 +308,7 @@ export default class InputMethod {
       "hexh250786313/rime-emoji",
       "hexh250786313/rime-easy-en",
       "hexh250786313/rime-octagram-data hexh250786313/rime-octagram-data@hans",
+      "double-pinyin",
     ]);
   }
 
