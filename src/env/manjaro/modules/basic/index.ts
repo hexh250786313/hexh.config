@@ -436,6 +436,10 @@ export default class Basic {
         pkg: "spek-wxgtk3",
         testCommand: "spek",
       },
+      {
+        pkg: "perl-rename",
+        testCommand: "perl-rename",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {

@@ -310,6 +310,8 @@ export default class InputMethod {
       "hexh250786313/rime-octagram-data hexh250786313/rime-octagram-data@hans",
       "double-pinyin",
     ]);
+
+    this.emoji();
   }
 
   async fetchSogouScel() {
@@ -343,6 +345,61 @@ export default class InputMethod {
   async emoji() {
     await runCommand(
       `perl -0777 -i -pe 's/tips:.*//g' ${homedir()}/.config/fcitx/rime/emoji_suggestion.yaml`
+    );
+  }
+
+  async otherDict() {
+    // https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases
+    const zhwiki = `https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/0.2.4/zhwiki-20220722.dict.yaml`;
+    // https://github.com/outloudvi/mw2fcitx/releases
+    const moegirl = `https://github.com/outloudvi/mw2fcitx/releases/download/20220714/moegirl.dict.yaml`;
+    await fetchOtherDict("zhwiki", zhwiki);
+    await fetchOtherDict("moegirl", moegirl);
+  }
+}
+
+async function fetchOtherDict(name: string, url: string) {
+  await runCommand(`rm -rf ${__dirname}/build/${name}.dict.yaml`, {
+    cwd: `${__dirname}/build`,
+  });
+  try {
+    await runCommand(`curl -L -o ./${name}.dict.yaml ${url}`, {
+      cwd: `${__dirname}/build`,
+    });
+    await runCommand(
+      `perl-rename 's/${name}.*dict.yaml/luna_pinyin_simp.${dictSpChar}.${name}.dict.yaml/' *.dict.yaml`,
+      {
+        cwd: `${__dirname}/build`,
+      }
+    );
+    await runCommand(
+      `rm -rf ./luna_pinyin_simp.${dictSpChar}.${name}.dict.yaml`,
+      {
+        cwd: `${homedir()}/.config/fcitx/rime`,
+      }
+    );
+    await runCommand(
+      `cp -r ${__dirname}/build/luna_pinyin_simp.${dictSpChar}.${name}.dict.yaml ${homedir()}/.config/fcitx/rime/`
+    );
+    if (
+      !readFileSync(
+        `${homedir()}/.config/fcitx/rime/luna_pinyin_simp.custom.dict.yaml`
+      )
+        .toString()
+        .includes("${name}")
+    ) {
+      await runCommand(
+        `perl -0777 -i -pe 's/\\.\\.\\./\u0020\u0020-\u0020luna_pinyin_simp.${dictSpChar}.${name}\n\\.\\.\\./g' ${homedir()}/.config/fcitx/rime/luna_pinyin_simp.custom.dict.yaml`
+      );
+    }
+  } catch (e) {
+    console.log(e);
+  } finally {
+    await runCommand(
+      `rm -rf ${__dirname}/build/luna_pinyin_simp.${dictSpChar}.${name}.dict.yaml`,
+      {
+        cwd: `${__dirname}/build`,
+      }
     );
   }
 }
