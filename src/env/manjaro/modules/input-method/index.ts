@@ -340,6 +340,7 @@ export default class InputMethod {
     } finally {
       await runCommand(`rm -rf ${__dirname}/build/scel-rime`);
     }
+    await this.otherDict();
   }
 
   async emoji() {
