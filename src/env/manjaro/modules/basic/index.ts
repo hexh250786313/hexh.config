@@ -440,6 +440,10 @@ export default class Basic {
         pkg: "perl-rename",
         testCommand: "perl-rename",
       },
+      {
+        pkg: "btop",
+        testCommand: "btop",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
