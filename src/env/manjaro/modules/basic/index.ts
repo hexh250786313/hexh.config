@@ -537,4 +537,10 @@ export default class Basic {
     }, Promise.resolve());
     await promises;
   }
+
+  async fixMpvLibplacebo() {
+    await runCommand(`yay --remove mpv-build-git`);
+    await runCommand(`rm -rf ~/.cache/yay/mpv-build-git`);
+    await runSpawn(`yay -Syu --devel mpv-build-git`);
+  }
 }
