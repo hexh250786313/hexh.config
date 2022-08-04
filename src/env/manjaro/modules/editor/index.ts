@@ -1,4 +1,5 @@
 import runCommand from "@/utils/run-command";
+import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
 import { existsSync, readFileSync, writeFileSync } from "fs-extra";
 import { homedir } from "os";

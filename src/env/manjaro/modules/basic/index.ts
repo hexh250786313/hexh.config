@@ -444,6 +444,10 @@ export default class Basic {
         pkg: "btop",
         testCommand: "btop",
       },
+      {
+        pkg: "rust",
+        testCommand: "cargo",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
