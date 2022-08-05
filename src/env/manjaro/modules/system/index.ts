@@ -29,6 +29,11 @@ export default class System {
 
   async setup() {
     await this.config();
+    await this.mime();
+  }
+
+  async mime() {
+    await ln(`/.config/mimeapps.list`);
   }
 
   async deps() {

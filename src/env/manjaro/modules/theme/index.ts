@@ -102,7 +102,7 @@ export default class Theme {
     if (alacrittyText) {
       await runCommand(
         // eslint-disable-next-line no-useless-escape
-        `perl -0777 -i -pe 's/^colors:\u0020\*.*/colors:\u0020\*${colors}/gi' ${path}`
+        `perl -0777 -i -pe 's/\ncolors:\u0020\*.*/\ncolors:\u0020\*${colors}/gi' ${path}`
       );
     }
   }
