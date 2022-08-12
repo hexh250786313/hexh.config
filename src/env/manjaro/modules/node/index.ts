@@ -64,6 +64,9 @@ export default class Node {
       "yarn",
       "pnpm",
       "ts-node",
+      "stylelint",
+      "stylelint-config-standard-scss",
+      "stylelint-config-prettier-scss",
     ];
     const promises = pkgs.reduce(async (promise: Promise<any>, pkg) => {
       if (allPkgs.includes(pkg)) {
