@@ -67,6 +67,7 @@ export default class Node {
       "stylelint",
       "stylelint-config-standard-scss",
       "stylelint-config-prettier-scss",
+      "rc-config-loader",
     ];
     const promises = pkgs.reduce(async (promise: Promise<any>, pkg) => {
       if (allPkgs.includes(pkg)) {
