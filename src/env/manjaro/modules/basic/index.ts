@@ -448,6 +448,14 @@ export default class Basic {
         pkg: "rust",
         testCommand: "cargo",
       },
+      {
+        pkg: "debtap",
+        testCommand: "debtap", // debtap 1.deb && sudo pacman -U 1.tar.zst
+      },
+      {
+        pkg: "dpkg",
+        testCommand: "dpkg", // mkdir -p extract/DEBIAN && dpkg -X 1.deb ./extract && dpkg -e ./extract/DEBIAN && dpkg -b ./extract 2.deb
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
