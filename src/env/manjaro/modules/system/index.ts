@@ -253,4 +253,23 @@ export default class System {
       );
     }
   }
+
+  async linkHome() {
+    await runCommand(`rm -rf ${homedir()}/Desktop`);
+    await runCommand(`ln -s ${homedir()}/桌面 ${homedir()}/Desktop`);
+    await runCommand(`rm -rf ${homedir()}/Downloads`);
+    await runCommand(`ln -s ${homedir()}/下载 ${homedir()}/Downloads`);
+    await runCommand(`rm -rf ${homedir()}/Pictures`);
+    await runCommand(`ln -s ${homedir()}/图片 ${homedir()}/Pictures`);
+    await runCommand(`rm -rf ${homedir()}/Music`);
+    await runCommand(`ln -s ${homedir()}/音乐 ${homedir()}/Music`);
+    await runCommand(`rm -rf ${homedir()}/Videos`);
+    await runCommand(`ln -s ${homedir()}/视频 ${homedir()}/Videos`);
+    await runCommand(`rm -rf ${homedir()}/Templates`);
+    await runCommand(`ln -s ${homedir()}/模板 ${homedir()}/Templates`);
+    await runCommand(`rm -rf ${homedir()}/Public`);
+    await runCommand(`ln -s ${homedir()}/公共 ${homedir()}/Public`);
+    await runCommand(`rm -rf ${homedir()}/Documents`);
+    await runCommand(`ln -s ${homedir()}/文档 ${homedir()}/Documents`);
+  }
 }
