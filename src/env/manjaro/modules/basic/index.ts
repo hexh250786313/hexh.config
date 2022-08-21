@@ -480,6 +480,7 @@ export default class Basic {
       await runSpawn(`yay -S baidunetdisk-electron`);
     }
 
+    await ln(`/.config/rofi`);
     await ln(`/.config/alacritty`);
     await ln(`/.config/autostart/utools.desktop`);
     await runCommand(`rm -rf ${homedir()}/.config/pcmanfm-qt`);
