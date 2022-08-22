@@ -456,6 +456,10 @@ export default class Basic {
         pkg: "dpkg",
         testCommand: "dpkg", // mkdir -p extract/DEBIAN && dpkg -X 1.deb ./extract && dpkg -e ./extract/DEBIAN && dpkg -b ./extract 2.deb
       },
+      {
+        pkg: "alttab-git",
+        testCommand: "alttab",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
@@ -490,6 +494,7 @@ export default class Basic {
     // await ln(`/.config/pcmanfm-qt`);
     await ln(`/.config/tilda`);
     await ln(`/.config/autostart/tilda.desktop`);
+    await ln(`/.config/autostart/alttab.desktop`);
     await runCommand(`sudo modprobe -a vmw_vmci vmmon`);
     await runCommand(`sudo systemctl enable --now vmware-networks.service`);
     await runCommand(
