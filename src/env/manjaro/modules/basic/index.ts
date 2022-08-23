@@ -460,6 +460,18 @@ export default class Basic {
         pkg: "alttab-git",
         testCommand: "alttab",
       },
+      {
+        pkg: "qt5-styleplugins",
+        testPath: "/usr/lib/cmake/Qt5Gui/Qt5Gui_QGtk2ThemePlugin.cmake",
+      },
+      {
+        pkg: "qt5ct",
+        testCommand: "qt5ct",
+      },
+      {
+        pkg: "ocs-url",
+        testCommand: "ocs-url",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
@@ -484,6 +496,7 @@ export default class Basic {
       await runSpawn(`yay -S baidunetdisk-electron`);
     }
 
+    await ln(`/.config/qt5ct`);
     await ln(`/.config/rofi`);
     await ln(`/.config/alacritty`);
     await ln(`/.config/autostart/utools.desktop`);
