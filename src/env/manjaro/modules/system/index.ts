@@ -203,7 +203,7 @@ export default class System {
   }
 
   async customCursor() {
-    const name = `oreo_white_cursors`;
+    const name = `Capitaine\\ Cursors\\ \\(Gruvbox\\)`;
     if (!existsSync(`/usr/share/icons/${name}`)) {
       const file = `${homedir()}/下载/${name}`;
       await runCommand(`tar -xzf ${file}.tar.gz -C ${homedir()}/下载`);
