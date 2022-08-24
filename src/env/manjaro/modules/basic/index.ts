@@ -94,7 +94,7 @@ export default class Basic {
       );
     }
     await runCommand(`sudo systemctl enable smb.service`);
-    await runCommand(`sudo systemctl start smb.service`);
+    await runCommand(`sudo systemctl restart smb.service`);
     await runCommand(`chmod 777 ${homedir()}`);
     await runCommand(`chmod 777 ${target}`);
     process.stdout.write("Run :: smbclient //localhost/share\n");
