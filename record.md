@@ -64,4 +64,5 @@
 64. `src/env/manjaro/modules/howdy/config.ts` 改变设备路径, 然后
 65. `hexh-config manjaro howdy config`
 66. `hexh-config manjaro asus`: https://github.com/mohamed-badaoui/asus-touchpad-numpad-driver
-67. 重启
+67. `hexh-config basic samba`
+68. 重启

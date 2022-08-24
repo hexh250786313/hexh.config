@@ -56,11 +56,48 @@ export default class Basic {
       process.stdout.write("Initial ssh" + "\n");
       await runSpawn(`ssh-keygen -t rsa -C "250786313@qq.com"`);
     }
+    await runCommand(
+      `sudo perl -0777 -i -pe "s/.*X11Forwarding.*/X11Forwarding\u0020yes/gi" /etc/ssh/sshd_config`
+    );
+    // 如果是服务器 ( 无 X 环境 ) 的话需要打开下面这一条才能用 -Y 同步剪贴板, 但会有安全问题
+    // await runCommand(
+    // `sudo perl -0777 -i -pe "s/.*X11UseLocalhost.*/X11UseLocalhost\u0020no/gi" /etc/ssh/sshd_config`
+    // );
+    await runCommand(`xhost +`);
     // await runSpawn(`xclip -sel clip ${homedir()}/.ssh/id_rsa.pub`);
     await runCommand(`xsel --clipboard < ${homedir()}/.ssh/id_rsa.pub`);
     await runCommand(`sudo systemctl enable sshd.service`);
-    await runCommand(`sudo systemctl start sshd.service`);
+    await runCommand(`sudo systemctl restart sshd.service`);
     process.stdout.write("Copy ssh key to clipboard" + "\n");
+  }
+
+  public async samba() {
+    const pkg = { pkg: "samba", testCommand: "samba" };
+    const filePath = `/etc/samba/smb.conf`;
+    const target = `${homedir()}/Desktop/host`;
+    await runYay(pkg);
+    let flag = false;
+    if (!existsSync(target)) {
+      await runCommand(`mkdir -p ${homedir()}/Desktop/host`);
+    }
+    if (!existsSync(filePath)) {
+      flag = true;
+    } else {
+      const text = readFileSync(filePath).toString();
+      if (!/[share]/g.test(text)) {
+        flag = true;
+      }
+    }
+    if (flag) {
+      await runCommand(
+        `echo "[share]\npath=/home/me/share\navailable=yes\nbrowseable=yes\nwritable=yes\npublic=yes" | sudo tee -a ${filePath}`
+      );
+    }
+    await runCommand(`sudo systemctl enable smb.service`);
+    await runCommand(`sudo systemctl start smb.service`);
+    await runCommand(`chmod 777 ${homedir()}`);
+    await runCommand(`chmod 777 ${target}`);
+    process.stdout.write("Run :: smbclient //localhost/share\n");
   }
 
   async dotfiles() {
