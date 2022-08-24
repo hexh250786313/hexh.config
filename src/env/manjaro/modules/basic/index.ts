@@ -454,7 +454,7 @@ export default class Basic {
       },
       {
         pkg: "dpkg",
-        testCommand: "dpkg", // mkdir -p extract/DEBIAN && dpkg -X 1.deb ./extract && dpkg -e ./extract/DEBIAN && dpkg -b ./extract 2.deb
+        testCommand: "dpkg", // mkdir -p extract/DEBIAN && dpkg -X 1.deb ./extract && dpkg -e 1.deb ./extract/DEBIAN && dpkg -b ./extract 2.deb
       },
       {
         pkg: "alttab-git",
