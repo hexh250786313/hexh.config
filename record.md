@@ -4,7 +4,7 @@
 4. [ip](https://myip.ms/): `echo "185.199.108.133 raw.githubusercontent.com" | sudo tee -a /etc/hosts`
 5. [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 6. `source ~/.bashrc`
-7. `nvm install v16.10.0`
+7. `nvm install v16.17.0`
 8. `npm install -g yarn`
 9. `cd /home/hexh/desktop/hexh.config`
 10. `yarn && npm link`

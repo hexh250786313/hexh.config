@@ -1,4 +1,6 @@
 import runCommand from "@/utils/run-command";
+import { readFileSync } from "fs-extra";
+import { homedir } from "os";
 
 export default class Node {
   async run(args: string[]) {
@@ -21,8 +23,8 @@ export default class Node {
   }
 
   async setup() {
-    await this.packages();
     await this.nvm();
+    // await this.packages();
     await this.npm();
   }
 
@@ -31,10 +33,22 @@ export default class Node {
   }
 
   async nvm() {
-    process.stdout.write("nvm ls-remote\n");
-    process.stdout.write("nvm install v16.10.1\n");
-    process.stdout.write("nvm use v16.10.1\n");
-    process.stdout.write("nvm alias default v16.10.1\n");
+    const zshrc = readFileSync(`${homedir()}/.zshrc`).toString();
+    if (zshrc) {
+      const target = zshrc.match(
+        /export\u0020MY_NODE_PATH="\/home\/hexh\/.nvm\/versions\/node\/v.*/g
+      );
+      if (target && target[0]) {
+        const version = target[0].replace(
+          /export\u0020MY_NODE_PATH="\/home\/hexh\/.nvm\/versions\/node\/v|"/g,
+          ""
+        );
+        process.stdout.write("nvm ls-remote\n");
+        process.stdout.write(`nvm install v${version}\n`);
+        process.stdout.write(`nvm use v${version}\n`);
+        process.stdout.write(`nvm alias default v${version}\n`);
+      }
+    }
   }
 
   async packages() {
