@@ -509,6 +509,10 @@ export default class Basic {
         pkg: "ocs-url",
         testCommand: "ocs-url",
       },
+      {
+        pkg: "dingtalk-bin",
+        testCommand: "dingtalk",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
