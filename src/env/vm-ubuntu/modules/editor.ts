@@ -1,7 +1,7 @@
+import runCommand from "@/utils/run-command";
 import runSpawn from "@/utils/run-spawn";
-import ln from "../../manjaro/ln";
 
-export default class Zsh {
+export default class Editor {
   async run(args: string[]) {
     let targets: string[] = JSON.parse(JSON.stringify(args));
     if (args.length === 0) {
@@ -22,19 +22,21 @@ export default class Zsh {
   }
 
   async setup() {
-    await this.ohmyzsh();
-    await this.ln();
+    await this.sublime();
   }
 
   async ln() {
-    await ln(`/.zshrc`);
-    await ln(`/.warprc`);
+    //
   }
 
-  async ohmyzsh() {
-    await runSpawn(`sudo apt install zsh`);
-    process.stdout.write(
-      'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"\n'
+  async sublime() {
+    await runCommand(
+      `wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg`
     );
+    await runCommand(
+      `echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list`
+    );
+    await runCommand(`sudo apt-get update`);
+    await runSpawn(`sudo apt-get install sublime-text`);
   }
 }
