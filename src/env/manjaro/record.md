@@ -1,12 +1,12 @@
 1. `sudo systemctl enable vmtoolsd.service && sudo systemctl restart vmtoolsd.service`
-2. `mkdir -p /home/hexh/desktop`
-3. `git clone https://github.com/hexh250786313/hexh.config /home/hexh/desktop/hexh.config`
+2. SwitchyOmega: https://dev.azure.com/hexuhua/f6126346-6e87-4d62-aa80-ff9b88293af0/_apis/git/repositories/ebd79495-5cbb-4565-8573-fa73ee451b5e/items?path=/SwitchyOmega/OmegaOptions.bak&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=main&resolveLfs=true&%24format=octetStream&api-version=5.0&download=true
+3. `git clone https://github.com/hexh250786313/hexh.config /home/hexh/桌面/hexh.config`
 4. [ip](https://myip.ms/): `echo "185.199.108.133 raw.githubusercontent.com" | sudo tee -a /etc/hosts`
 5. [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 6. `source ~/.bashrc`
 7. `nvm install v16.17.0`
 8. `npm install -g yarn`
-9. `cd /home/hexh/desktop/hexh.config`
+9. `cd /home/hexh/桌面/hexh.config`
 10. `yarn && npm link`
 11. `hexh-config manjaro proxy`
 12. `source ~/.bashrc`
@@ -41,7 +41,7 @@
 41. `hexh-config manjaro editor ln`
 42. `hexh-config manjaro hosts`
 43. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript python`
-44. `nvim ~/.desktop/test.md`: `:CocCommand markdown-preview-enhanced.openKaTeXConfig`, `hexh-config manjaro editor latexConfig`
+44. `nvim ~/桌面/test.md`: `:CocCommand markdown-preview-enhanced.openKaTeXConfig`, `hexh-config manjaro editor latexConfig`
 45. `:Copilot setup`, `cd /home/hexh/.local/share/nvim/site/pack/packer/opt/nvim-spectre/ && sh -c './build.sh'`
 46. `hexh-config manjaro pamac config`
 47. 重启
