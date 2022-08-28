@@ -20,3 +20,6 @@
 20. `firefox` 登录 同步
 21. onetab / gnome shell / adblock / switchyomega
 22. SwitchyOmega: https://dev.azure.com/hexuhua/f6126346-6e87-4d62-aa80-ff9b88293af0/_apis/git/repositories/ebd79495-5cbb-4565-8573-fa73ee451b5e/items?path=/SwitchyOmega/OmegaOptions.bak&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=main&resolveLfs=true&%24format=octetStream&api-version=5.0&download=true
+23. `hexh-config vmUbuntu basic needed`
+24. `hexh-config vmUbuntu basic dotfiles`
+25. 
