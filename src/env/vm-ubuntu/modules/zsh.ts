@@ -1,4 +1,5 @@
 import runSpawn from "@/utils/run-spawn";
+import ln from "../../manjaro/ln";
 
 export default class Zsh {
   async run(args: string[]) {
@@ -25,10 +26,12 @@ export default class Zsh {
   }
 
   async ln() {
-    //
+    await ln(`/.zshrc`);
+    await ln(`/.warprc`);
   }
 
   async ohmyzsh() {
+    await runSpawn(`sudo apt install zsh`);
     await runSpawn(
       'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
     );
