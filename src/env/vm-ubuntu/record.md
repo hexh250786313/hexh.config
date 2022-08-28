@@ -26,3 +26,26 @@
 26. back to bash
 27. `hexh-config manjaro zsh ln`
 28. `zsh`
+29. 重启
+30. `hexh-config vmUbuntu editor sublime`
+31. https://community-packages.deepin.com/deepin/pool/main/d/deepin-elf-verify/
+32. https://vpn.91jkys.com:8443/portal/#!/login
+33. `sudo apt-get install chrome-gnome-shell`
+34. `https://extensions.gnome.org/extension/1031/topicons/`
+35. `sudo apt install gnome-tweak-tool`
+36. `gnome-tweaks`
+37. 图标居于右边并清除桌面图标
+37. https://www.spark-app.store/download 先依赖再客户端, `proxy_unset`
+38. `sudo apt --fix-broken install`
+39. 设置 spark 的更新和面密
+49. `editor /usr/share/applications/com.qq.weixin.spark.desktop`
+50. `editor /usr/share/applications/com.qq.tim.spark.desktop`
+51. https://alidocs.dingtalk.com/i/p/nb9XJlJ7QbxN8GyA/docs/ROGpvEna5YQWmaPgQ156W4ykmK3zoB27
+52. https://shurufa.sogou.com/linux
+53. `sudo subl /etc/environmen`
+54. https://www.programminghunter.com/article/45992191624/
+55. `sudo rm -rf /etc/xdg/autostart/com.alibabainc.dingtalk.desktop`
+56. https://github.com/jesseduffield/lazygit#ubuntu
+57. 复制 ssh keys: `ssh-keygen -t rsa -C "250786313@qq.com"`
+58. 关机
+59. 设置分享文件夹 desktop 和 workspace
