@@ -353,7 +353,7 @@ export default class InputMethod {
     // https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases
     const zhwiki = `https://github.com/felixonmars/fcitx5-pinyin-zhwiki/releases/download/0.2.4/zhwiki-20220722.dict.yaml`;
     // https://github.com/outloudvi/mw2fcitx/releases
-    const moegirl = `https://github.com/outloudvi/mw2fcitx/releases/download/20220714/moegirl.dict.yaml`;
+    const moegirl = `https://github.com/outloudvi/mw2fcitx/releases/download/20220218/moegirl.dict.yaml`;
     await fetchOtherDict("zhwiki", zhwiki);
     await fetchOtherDict("moegirl", moegirl);
   }
