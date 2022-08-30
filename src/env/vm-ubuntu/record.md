@@ -49,3 +49,5 @@
 57. 复制 ssh keys: `ssh-keygen -t rsa -C "250786313@qq.com"`
 58. 关机
 59. 设置分享文件夹 desktop 和 workspace
+60. 取消 alt+tab 快捷键
+61. `git config --global oh-my-zsh.hide-info 1`
