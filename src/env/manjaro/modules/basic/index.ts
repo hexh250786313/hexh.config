@@ -102,6 +102,9 @@ export default class Basic {
 
   async dotfiles() {
     await runYay({ pkg: "nmap-netcat", testCommand: "ncat" });
+    if (!existsSync(`${homedir()}/build`)) {
+      await runCommand(`mkdir -p ${homedir()}/build`);
+    }
     if (!existsSync(`${homedir()}/workspace`)) {
       await runCommand(`mkdir -p ${homedir()}/workspace`);
     }

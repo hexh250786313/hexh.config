@@ -66,9 +66,28 @@ export default class Editor {
     await ln("/.config/nvim");
   }
 
+  async stable() {
+    await this.fetch(async () => {
+      await runCommand(
+        `git clone https://github.com/neovim/neovim ${homedir()}/build/neovim`
+      );
+      await runCommand(`git checkout release-0.7`, {
+        cwd: `${homedir()}/build/neovim`,
+      });
+    });
+  }
+
   async nightly() {
+    await this.fetch(async () => {
+      await runCommand(
+        `git clone https://github.com/neovim/neovim ${homedir()}/build/neovim`
+      );
+    });
+  }
+
+  async fetch(cb: () => PromiseLike<void>) {
     await this.deps();
-    await runCommand(`rm -rf ${__dirname}/build/neovim`);
+    await runCommand(`rm -rf ${homedir()}/build/neovim`);
 
     try {
       const paths = await runCommand(`zsh -c "where nvim"`);
@@ -90,10 +109,8 @@ export default class Editor {
       /* handle error */
     }
 
-    process.stdout.write("Fetching nightly-nvim...\n");
-    await runCommand(
-      `git clone https://github.com/neovim/neovim ${__dirname}/build/neovim`
-    );
+    process.stdout.write("Fetching nvim...\n");
+    await cb();
 
     await installNvim();
     await this.latexConfig();
@@ -135,10 +152,10 @@ const installNvim = async () => {
   process.stdout.write("Installing nvim...\n");
   try {
     await runCommand(
-      `make --directory=${__dirname}/build/neovim CMAKE_BUILD_TYPE=RelWithDebInfo`
+      `make --directory=${homedir()}/build/neovim CMAKE_BUILD_TYPE=RelWithDebInfo`
     );
     await runCommand(
-      `sudo make --directory=${__dirname}/build/neovim  install`
+      `sudo make --directory=${homedir()}/build/neovim  install`
     );
   } catch (e: any) {
     process.stdout.write(
