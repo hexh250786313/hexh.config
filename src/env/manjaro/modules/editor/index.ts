@@ -151,12 +151,12 @@ export default class Editor {
 const installNvim = async () => {
   process.stdout.write("Installing nvim...\n");
   try {
-    await runCommand(
-      `make --directory=${homedir()}/build/neovim CMAKE_BUILD_TYPE=RelWithDebInfo`
-    );
-    await runCommand(
-      `sudo make --directory=${homedir()}/build/neovim  install`
-    );
+    await runCommand(`make CMAKE_BUILD_TYPE=RelWithDebInfo`, {
+      cwd: `${homedir()}/build/neovim`,
+    });
+    await runCommand(`sudo make install`, {
+      cwd: `${homedir()}/build/neovim`,
+    });
   } catch (e: any) {
     process.stdout.write(
       `${e.message}\nFailed to install nvim. Trying again...\n`
