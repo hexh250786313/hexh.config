@@ -66,6 +66,24 @@ export default class Editor {
     await ln("/.config/nvim");
   }
 
+  async appimageStable() {
+    await this.fetch(async () => {
+      await runCommand(
+        `curl -L -o ${homedir()}/build/nvim.appimage https://github.com/neovim/neovim/releases/download/v0.7.2/nvim.appimage`
+      );
+      await setApp();
+    });
+  }
+
+  async appimageNightly() {
+    await this.fetch(async () => {
+      await runCommand(
+        `curl -L -o ${homedir()}/build/nvim.appimage https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage`
+      );
+      await setApp();
+    });
+  }
+
   async stable() {
     await this.fetch(async () => {
       await runCommand(
@@ -74,6 +92,7 @@ export default class Editor {
       await runCommand(`git checkout release-0.7`, {
         cwd: `${homedir()}/build/neovim`,
       });
+      await installNvim();
     });
   }
 
@@ -82,12 +101,14 @@ export default class Editor {
       await runCommand(
         `git clone https://github.com/neovim/neovim ${homedir()}/build/neovim`
       );
+      await installNvim();
     });
   }
 
   async fetch(cb: () => PromiseLike<void>) {
     await this.deps();
     await runCommand(`rm -rf ${homedir()}/build/neovim`);
+    // await runCommand(`rm -rf ${homedir()}/build/nvim.appimage`);
 
     try {
       const paths = await runCommand(`zsh -c "where nvim"`);
@@ -112,7 +133,6 @@ export default class Editor {
     process.stdout.write("Fetching nvim...\n");
     await cb();
 
-    await installNvim();
     await this.latexConfig();
   }
 
@@ -163,4 +183,12 @@ const installNvim = async () => {
     );
     await installNvim();
   }
+};
+
+const setApp = async () => {
+  process.stdout.write("Setting nvim.appimage...\n");
+  await runCommand(`chmod +x ${homedir()}/build/nvim.appimage`);
+  await runCommand(
+    `sudo ln -s ${homedir()}/build/nvim.appimage /usr/local/bin/nvim`
+  );
 };
