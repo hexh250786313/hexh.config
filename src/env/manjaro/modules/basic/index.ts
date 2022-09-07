@@ -516,6 +516,10 @@ export default class Basic {
         pkg: "dingtalk-bin",
         testCommand: "dingtalk",
       },
+      {
+        pkg: "dingtalk-bin",
+        testCommand: "/usr/bin/dingtalk",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
