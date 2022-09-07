@@ -40,9 +40,9 @@
 40. `hexh-config manjaro editor`
 41. `hexh-config manjaro editor ln`
 42. `hexh-config manjaro hosts`
-43. `nvim`: `:TSInstall css scss json lua tsx javascript dot bash yaml vim markdown regex html jsdoc vue rust typescript python`
+43. `nvim`
 44. `nvim ~/桌面/test.md`: `:CocCommand markdown-preview-enhanced.openKaTeXConfig`, `hexh-config manjaro editor latexConfig`
-45. `:Copilot setup`, `cd /home/hexh/.local/share/nvim/site/pack/packer/opt/nvim-spectre/ && sh -c './build.sh'`
+45. `cd /home/hexh/.local/share/nvim/site/pack/packer/opt/nvim-spectre/ && sh -c './build.sh'`
 46. `hexh-config manjaro pamac config`
 47. 重启
 48. `hexh-config manjaro pamac flatpak`
