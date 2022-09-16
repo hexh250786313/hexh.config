@@ -329,7 +329,7 @@ export default class Basic {
         testCommand: "zoom",
       },
       {
-        pkg: "mpd-git",
+        pkg: "mpd",
         testCommand: "mpd",
       },
       {
