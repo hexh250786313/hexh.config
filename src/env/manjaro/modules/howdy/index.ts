@@ -40,7 +40,7 @@ export default class Howdy {
     try {
       await runCommand(`sudo howdy -h`);
     } catch (e) {
-      await runYay({ pkg: "howdy" });
+      await runYay({ pkg: "howdy-git" });
     }
   }
 
