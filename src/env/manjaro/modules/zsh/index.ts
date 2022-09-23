@@ -44,7 +44,8 @@ export default class Zsh {
   async env() {
     const pkgs = [
       {
-        pkg: "rbenv-git",
+        // pkg: "rbenv-git",
+        pkg: "rbenv",
         testPath: "/usr/bin/rbenv",
       },
       {
