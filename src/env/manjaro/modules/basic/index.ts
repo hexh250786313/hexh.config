@@ -520,6 +520,10 @@ export default class Basic {
         pkg: "dingtalk-bin",
         testCommand: "/usr/bin/dingtalk",
       },
+      {
+        pkg: "wechat-devtools",
+        testCommand: "wechat-devtools",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
