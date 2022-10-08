@@ -158,6 +158,7 @@ export default class Basic {
       `echo "kernel.sysrq=1" | sudo tee /etc/sysctl.d/99-sysrq.conf` // enable sysrq: Alt + PrtSc + k
     );
     await runSpawn(`sudo pacman -S base-devel`);
+    await runSpawn(`yay -S ceph-libs-bin`);
   }
 
   // pacman 初始化 gpg key 报错时运行, 否则不运行
@@ -547,8 +548,6 @@ export default class Basic {
     } catch (e) {
       await runSpawn(`yay -S baidunetdisk-electron`);
     }
-
-    await runSpawn(`yay -S ceph-libs-bin`);
 
     await ln(`/.config/qt5ct`);
     await ln(`/.config/rofi`);
