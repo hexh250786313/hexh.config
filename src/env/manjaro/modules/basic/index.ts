@@ -553,6 +553,8 @@ export default class Basic {
       await runSpawn(`yay -S baidunetdisk-electron`);
     }
 
+    await ln(`/.ctags`);
+
     await ln(`/.config/qt5ct`);
     await ln(`/.config/rofi`);
     await ln(`/.config/alacritty`);
