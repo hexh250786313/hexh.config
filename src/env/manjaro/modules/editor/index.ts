@@ -69,7 +69,7 @@ export default class Editor {
   async appimageStable() {
     await this.fetch(async () => {
       await runCommand(
-        `curl -L -o ${homedir()}/build/nvim.appimage https://github.com/neovim/neovim/releases/download/v0.7.2/nvim.appimage`
+        `curl -L -o ${homedir()}/build/nvim.appimage https://github.com/neovim/neovim/releases/download/v0.8.0/nvim.appimage`
       );
       await setApp();
     });
@@ -89,7 +89,7 @@ export default class Editor {
       await runCommand(
         `git clone https://github.com/neovim/neovim ${homedir()}/build/neovim`
       );
-      await runCommand(`git checkout release-0.7`, {
+      await runCommand(`git checkout release-0.8`, {
         cwd: `${homedir()}/build/neovim`,
       });
       await installNvim();
