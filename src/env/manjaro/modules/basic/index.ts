@@ -525,6 +525,10 @@ export default class Basic {
         pkg: "wechat-devtools",
         testCommand: "wechat-devtools",
       },
+      {
+        pkg: "ctags-git",
+        testCommand: "ctags",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
