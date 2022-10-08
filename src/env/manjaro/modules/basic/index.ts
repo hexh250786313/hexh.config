@@ -157,8 +157,8 @@ export default class Basic {
     await runCommand(
       `echo "kernel.sysrq=1" | sudo tee /etc/sysctl.d/99-sysrq.conf` // enable sysrq: Alt + PrtSc + k
     );
-    await runSpawn(`sudo pacman -S base-devel`);
     await runSpawn(`yay -S ceph-libs-bin`);
+    await runSpawn(`sudo pacman -S base-devel`);
   }
 
   // pacman 初始化 gpg key 报错时运行, 否则不运行

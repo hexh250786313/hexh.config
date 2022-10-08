@@ -24,5 +24,8 @@ export default class Hosts {
     await runCommand(
       `echo "140.82.121.6 api.github.com" | sudo tee -a /etc/hosts`
     );
+    await runCommand(
+      `echo "180.163.150.34 translate.googleapis.com" | sudo tee -a /etc/hosts`
+    );
   }
 }
