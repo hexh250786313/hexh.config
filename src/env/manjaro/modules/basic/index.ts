@@ -548,6 +548,8 @@ export default class Basic {
       await runSpawn(`yay -S baidunetdisk-electron`);
     }
 
+    await runSpawn(`yay -S ceph-libs-bin`);
+
     await ln(`/.config/qt5ct`);
     await ln(`/.config/rofi`);
     await ln(`/.config/alacritty`);
