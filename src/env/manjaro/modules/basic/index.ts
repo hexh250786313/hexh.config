@@ -529,6 +529,10 @@ export default class Basic {
         pkg: "ctags-git",
         testCommand: "ctags",
       },
+      {
+        pkg: "tree-sitter",
+        testCommand: "tree-sitter",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
