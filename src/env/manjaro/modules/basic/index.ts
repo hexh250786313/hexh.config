@@ -537,6 +537,10 @@ export default class Basic {
         pkg: "otf-nerd-fonts-fira-mono",
         testPath: "/usr/share/licenses/otf-nerd-fonts-fira-mono/LICENSE",
       },
+      {
+        pkg: "slop",
+        testPath: "slop",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
