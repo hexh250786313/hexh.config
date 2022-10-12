@@ -533,6 +533,10 @@ export default class Basic {
         pkg: "tree-sitter",
         testCommand: "tree-sitter",
       },
+      {
+        pkg: "otf-nerd-fonts-fira-mono",
+        testPath: "/usr/share/licenses/otf-nerd-fonts-fira-mono/LICENSE",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
