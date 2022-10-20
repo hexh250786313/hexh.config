@@ -538,8 +538,12 @@ export default class Basic {
         testPath: "/usr/share/licenses/otf-nerd-fonts-fira-mono/LICENSE",
       },
       {
-        pkg: "slop",
-        testPath: "slop",
+        pkg: "obsidian",
+        testCommand: "obsidian",
+      },
+      {
+        pkg: "shotcut",
+        testCommand: "shotcut",
       },
     ];
 
