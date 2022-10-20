@@ -545,6 +545,10 @@ export default class Basic {
         pkg: "shotcut",
         testCommand: "shotcut",
       },
+      {
+        pkg: "tldr",
+        testCommand: "tldr",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
