@@ -553,6 +553,10 @@ export default class Basic {
         pkg: "tdrop",
         testCommand: "tdrop",
       },
+      {
+        pkg: "the_silver_searcher",
+        testCommand: "ag",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
