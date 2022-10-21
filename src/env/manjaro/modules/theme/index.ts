@@ -212,4 +212,9 @@ export default class Theme {
     await this.tilda("gruvbox_dark");
     await this.tmux("gruvbox_dark");
   }
+
+  async enfocado() {
+    await this.nvimPlugin("vim-enfocado");
+    await this.nvimColorScheme("enfocado", "dark");
+  }
 }
