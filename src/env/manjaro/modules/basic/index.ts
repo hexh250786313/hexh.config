@@ -549,6 +549,10 @@ export default class Basic {
         pkg: "tldr",
         testCommand: "tldr",
       },
+      {
+        pkg: "tdrop",
+        testCommand: "tdrop",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
