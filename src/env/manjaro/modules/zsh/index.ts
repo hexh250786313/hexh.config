@@ -1,3 +1,4 @@
+import { dotfilesPath } from "@/constants";
 import runCommand from "@/utils/run-command";
 import runSpawn from "@/utils/run-spawn";
 import runYay from "@/utils/run-yay";
@@ -80,6 +81,10 @@ export default class Zsh {
       process.stdout.write(`rbenv global 3.1.0\n`);
       process.stdout.write(`rbenv local 3.1.0\n`);
       process.stdout.write(`gem install colorls\n`);
+      process.stdout.write(
+        `nvim ${dotfilesPath}/.config/colorls/dark_colors.yaml\n`
+      );
+      process.stdout.write(`nvim $(dirname $(gem which colorls))/yaml`);
     }
   }
 }
