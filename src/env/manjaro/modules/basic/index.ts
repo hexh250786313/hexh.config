@@ -557,6 +557,10 @@ export default class Basic {
         pkg: "the_silver_searcher",
         testCommand: "ag",
       },
+      {
+        pkg: "icalingua++",
+        testCommand: "icalingua",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
