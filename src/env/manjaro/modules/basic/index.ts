@@ -585,6 +585,14 @@ export default class Basic {
       await runSpawn(`yay -S baidunetdisk-electron`);
     }
 
+    try {
+      await commandExists(`jmeter`);
+    } catch (e) {
+      // use jdk 8 because jdk8+ versions have javascritp engine removed when jmeter requires js engine
+      // if jdk exists and > 8, run: yay --remove junit jdk-openjdk
+      await runSpawn(`yay -S jmeter`);
+    }
+
     await ln(`/.ctags`);
 
     await ln(`/.config/qt5ct`);
