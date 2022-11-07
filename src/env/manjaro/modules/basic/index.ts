@@ -546,10 +546,6 @@ export default class Basic {
         testCommand: "shotcut",
       },
       {
-        pkg: "tldr",
-        testCommand: "tldr",
-      },
-      {
         pkg: "tdrop",
         testCommand: "tdrop",
       },
@@ -560,6 +556,26 @@ export default class Basic {
       {
         pkg: "icalingua++",
         testCommand: "icalingua",
+      },
+      {
+        pkg: "icalingua++",
+        testCommand: "icalingua",
+      },
+      {
+        pkg: "git-delta-git",
+        testCommand: "delta",
+      },
+      {
+        pkg: "bat",
+        testCommand: "bat",
+      },
+      {
+        pkg: "mcfly",
+        testCommand: "mcfly",
+      },
+      {
+        pkg: "sd",
+        testCommand: "sd",
       },
     ];
 
