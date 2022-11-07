@@ -577,6 +577,10 @@ export default class Basic {
         pkg: "sd",
         testCommand: "sd",
       },
+      {
+        pkg: "zoxide",
+        testCommand: "z",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {
