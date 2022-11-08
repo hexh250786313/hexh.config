@@ -581,6 +581,10 @@ export default class Basic {
         pkg: "zoxide",
         testCommand: "z",
       },
+      {
+        pkg: "lsd-git",
+        testCommand: "lsd",
+      },
     ];
 
     const allPromise = packages.reduce(async (promise, params) => {

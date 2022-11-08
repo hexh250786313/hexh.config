@@ -26,10 +26,10 @@
 26. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 27. back to bash
 28. `hexh-config manjaro zsh ln`
-29. `hexh-config manjaro zsh colorls`
+29. ~~`hexh-config manjaro zsh colorls`~~
 30. `zsh`
-31. `rbenv shell 3.1.0 && rbenv global 3.1.0 && rbenv local 3.1.0`
-32. `gem install colorls`
+31. ~~`rbenv shell 3.1.0 && rbenv global 3.1.0 && rbenv local 3.1.0`~~
+32. ~~`gem install colorls`~~
 33. `hexh-config manjaro zsh fzf`: `~/.fzf/install`
 34. `hexh-config manjaro proxy ln`
 35. 重启
