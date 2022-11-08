@@ -579,7 +579,7 @@ export default class Basic {
       },
       {
         pkg: "zoxide",
-        testCommand: "z",
+        testCommand: "zoxide",
       },
       {
         pkg: "lsd-git",
