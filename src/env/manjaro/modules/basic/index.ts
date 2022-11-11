@@ -587,6 +587,7 @@ export default class Basic {
       },
     ];
 
+    await runCommand(`pip install sphinx-rtd-theme`); // for mpd-git
     const allPromise = packages.reduce(async (promise, params) => {
       return promise.then(() => runYay(params));
     }, Promise.resolve());
