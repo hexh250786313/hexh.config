@@ -585,6 +585,10 @@ export default class Basic {
         pkg: "lsd-git",
         testCommand: "lsd",
       },
+      {
+        pkg: "ffnvcodec-headers-git",
+        testPath: "/usr/share/licenses/ffnvcodec-headers-git/LICENSE",
+      },
     ];
 
     await runCommand(`pip install sphinx-rtd-theme`); // for mpd-git
