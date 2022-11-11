@@ -445,10 +445,10 @@ export default class Basic {
         pkg: "ventoy-bin",
         testCommand: "ventoy",
       },
-      {
-        pkg: "wechat-uos",
-        testCommand: "wechat-uos",
-      },
+      // {
+      //   pkg: "wechat-uos",
+      //   testCommand: "wechat-uos",
+      // },
       {
         pkg: "rofi",
         testCommand: "rofi",
@@ -665,6 +665,13 @@ export default class Basic {
     await ln(`/.config/autostart/utools.desktop`);
     await ln(`/.config/autostart/buckle.desktop`);
     await ln(`/.config/autostart/landrop.desktop`);
+  }
+
+  async wechat() {
+    process.stdout.write(`yay -S deepin-wine-wechat\n`);
+    process.stdout.write(`cd ~/.cache/yay/deepin-wine-wechat\n`);
+    process.stdout.write(`updpkgsums\n`);
+    process.stdout.write(`makepkg -si\n`);
   }
 
   async vmware() {
