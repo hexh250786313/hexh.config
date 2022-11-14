@@ -587,10 +587,6 @@ export default class Basic {
         pkg: "lsd-git",
         testCommand: "lsd",
       },
-      {
-        pkg: "ffnvcodec-headers-git",
-        testPath: "/usr/share/licenses/ffnvcodec-headers-git/LICENSE",
-      },
     ];
 
     await runCommand(`pip install sphinx-rtd-theme`); // for mpd-git
@@ -598,6 +594,12 @@ export default class Basic {
       return promise.then(() => runYay(params));
     }, Promise.resolve());
     await allPromise;
+
+    if (!existsSync(`/usr/share/licenses/ffnvcodec-headers-git/LICENSE`)) {
+      await runSpawn(`yay --remove ffnvcodec-headers`);
+      await runSpawn(`yay -S ffnvcodec-headers-git`);
+    }
+
     try {
       await commandExists(`mpv`);
     } catch (e) {
@@ -670,7 +672,7 @@ export default class Basic {
   }
 
   async wechat() {
-    process.stdout.write(`yay -S deepin-wine-wechat\n`);
+    process.stdout.write(`yay -S lib32-udis86-git deepin-wine-wechat\n`);
     process.stdout.write(`cd ~/.cache/yay/deepin-wine-wechat\n`);
     process.stdout.write(`updpkgsums\n`);
     process.stdout.write(`makepkg -si\n`);

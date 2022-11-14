@@ -1,4 +1,6 @@
 import runCommand from "@/utils/run-command";
+import { existsSync } from "fs-extra";
+import { homedir } from "os";
 import ln from "../../ln";
 
 export default class _Service {
@@ -37,6 +39,9 @@ export default class _Service {
   }
 
   async ln() {
+    if (!existsSync(`${homedir()}/.config/systemd/user`)) {
+      await runCommand(`mkdir -p ${homedir}/.config/systemd/user`);
+    }
     await ln("/.config/systemd/user/auto-restart-xfce4-notifyd.service");
     await ln("/.config/systemd/user/remove-wechat-border-shadow.service");
   }
