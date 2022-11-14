@@ -42,10 +42,6 @@ export default class Editor {
         testPath: "/usr/bin/rg",
       },
       {
-        pkg: "python-pip",
-        testPath: "/usr/bin/pip3",
-      },
-      {
         pkg: "go",
         testPath: "/usr/bin/go",
       },
