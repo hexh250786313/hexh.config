@@ -669,6 +669,7 @@ export default class Basic {
     await ln(`/.config/autostart/utools.desktop`);
     await ln(`/.config/autostart/buckle.desktop`);
     await ln(`/.config/autostart/landrop.desktop`);
+    await ln(`/.config/autostart/xcape.desktop`);
   }
 
   async wechat() {
