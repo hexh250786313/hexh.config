@@ -3,7 +3,7 @@ import runCommand from "@/utils/run-command";
 async function plum(plugins: string[]) {
   try {
     await runCommand(
-      `git clone https://github.com/hexh250786313/plum ${__dirname}/build/plum`
+      `git https://github.com/rime/plum ${__dirname}/build/plum`
     );
 
     await Promise.all(

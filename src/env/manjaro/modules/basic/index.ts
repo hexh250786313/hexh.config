@@ -603,7 +603,8 @@ export default class Basic {
     try {
       await commandExists(`mpv`);
     } catch (e) {
-      await runSpawn(`yay -S mpv-build-git`);
+      // await runSpawn(`yay -S mpv-build-git`);
+      await runSpawn(`yay -S mpv-git`);
     }
 
     // try {
@@ -709,7 +710,7 @@ export default class Basic {
     await promises;
   }
 
-  async fixMpvLibplacebo() {
+  async fixMpvBuildLibplacebo() {
     await runCommand(`yay --remove mpv-build-git`);
     await runCommand(`rm -rf ~/.cache/yay/mpv-build-git`);
     await runSpawn(`yay -Syu --devel mpv-build-git`);

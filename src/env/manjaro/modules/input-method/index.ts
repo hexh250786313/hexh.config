@@ -271,7 +271,7 @@ export default class InputMethod {
       try {
         await runCommand(`mkdir -p ${__dirname}/build`);
         await runCommand(
-          `git clone https://github.com/hexh250786313/librime ${__dirname}/build/librime`
+          `git clone https://github.com/rime/librime ${__dirname}/build/librime`
         );
         await runCommand(
           `sh -c "${__dirname}/build/librime/install-plugins.sh hexh250786313/librime-lua"`
