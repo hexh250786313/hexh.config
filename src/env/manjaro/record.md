@@ -3,7 +3,8 @@
 1. `git clone https://github.com/hexh250786313/hexh.config /home/hexh/桌面/hexh.config`
 1. [ip](https://myip.ms/): `echo "185.199.108.133 raw.githubusercontent.com" | sudo tee -a /etc/hosts`
 1. [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-1. `source ~/.bashrc` 1. `nvm install v16.17.0`
+1. `source ~/.bashrc`
+1. `nvm install v16.17.0`
 1. `npm install -g yarn`
 1. `cd /home/hexh/桌面/hexh.config`
 1. `yarn && npm link`
