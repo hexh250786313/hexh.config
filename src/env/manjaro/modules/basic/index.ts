@@ -549,7 +549,7 @@ export default class Basic {
       },
       {
         pkg: "tdrop",
-        testCommand: "tdrop",
+        testCommand: "tdrop", // tdrop -am -w 100% -h 90% -x 0 -y 36 -s hexh alacritty
       },
       {
         pkg: "the_silver_searcher",
