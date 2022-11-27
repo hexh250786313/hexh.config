@@ -126,7 +126,7 @@ export default class InputMethod {
 
     if (
       !existsSync(
-        `${homedir()}/.local/share/fonts/NerdFonts/Caskaydia Cove Bold Nerd Font Complete.otf`
+        `${homedir()}/.local/share/fonts/NerdFonts/Caskaydia\ Cove\ Nerd\ Font\ Complete\ Bold.otf`
       )
     ) {
       process.stdout.write(`Fetching CascadiaCode...\n`);
@@ -202,7 +202,7 @@ export default class InputMethod {
     // rime log: /tmp/rime.*
     const packages = [
       { pkg: "fcitx-rime", testPath: "/usr/lib/fcitx/fcitx-rime.so" },
-      { pkg: "gtest", testPath: "/usr/bin/gtest-config.in" },
+      { pkg: "gtest", testPath: "/usr/lib/libgtest.so" },
     ];
 
     process.stdout.write("Rime installer processing...\n");

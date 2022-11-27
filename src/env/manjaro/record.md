@@ -56,7 +56,8 @@
 1. `hexh-config manjaro basic software`
 1. `hexh-config manjaro system config`
 1. `hexh-config manjaro system init`
-1. `hexh-config manjaro system link`
+1. `hexh-config manjaro system linkHome`
+1. `hexh-config manjaro system mime`
 1. 重启
 1. 启动 vmware, 再 `hexh-config manjaro basic vmware`
 1. 启动 code, 同步, 再执行 `Enable Monkey Patch`
@@ -64,5 +65,5 @@
 1. `src/env/manjaro/modules/howdy/config.ts` 改变设备路径, 然后
 1. `hexh-config manjaro howdy config`
 1. `hexh-config manjaro asus`: https://github.com/mohamed-badaoui/asus-touchpad-numpad-driver
-1. `hexh-config basic samba`
-1. `hexh-config basic wechat`
+1. `hexh-config manjaro basic samba`
+1. `hexh-config manjaro basic wechat`

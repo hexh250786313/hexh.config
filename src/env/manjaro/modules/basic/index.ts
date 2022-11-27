@@ -249,11 +249,11 @@ export default class Basic {
         pkg: "vim",
         testCommand: "vim",
       },
-      {
-        pkg: "cava-git",
-        testCommand: "cava",
-        // withEnter: true,
-      },
+      // {
+      //   pkg: "cava-git",
+      //   testCommand: "cava",
+      //   // withEnter: true,
+      // },
       {
         pkg: "speedtest-cli",
         testCommand: "speedtest",
@@ -476,7 +476,7 @@ export default class Basic {
         testCommand: "kid3",
       },
       {
-        pkg: "spek-wxgtk3",
+        pkg: "spek",
         testCommand: "spek",
       },
       {

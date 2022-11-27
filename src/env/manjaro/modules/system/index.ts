@@ -72,7 +72,7 @@ export default class System {
     await this.deps();
     const pkgs = [
       {
-        pkg: "i3-gaps-next-git",
+        pkg: "i3-git",
         testPath: "/usr/bin/i3",
       },
     ];
@@ -135,6 +135,7 @@ export default class System {
       "thunar-archive-plugin",
       "thunar-media-tags-plugin",
       "thunar-volman",
+      "thunarx-python",
       "thunar",
     ];
     const promises = pkgs.reduce(
