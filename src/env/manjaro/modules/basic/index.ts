@@ -540,6 +540,10 @@ export default class Basic {
         pkg: "lsd-git",
         testCommand: "lsd",
       },
+      {
+        pkg: "tealdeer-git",
+        testCommand: "tldr",
+      },
     ];
 
     await runCommand(
