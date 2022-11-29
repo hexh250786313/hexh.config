@@ -24,7 +24,7 @@
 24. `hexh-config vmUbuntu basic dotfiles`
 25. `hexh-config vmUbuntu zsh`
 26. back to bash
-27. `hexh-config manjaro zsh ln`
+27. `hexh-config vmUbuntu zsh ln`
 28. `zsh`
 29. 重启
 30. `hexh-config vmUbuntu editor sublime`
@@ -51,3 +51,5 @@
 59. 设置分享文件夹 desktop 和 workspace
 60. 取消 alt+tab 快捷键
 61. `git config --global oh-my-zsh.hide-info 1`
+62. tinyproxy
+63. [microsocks](https://github.com/rofl0r/microsocks): `sudo make && sudo make install`
