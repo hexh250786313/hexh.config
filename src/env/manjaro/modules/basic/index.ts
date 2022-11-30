@@ -90,7 +90,7 @@ export default class Basic {
     }
     if (flag) {
       await runCommand(
-        `echo "[share]\npath=/home/me/share\navailable=yes\nbrowseable=yes\nwritable=yes\npublic=yes" | sudo tee -a ${filePath}`
+        `echo "[share]\npath=${homedir()}~/Desktop/host\navailable=yes\nbrowseable=yes\nwritable=yes\npublic=yes" | sudo tee -a ${filePath}`
       );
     }
     await runCommand(`sudo systemctl enable smb.service`);
