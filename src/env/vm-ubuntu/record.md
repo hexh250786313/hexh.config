@@ -29,7 +29,7 @@
 29. 重启
 30. `hexh-config vmUbuntu editor sublime`
 31. https://community-packages.deepin.com/deepin/pool/main/d/deepin-elf-verify/
-32. https://vpn.91jkys.com:8443/portal/#!/login
+32. vpn
 33. `sudo apt-get install chrome-gnome-shell`
 34. `https://extensions.gnome.org/extension/1031/topicons/`
 35. `sudo apt install gnome-tweak-tool`
