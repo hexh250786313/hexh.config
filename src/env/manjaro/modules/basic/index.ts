@@ -601,6 +601,7 @@ export default class Basic {
     await runCommand(
       `cp -r ${dotfilesPath}/.config/pcmanfm-qt ${homedir()}/.config/`
     );
+    await ln(`/.config/autostart/pcmanfm-qt.desktop`);
     // await ln(`/.config/pcmanfm-qt`);
     await ln(`/.config/tilda`);
     await ln(`/.config/autostart/tilda.desktop`);

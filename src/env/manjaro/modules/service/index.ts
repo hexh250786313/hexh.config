@@ -44,7 +44,6 @@ export default class _Service {
     }
     await ln("/.config/systemd/user/auto-restart-xfce4-notifyd.service");
     await ln("/.config/systemd/user/remove-wechat-border-shadow.service");
-    await ln("/.config/systemd/user/pcmanfm-qt-daemon.service");
   }
 
   async enable() {
@@ -60,7 +59,5 @@ export default class _Service {
     await runCommand(
       `systemctl --user start remove-wechat-border-shadow.service`
     );
-    await runCommand(`systemctl --user enable pcmanfm-qt-daemon.service`);
-    await runCommand(`systemctl --user start pcmanfm-qt-daemon.service`);
   }
 }
