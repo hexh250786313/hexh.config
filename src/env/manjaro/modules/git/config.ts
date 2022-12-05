@@ -14,6 +14,7 @@ const config = [
   // "fannheyward/telescope-coc.nvim",
   "Mofiqul/vscode.nvim",
   "kristijanhusak/defx-icons",
+  "hexh250786313/vim-cool",
 ];
 
 export default config;
