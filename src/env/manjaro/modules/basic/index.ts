@@ -544,6 +544,10 @@ export default class Basic {
         pkg: "tealdeer-git",
         testCommand: "tldr",
       },
+      {
+        pkg: "min",
+        testCommand: "min",
+      },
     ];
 
     await runCommand(
