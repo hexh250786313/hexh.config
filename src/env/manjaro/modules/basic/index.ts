@@ -548,6 +548,10 @@ export default class Basic {
         pkg: "min",
         testCommand: "min",
       },
+      {
+        pkg: "neovide",
+        testCommand: "neovide",
+      },
     ];
 
     await runCommand(
