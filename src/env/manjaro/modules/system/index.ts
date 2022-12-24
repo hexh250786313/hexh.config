@@ -210,23 +210,23 @@ export default class System {
       await runCommand(`tar -xzf ${file}.tar.gz -C ${homedir()}/下载`);
       await runCommand(`sudo mv ${file} /usr/share/icons/`);
     }
-    const iconPath = `/usr/share/icons`;
-    await runCommand(`sudo rm -rf ${iconPath}/default/cursors`);
-    await runCommand(
-      `sudo ln -s ${iconPath}/${name}/cursors ${iconPath}/default/cursors`
-    );
-    // const output1 = readFileSync(
-    //   `/usr/share/icons/default/index.theme`
-    // ).toString();
-    // if (output1) {
-    //   const next = output1.replace(
-    //     /\n(?<=(\[icon theme\]\n))(.*\n?)*$/gm,
-    //     "\nInherits=" + name
-    //   );
-    //   await runCommand(
-    //     `echo '${next}' | sudo tee /usr/share/icons/default/index.theme`
-    //   );
-    // }
+    // const iconPath = `/usr/share/icons`;
+    // await runCommand(`sudo rm -rf ${iconPath}/default/cursors`);
+    // await runCommand(
+    //   `sudo ln -s ${iconPath}/${name}/cursors ${iconPath}/default/cursors`
+    // );
+    const output1 = readFileSync(
+      `/usr/share/icons/default/index.theme`
+    ).toString();
+    if (output1) {
+      const next = output1.replace(
+        /\n(?<=(\[Icon Theme\]\n))(.*\n?)*$/gm,
+        "\nInherits=" + name
+      );
+      await runCommand(
+        `echo '${next}' | sudo tee /usr/share/icons/default/index.theme`
+      );
+    }
 
     const output2 = readFileSync(
       `${homedir()}/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml`
