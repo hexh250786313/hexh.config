@@ -552,6 +552,10 @@ export default class Basic {
         pkg: "neovide",
         testCommand: "neovide",
       },
+      {
+        pkg: "linuxqq",
+        testCommand: "linuxqq",
+      },
     ];
 
     await runCommand(
