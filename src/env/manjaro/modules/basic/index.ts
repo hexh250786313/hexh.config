@@ -648,6 +648,8 @@ export default class Basic {
     await ln(`/.config/autostart/buckle.desktop`);
     await ln(`/.config/autostart/landrop.desktop`);
     await ln(`/.config/autostart/xcape.desktop`);
+
+    await runSpawn(`cargo install typos-cli`);
   }
 
   async wechat() {
