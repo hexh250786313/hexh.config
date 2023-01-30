@@ -429,7 +429,7 @@ export default class Basic {
         testCommand: "kid3",
       },
       {
-        pkg: "spek",
+        pkg: "spek-x-git",
         testCommand: "spek",
       },
       {
