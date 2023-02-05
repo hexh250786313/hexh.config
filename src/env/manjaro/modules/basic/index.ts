@@ -369,7 +369,8 @@ export default class Basic {
         testCommand: "input-remapper-control",
       },
       {
-        pkg: "lazygit-git",
+        // pkg: "lazygit-git",
+        pkg: "lazygit",
         testCommand: "lazygit",
       },
       {
