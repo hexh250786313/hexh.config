@@ -557,6 +557,10 @@ export default class Basic {
         pkg: "linuxqq",
         testCommand: "linuxqq",
       },
+      {
+        pkg: "feishu-bin",
+        testCommand: "feishu",
+      },
     ];
 
     await runCommand(
