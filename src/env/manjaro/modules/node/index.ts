@@ -114,7 +114,6 @@ export default class Node {
       "stylelint-config-prettier-scss",
       "rc-config-loader",
       "source-map-support",
-      "@waylaidwanderer/chatgpt-api",
     ];
     const promises = pkgs.reduce(async (promise: Promise<any>, pkg) => {
       if (allPkgs.includes(pkg)) {
