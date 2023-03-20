@@ -608,6 +608,7 @@ export default class Basic {
       await runSpawn(`yay -S jmeter`);
     }
 
+    await ln(`/.config/lazygit`);
     await ln(`/.ctags`);
     await ln(`/.config/ranger`);
     await ln(`/.config/qt5ct`);
