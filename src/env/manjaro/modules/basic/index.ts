@@ -518,7 +518,7 @@ export default class Basic {
         testCommand: "icalingua",
       },
       {
-        pkg: "git-delta-git",
+        pkg: "git-delta",
         testCommand: "delta",
       },
       {
