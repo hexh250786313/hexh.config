@@ -561,6 +561,14 @@ export default class Basic {
         pkg: "feishu-bin",
         testCommand: "feishu",
       },
+      {
+        pkg: "luarocks",
+        testCommand: "luarocks",
+      },
+      {
+        pkg: "ruby-build-git",
+        testPath: "/usr/bin/ruby-build",
+      },
     ];
 
     await runCommand(

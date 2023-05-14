@@ -106,6 +106,7 @@ export default class Node {
       "spectacle-cli",
       "standard",
       "typescript-language-server",
+      "typescript",
       "yarn",
       "pnpm",
       "ts-node",
@@ -114,6 +115,7 @@ export default class Node {
       "stylelint-config-prettier-scss",
       "rc-config-loader",
       "source-map-support",
+      "npm-check-updates",
     ];
     const promises = pkgs.reduce(async (promise: Promise<any>, pkg) => {
       if (allPkgs.includes(pkg)) {
