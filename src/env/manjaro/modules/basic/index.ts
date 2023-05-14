@@ -566,8 +566,8 @@ export default class Basic {
         testCommand: "luarocks",
       },
       {
-        pkg: "ruby-build-git",
-        testPath: "/usr/bin/ruby-build",
+        pkg: "ruby",
+        testCommand: "ruby",
       },
     ];
 
