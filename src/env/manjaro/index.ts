@@ -16,6 +16,7 @@ import Howdy from "./modules/howdy";
 import Asus from "./modules/asus";
 import Theme from "./modules/theme";
 import Service from "./modules/service";
+import Ranger from "./modules/ranger";
 
 // class Manjaro extends Common implements InputMethod {
 // // @ts-expect-errors: is-not-undefined
@@ -41,6 +42,7 @@ const Manjaro = {
   asus: Asus,
   theme: Theme,
   service: Service,
+  ranger: Ranger,
 };
 
 export default Manjaro;

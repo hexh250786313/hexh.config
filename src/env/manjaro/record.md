@@ -40,6 +40,7 @@
 1. `hexh-config manjaro editor`
 1. `hexh-config manjaro editor ln`
 1. `hexh-config manjaro hosts`
+1. `hexh-config manjaro ranger`
 1. `nvim`
 1. `nvim ~/桌面/test.md`: `:CocCommand markdown-preview-enhanced.openKaTeXConfig`, `hexh-config manjaro editor latexConfig`
 1. `cd /home/hexh/.local/share/nvim/site/pack/packer/opt/nvim-spectre/ && sh -c './build.sh'`

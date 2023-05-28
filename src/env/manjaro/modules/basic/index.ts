@@ -578,7 +578,6 @@ export default class Basic {
       `sudo perl -0777 -i -pe "s/Exec=.*(?=(\\/usr\\/bin\\/google-chrome))/Exec=env\u0020all_proxy=\\"socks:\\/\\/127.0.0.1:4780\\"\u0020http_proxy=\\"http:\\/\\/127.0.0.1:4780\\"\u0020https_proxy=\\"http:\\/\\/127.0.0.1:4780\\"\u0020/gi" /usr/share/applications/google-chrome.desktop`
     );
     await runCommand(`pip install sphinx-rtd-theme`); // for mpd-git
-    await runCommand(`pip install ranger-fm`);
     const allPromise = packages.reduce(async (promise, params) => {
       return promise.then(() => runYay(params));
     }, Promise.resolve());
@@ -618,7 +617,6 @@ export default class Basic {
 
     await ln(`/.config/lazygit`);
     await ln(`/.ctags`);
-    await ln(`/.config/ranger`);
     await ln(`/.config/qt5ct`);
     await ln(`/.config/rofi`);
     await ln(`/.config/alacritty`);
