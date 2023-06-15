@@ -85,7 +85,7 @@ export default class Editor {
       await runCommand(
         `git clone https://github.com/neovim/neovim ${homedir()}/build/neovim`
       );
-      await runCommand(`git checkout v0.9.0`, {
+      await runCommand(`git checkout v0.9.1`, {
         cwd: `${homedir()}/build/neovim`,
       });
       await installNvim();

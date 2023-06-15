@@ -161,6 +161,7 @@ export default class Basic {
     await runSpawn(`yay -S ceph-libs-bin`);
     await runSpawn(`sudo pacman -S base-devel`);
     await runSpawn(`pip3 install glad2`); // for mpv-build-git
+    await runSpawn(`pip3 install sphinx-rtd-theme`); // for mpd-git
   }
 
   // pacman 初始化 gpg key 报错时运行, 否则不运行
