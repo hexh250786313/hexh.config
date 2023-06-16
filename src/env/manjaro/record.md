@@ -15,6 +15,7 @@
 1. [clash](https://clash.razord.top/)
 1. `hexh-config manjaro basic resetPacmanKey`
 1. `hexh-config manjaro basic needed`
+1. 重启
 1. `yay -Syu --devel`
 1. `hexh-config manjaro basic dkms`
 1. `hexh-config manjaro git`
@@ -35,14 +36,18 @@
 1. 重启
 1. `sudo systemctl restart vmtoolsd.service`
 1. `curl www.google.com.hk`
+1. `bash`
 1. `hexh-config manjaro node`
+1. `zsh`
+1. `hexh-config manjaro node packages`
 1. `npm list -g --depth=0`
 1. `hexh-config manjaro editor`
 1. `hexh-config manjaro editor ln`
 1. `hexh-config manjaro hosts`
 1. `hexh-config manjaro ranger`
+1. 暂时注释掉 init.lua 的前两行
 1. `nvim`
-1. `nvim ~/桌面/test.md`: `:CocCommand markdown-preview-enhanced.openKaTeXConfig`, `hexh-config manjaro editor latexConfig`
+1. ~~`nvim ~/桌面/test.md`: `:CocCommand markdown-preview-enhanced.openKaTeXConfig`, `hexh-config manjaro editor latexConfig`~~
 1. `cd /home/hexh/.local/share/nvim/site/pack/packer/opt/nvim-spectre/ && sh -c './build.sh'`
 1. `hexh-config manjaro pamac config`
 1. 重启
@@ -54,6 +59,8 @@
 1. `hexh-config manjaro nutstore clipman`: 同步路径 ~/.cache/xfce4/clipman
 1. `hexh-config manjaro inputMethod`
 1. `hexh-config manjaro tmux`
+1. `yay -S python2 --mflags "--nocheck"` # 跳过检查安装 python2
+1. `yay -S wechat-devtools` # 如果安装失败，去 ~/.cache/yay/wechat-devtools 检查 nodegit 的镜像源是否可用
 1. `hexh-config manjaro basic software`
 1. `hexh-config manjaro system config`
 1. `hexh-config manjaro system init`

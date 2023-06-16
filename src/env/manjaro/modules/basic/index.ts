@@ -158,10 +158,11 @@ export default class Basic {
     await runCommand(
       `echo "kernel.sysrq=1" | sudo tee /etc/sysctl.d/99-sysrq.conf` // enable sysrq: Alt + PrtSc + k
     );
-    await runSpawn(`yay -S ceph-libs-bin`);
     await runSpawn(`sudo pacman -S base-devel`);
     await runSpawn(`pip3 install glad2`); // for mpv-build-git
     await runSpawn(`pip3 install sphinx-rtd-theme`); // for mpd-git
+    await runSpawn(`yay -S ceph-libs-bin`); // 这个要放最后
+    await runSpawn(`yay -Y --devel --save --mflags "--nocheck"`); // 永远更新开发包且跳过检查
   }
 
   // pacman 初始化 gpg key 报错时运行, 否则不运行
@@ -214,7 +215,7 @@ export default class Basic {
         // withEnter: true,
       },
       {
-        pkg: "alacritty-git",
+        pkg: "alacritty",
         testCommand: "alacritty",
       },
       {
@@ -250,11 +251,11 @@ export default class Basic {
         testCommand: "neofetch",
       },
       {
-        pkg: "bucklespring-git",
+        pkg: "bucklespring",
         testCommand: "buckle",
       },
       {
-        pkg: "tilda-git",
+        pkg: "tilda",
         testCommand: "tilda",
       },
       {
@@ -286,7 +287,7 @@ export default class Basic {
         testCommand: "zoom",
       },
       {
-        pkg: "mpd-git",
+        pkg: "mpd",
         testCommand: "mpd",
       },
       {
@@ -298,7 +299,7 @@ export default class Basic {
         testPath: "/usr/bin/timidity",
       },
       {
-        pkg: "mpdevil-git",
+        pkg: "mpdevil",
         testCommand: "mpdevil",
       },
       {
@@ -306,7 +307,7 @@ export default class Basic {
         testCommand: "farge",
       },
       {
-        pkg: "xcolor-git",
+        pkg: "xcolor",
         testCommand: "xcolor",
       },
       {
@@ -382,10 +383,10 @@ export default class Basic {
         pkg: "visual-studio-code-bin",
         testCommand: "code",
       },
-      {
-        pkg: "i3lock-color-git",
-        testCommand: "i3lock",
-      },
+      // {
+      //   pkg: "i3lock-color-git",
+      //   testCommand: "i3lock",
+      // },
       {
         pkg: "barrier",
         testCommand: "barrier",
@@ -395,7 +396,7 @@ export default class Basic {
         testCommand: "/usr/bin/kde-geo-uri-handler",
       },
       {
-        pkg: "flameshot-git",
+        pkg: "flameshot",
         testCommand: "flameshot",
       },
       {
@@ -443,10 +444,6 @@ export default class Basic {
         testCommand: "btop",
       },
       {
-        pkg: "rust",
-        testCommand: "cargo",
-      },
-      {
         pkg: "debtap",
         testCommand: "debtap", // debtap 1.deb && sudo pacman -U 1.tar.zst
       },
@@ -455,7 +452,7 @@ export default class Basic {
         testCommand: "dpkg", // mkdir -p extract/DEBIAN && dpkg -X 1.deb ./extract && dpkg -e 1.deb ./extract/DEBIAN && dpkg -b ./extract 2.deb
       },
       {
-        pkg: "alttab-git",
+        pkg: "alttab",
         testCommand: "alttab",
       },
       {
@@ -483,7 +480,7 @@ export default class Basic {
         testCommand: "wechat-devtools",
       },
       {
-        pkg: "ctags-git",
+        pkg: "ctags",
         testCommand: "ctags",
       },
       {
@@ -531,19 +528,15 @@ export default class Basic {
         testCommand: "mcfly",
       },
       {
-        pkg: "sd",
-        testCommand: "sd",
-      },
-      {
         pkg: "zoxide",
         testCommand: "zoxide",
       },
       {
-        pkg: "lsd-git",
+        pkg: "lsd",
         testCommand: "lsd",
       },
       {
-        pkg: "tealdeer-git",
+        pkg: "tealdeer",
         testCommand: "tldr",
       },
       {
@@ -584,16 +577,18 @@ export default class Basic {
     }, Promise.resolve());
     await allPromise;
 
-    if (!existsSync(`/usr/share/licenses/ffnvcodec-headers-git/LICENSE`)) {
-      await runSpawn(`yay --remove ffnvcodec-headers`);
-      await runSpawn(`yay -S ffnvcodec-headers-git`);
-    }
+    // 安装 mpv-git 的话就取消这里的注释
+    // if (!existsSync(`/usr/share/licenses/ffnvcodec-headers-git/LICENSE`)) {
+    //   await runSpawn(`yay --remove ffnvcodec-headers`);
+    //   await runSpawn(`yay -S ffnvcodec-headers-git`);
+    // }
 
     try {
       await commandExists(`mpv`);
     } catch (e) {
       // await runSpawn(`yay -S mpv-build-git`);
-      await runSpawn(`yay -S mpv-git`);
+      // await runSpawn(`yay -S mpv-git`);
+      await runSpawn(`yay -S mpv`);
     }
 
     // try {

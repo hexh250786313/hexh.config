@@ -30,6 +30,14 @@ export default class Editor {
   async deps() {
     const pkgs = [
       {
+        pkg: "rust",
+        testCommand: "cargo",
+      },
+      {
+        pkg: "sd",
+        testCommand: "sd",
+      },
+      {
         pkg: "fd",
         testCommand: "fd",
       },
@@ -55,7 +63,7 @@ export default class Editor {
   }
 
   async setup() {
-    await this.nightly();
+    await this.appimageStable();
   }
 
   async ln() {
@@ -65,7 +73,7 @@ export default class Editor {
   async appimageStable() {
     await this.fetch(async () => {
       await runCommand(
-        `curl -L -o ${homedir()}/build/nvim.appimage https://github.com/neovim/neovim/releases/download/v0.8.0/nvim.appimage`
+        `curl -L -o ${homedir()}/build/nvim.appimage https://github.com/neovim/neovim/releases/download/v0.9.1/nvim.appimage`
       );
       await setApp();
     });
