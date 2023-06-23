@@ -396,7 +396,8 @@ export default class Basic {
         testCommand: "/usr/bin/kde-geo-uri-handler",
       },
       {
-        pkg: "flameshot",
+        // pkg: "flameshot",
+        pkg: "flameshot-old",
         testCommand: "flameshot",
       },
       {
