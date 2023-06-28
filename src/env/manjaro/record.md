@@ -82,5 +82,4 @@
 1. `hexh-config manjaro basic wechat`
 1. `yay --remove firefox brave-bin`
 1. `yay -S noto-fonts-cjk`
-1. `sudo systemctl enable todeskd.service`
-1. `sudo systemctl enable input-remapper.service`
+1. `luarocks install --server=https://luarocks.org/dev luaformatter`
