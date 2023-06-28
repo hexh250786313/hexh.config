@@ -64,10 +64,10 @@
 1. `yay -S python2 --mflags "--nocheck"` # 跳过检查安装 python2
 1. `yay -S wechat-devtools` # 如果安装失败，去 ~/.cache/yay/wechat-devtools 检查 nodegit 的镜像源是否可用
 1. `hexh-config manjaro basic software`
-1. `hexh-config manjaro system config`
-1. `hexh-config manjaro system init`
-1. `hexh-config manjaro system linkHome`
-1. `hexh-config manjaro system mime`
+1. ****** caution! `hexh-config manjaro system config`
+1. ****** caution! `hexh-config manjaro system init`
+1. ****** caution! `hexh-config manjaro system linkHome`
+1. ****** caution! `hexh-config manjaro system mime`
 1. 重启
 1. 启动 vmware, 再 `hexh-config manjaro basic vmware`
 1. 启动 code, 同步, 再执行 `Enable Monkey Patch`
