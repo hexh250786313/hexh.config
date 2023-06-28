@@ -636,7 +636,7 @@ export default class Basic {
     }
     await ln(`/.config/mpd`);
     await ln(`/.config/autostart/mpd.desktop`);
-    await ln(`/.config/input-remapper`);
+    await ln(`/.config/input-remapper-2`);
     await ln(`/.imwheelrc`);
     await ln(`/.config/autostart/imwheel.desktop`);
     await runCommand(

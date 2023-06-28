@@ -80,3 +80,4 @@
 1. `hexh-config manjaro asus`: https://github.com/mohamed-badaoui/asus-touchpad-numpad-driver
 1. `hexh-config manjaro basic samba`
 1. `hexh-config manjaro basic wechat`
+1. `yay --remove firefox brave-bin`
