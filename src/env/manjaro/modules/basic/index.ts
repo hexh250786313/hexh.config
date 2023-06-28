@@ -90,7 +90,7 @@ export default class Basic {
     }
     if (flag) {
       await runCommand(
-        `echo "[share]\npath=${homedir()}~/Desktop/host\navailable=yes\nbrowseable=yes\nwritable=yes\npublic=yes" | sudo tee -a ${filePath}`
+        `echo "[share]\npath=${homedir()}/Desktop/host\navailable=yes\nbrowseable=yes\nwritable=yes\npublic=yes" | sudo tee -a ${filePath}`
       );
     }
     await runCommand(`sudo systemctl enable smb.service`);
@@ -476,10 +476,10 @@ export default class Basic {
         pkg: "dingtalk-bin",
         testCommand: "/usr/bin/dingtalk",
       },
-      {
-        pkg: "wechat-devtools",
-        testCommand: "wechat-devtools",
-      },
+      // {
+      //   pkg: "wechat-devtools",
+      //   testCommand: "wechat-devtools",
+      // },
       {
         pkg: "ctags",
         testCommand: "ctags",
@@ -513,10 +513,6 @@ export default class Basic {
         testCommand: "icalingua",
       },
       {
-        pkg: "icalingua++",
-        testCommand: "icalingua",
-      },
-      {
         pkg: "git-delta",
         testCommand: "delta",
       },
@@ -540,10 +536,10 @@ export default class Basic {
         pkg: "tealdeer",
         testCommand: "tldr",
       },
-      {
-        pkg: "min",
-        testCommand: "min",
-      },
+      // {
+      //   pkg: "min",
+      //   testCommand: "min",
+      // },
       {
         pkg: "neovide",
         testCommand: "neovide",
@@ -626,7 +622,7 @@ export default class Basic {
     // await ln(`/.config/pcmanfm-qt`);
     await ln(`/.config/tilda`);
     await ln(`/.config/autostart/tilda.desktop`);
-    await ln(`/.config/autostart/alttab.desktop`);
+    // await ln(`/.config/autostart/alttab.desktop`);
     await runCommand(`sudo modprobe -a vmw_vmci vmmon`);
     await runCommand(`sudo systemctl enable --now vmware-networks.service`);
     await runCommand(
@@ -656,7 +652,7 @@ export default class Basic {
     await ln(`/.config/autostart/utools.desktop`);
     await ln(`/.config/autostart/buckle.desktop`);
     await ln(`/.config/autostart/landrop.desktop`);
-    await ln(`/.config/autostart/xcape.desktop`);
+    // await ln(`/.config/autostart/xcape.desktop`);
 
     await runSpawn(`cargo install typos-cli`);
   }

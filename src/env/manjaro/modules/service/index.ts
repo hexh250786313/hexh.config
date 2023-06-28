@@ -43,7 +43,7 @@ export default class _Service {
       await runCommand(`mkdir -p ${homedir}/.config/systemd/user`);
     }
     await ln("/.config/systemd/user/auto-restart-xfce4-notifyd.service");
-    await ln("/.config/systemd/user/remove-wechat-border-shadow.service");
+    // await ln("/.config/systemd/user/remove-wechat-border-shadow.service");
   }
 
   async enable() {
@@ -53,11 +53,11 @@ export default class _Service {
     await runCommand(
       `systemctl --user start auto-restart-xfce4-notifyd.service`
     );
-    await runCommand(
-      `systemctl --user enable remove-wechat-border-shadow.service`
-    );
-    await runCommand(
-      `systemctl --user start remove-wechat-border-shadow.service`
-    );
+    // await runCommand(
+    //   `systemctl --user enable remove-wechat-border-shadow.service`
+    // );
+    // await runCommand(
+    //   `systemctl --user start remove-wechat-border-shadow.service`
+    // );
   }
 }
