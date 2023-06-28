@@ -26,11 +26,12 @@
 1. `hexh-config manjaro zsh`
 1. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 1. back to bash
-1. yay -S fnm
+1. `yay -S fnm`
 1. `fnm install v16.20.1`
 1. `hexh-config manjaro zsh ln`
 1. ~~`hexh-config manjaro zsh colorls`~~
 1. `zsh`
+1. `npm i -g yarn`
 1. ~~`rbenv shell 3.1.0 && rbenv global 3.1.0 && rbenv local 3.1.0`~~
 1. ~~`gem install colorls`~~
 1. `hexh-config manjaro zsh fzf`: `~/.fzf/install`
