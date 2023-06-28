@@ -63,6 +63,7 @@
 1. `hexh-config manjaro tmux`
 1. `yay -S python2 --mflags "--nocheck"` # 跳过检查安装 python2
 1. `yay -S wechat-devtools` # 如果安装失败，去 ~/.cache/yay/wechat-devtools 检查 nodegit 的镜像源是否可用
+1. `proxy_unset && yay -S wps-office-mime-cn wps-office-mui-zh-cn libtiff5`
 1. `hexh-config manjaro basic software`
 1. ****** caution! `hexh-config manjaro system config`
 1. ****** caution! `hexh-config manjaro system init`
