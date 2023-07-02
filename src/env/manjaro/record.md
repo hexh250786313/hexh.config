@@ -53,10 +53,11 @@
 1. `cd /home/hexh/.local/share/nvim/site/pack/packer/opt/nvim-spectre/ && sh -c './build.sh'`
 1. `hexh-config manjaro pamac config`
 1. 重启
+1. `hexh-config manjaro system linkHome`
 1. `hexh-config manjaro pamac flatpak`
 1. `flatpak update`
 1. `hexh-config manjaro pamac snap`
-1. `hexh-config manjaro nutstore` 登录, ~/桌面/share
+1. `hexh-config manjaro nutstore` 登录, ~/Documents/nutstore/share
 1. `hexh-config manjaro nutstore config`
 1. `hexh-config manjaro nutstore clipman`: 同步路径 ~/.cache/xfce4/clipman
 1. `hexh-config manjaro inputMethod`
@@ -69,7 +70,6 @@
 1. `yay -S todesk-bin && sudo systemctl enable todeskd.service`
 1. ****** caution! `hexh-config manjaro system config`
 1. ****** caution! `hexh-config manjaro system init`
-1. ****** caution! `hexh-config manjaro system linkHome`
 1. ****** caution! `hexh-config manjaro system mime`
 1. 重启
 1. 启动 vmware, 再 `hexh-config manjaro basic vmware`

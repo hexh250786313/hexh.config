@@ -87,7 +87,7 @@ export default class InputMethod {
       process.stdout.write(`Handling big fonts...\n`);
       await runCommand(`sudo mkdir -p /usr/share/fonts/custom`);
       await runCommand(
-        `sudo cp ${homedir()}/桌面/share/fonts/mingliub.ttc ${homedir()}/桌面/share/fonts/Sun-ExtA.ttf ${homedir()}/桌面/share/fonts/Sun-ExtB.ttf /usr/share/fonts/custom`
+        `sudo cp ${homedir()}/Documents/nutstore/share/fonts/mingliub.ttc ${homedir()}/Documents/nutstore/share/fonts/Sun-ExtA.ttf ${homedir()}/Documents/nutstore/share/fonts/Sun-ExtB.ttf /usr/share/fonts/custom`
       );
       await runCommand(`sudo chmod 744 /usr/share/fonts/custom/*.ttc`);
       await runCommand(`sudo mkfontscale`, { cwd: "/usr/share/fonts/custom" });
