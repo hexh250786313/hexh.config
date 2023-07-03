@@ -26,7 +26,7 @@
 1. `hexh-config manjaro zsh`
 1. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 1. back to bash
-1. `yay -S fnm perl-rename`
+1. `yay -S fnm-bin perl-rename`
 1. `hexh-config manjaro zsh ln`
 1. ~~`hexh-config manjaro zsh colorls`~~
 1. `zsh`
