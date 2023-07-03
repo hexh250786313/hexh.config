@@ -13,7 +13,7 @@
 13. `git clone https://github.com/hexh250786313/hexh.config /home/hexh/桌面/hexh.config`
 14. [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 15. `source ~/.bashrc`
-16. `nvm install v16.17.0`
+16. `nvm install v18.16.1`
 17. `npm install -g yarn`
 18. `cd /home/hexh/桌面/hexh.config`
 19. `yarn && npm link`

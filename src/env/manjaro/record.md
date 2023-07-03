@@ -4,7 +4,7 @@
 1. [ip](https://myip.ms/): `echo "185.199.108.133 raw.githubusercontent.com" | sudo tee -a /etc/hosts`
 1. [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 1. `source ~/.bashrc`
-1. `nvm install v16.20.1`
+1. `nvm install v18.16.1`
 1. `npm install -g yarn`
 1. `cd /home/hexh/桌面/hexh.config`
 1. `yarn && npm link`
@@ -30,7 +30,7 @@
 1. `hexh-config manjaro zsh ln`
 1. ~~`hexh-config manjaro zsh colorls`~~
 1. `zsh`
-1. `fnm install v16.20.1`
+1. `fnm install v18.16.1`
 1. `npm i -g yarn && cd ~/workspace/hexh.config && yarn && npm link`
 1. ~~`rbenv shell 3.1.0 && rbenv global 3.1.0 && rbenv local 3.1.0`~~
 1. ~~`gem install colorls`~~
