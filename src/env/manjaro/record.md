@@ -34,7 +34,7 @@
 1. `npm i -g yarn && cd ~/workspace/hexh.config && yarn && npm link`
 1. ~~`rbenv shell 3.1.0 && rbenv global 3.1.0 && rbenv local 3.1.0`~~
 1. ~~`gem install colorls`~~
-1. `hexh-config manjaro zsh fzf`: `~/.fzf/install`
+1. ~~`hexh-config manjaro zsh fzf`: `~/.fzf/install`~~
 1. `hexh-config manjaro proxy ln`
 1. 重启
 1. `sudo systemctl restart vmtoolsd.service`
