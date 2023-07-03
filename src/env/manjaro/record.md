@@ -83,5 +83,5 @@
 1. `yay --remove firefox brave-bin`
 1. `yay -S noto-fonts-cjk`
 1. `sudo luarocks install --server=https://luarocks.org/dev luaformatter`
-1. `pip install pandora`
+1. `pip install pandora-chatgpt`
 1. `git clone https://github.com/schasse/tmux-jump ~/.tmux-jump`
