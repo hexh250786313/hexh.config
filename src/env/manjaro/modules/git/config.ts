@@ -1,6 +1,6 @@
 const config = [
   // "neoclide/coc-git",
-  "xiyaowong/coc-symbol-line",
+  // "xiyaowong/coc-symbol-line",
   // "neoclide/coc-yank",
   // "akinsho/git-conflict.nvim",
   // "hchunhui/librime-lua",
@@ -14,7 +14,7 @@ const config = [
   // "fannheyward/telescope-coc.nvim",
   // "Mofiqul/vscode.nvim",
   "kristijanhusak/defx-icons",
-  // "romainl/vim-cool",
+  "romainl/vim-cool",
 ];
 
 export default config;
