@@ -12,9 +12,9 @@ const config = [
   // "lotem/rime-octagram-data",
   // "PeterCxy/scel-rime",
   // "fannheyward/telescope-coc.nvim",
-  "Mofiqul/vscode.nvim",
+  // "Mofiqul/vscode.nvim",
   "kristijanhusak/defx-icons",
-  "romainl/vim-cool",
+  // "romainl/vim-cool",
 ];
 
 export default config;
