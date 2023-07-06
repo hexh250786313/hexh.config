@@ -147,11 +147,11 @@ export default class InputMethod {
       await runCommand(`rm -rf ${__dirname}/build/CascadiaCode`);
     }
 
-    await runYay({
-      pkg: "nerd-fonts-sarasa-mono",
-      testPath:
-        "/usr/share/fonts/nerd-fonts-sarasa-mono/sarasa-mono-sc-nerd-bold.ttf",
-    });
+    // await runYay({
+    //   pkg: "nerd-fonts-sarasa-mono",
+    //   testPath:
+    //     "/usr/share/fonts/nerd-fonts-sarasa-mono/sarasa-mono-sc-nerd-bold.ttf",
+    // });
   }
 
   async fcitx() {

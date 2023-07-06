@@ -488,10 +488,10 @@ export default class Basic {
         pkg: "tree-sitter",
         testCommand: "tree-sitter",
       },
-      {
-        pkg: "otf-nerd-fonts-fira-mono",
-        testPath: "/usr/share/licenses/otf-nerd-fonts-fira-mono/LICENSE",
-      },
+      // {
+      //   pkg: "otf-nerd-fonts-fira-mono",
+      //   testPath: "/usr/share/licenses/otf-nerd-fonts-fira-mono/LICENSE",
+      // },
       {
         pkg: "obsidian",
         testCommand: "obsidian",
