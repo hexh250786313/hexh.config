@@ -68,6 +68,7 @@
 1. `hexh-config manjaro basic software`
 1. `sudo systemctl enable input-remapper.service`
 1. `yay -S todesk-bin && sudo systemctl enable todeskd.service`
+1. `hexh-config manjaro service`
 1. ****** caution! `hexh-config manjaro system config`
 1. ****** caution! `hexh-config manjaro system init`
 1. ****** caution! `hexh-config manjaro system mime`
