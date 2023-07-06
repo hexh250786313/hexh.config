@@ -420,10 +420,10 @@ export default class Basic {
         pkg: "xdotool",
         testCommand: "xdotool",
       },
-      {
-        pkg: "brave-bin",
-        testCommand: "brave",
-      },
+      // {
+      //   pkg: "brave-bin",
+      //   testCommand: "brave",
+      // },
       {
         pkg: "lollypop",
         testCommand: "lollypop",
