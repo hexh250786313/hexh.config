@@ -159,8 +159,8 @@ export default class Basic {
       `echo "kernel.sysrq=1" | sudo tee /etc/sysctl.d/99-sysrq.conf` // enable sysrq: Alt + PrtSc + k
     );
     await runSpawn(`sudo pacman -S base-devel`);
-    await runSpawn(`pip3 install glad2`); // for mpv-build-git
-    await runSpawn(`pip3 install sphinx-rtd-theme`); // for mpd-git
+    // await runSpawn(`pip3 install glad2`); // for mpv-build-git
+    // await runSpawn(`pip3 install sphinx-rtd-theme`); // for mpd-git
     await runSpawn(`yay -S ceph-libs-bin`); // 这个要放最后
     await runSpawn(`yay -Y --devel --save --mflags "--nocheck"`); // 永远更新开发包且跳过检查
   }
@@ -485,7 +485,7 @@ export default class Basic {
         testCommand: "ctags",
       },
       {
-        pkg: "tree-sitter",
+        pkg: "tree-sitter-cli",
         testCommand: "tree-sitter",
       },
       // {
