@@ -17,6 +17,7 @@
 1. `hexh-config manjaro basic needed`
 1. 重启
 1. `python -m venv /home/hexh/venv`
+2. `source ~/.bashrc`
 1. `yay -Syu --devel`
 1. `hexh-config manjaro basic dkms`
 1. `hexh-config manjaro git`
