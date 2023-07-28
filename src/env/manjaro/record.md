@@ -40,9 +40,9 @@
 1. `hexh-config manjaro proxy ln`
 1. 重启
 1. `sudo systemctl restart vmtoolsd.service`
+1. `proxy_set`
 1. `curl www.google.com.hk`
 1. `hexh-config manjaro node`
-1. `zsh`
 1. `hexh-config manjaro node packages`
 1. `npm list -g --depth=0`
 1. `hexh-config manjaro editor`
