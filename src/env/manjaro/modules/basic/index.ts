@@ -149,12 +149,14 @@ export default class Basic {
       { pkg: "xclip", testCommand: "xclip" },
       { pkg: "xsel", testCommand: "xsel" },
       { pkg: "net-tools", testCommand: "ifconfig" },
-      { pkg: "python-pip", testPath: "/usr/bin/pip3" },
+      // { pkg: "python-pip", testPath: "/usr/bin/pip3" }, // 傻逼玩意儿，全局裝的卻只能虚拟环境运行
     ];
     const promises = pkgs.reduce(async (promise, pkg) => {
       return promise.then(() => runPacman(pkg));
     }, Promise.resolve());
     await promises;
+    await runSpawn(`python -m ensurepip --upgrade`);
+    await runSpawn(`python -m pip install --upgrade pip`);
     await runCommand(
       `echo "kernel.sysrq=1" | sudo tee /etc/sysctl.d/99-sysrq.conf` // enable sysrq: Alt + PrtSc + k
     );
