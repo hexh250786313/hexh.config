@@ -36,7 +36,7 @@ export default class Ranger {
     await runCommand(
       `git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons`
     );
-    await runCommand(`/home/hexh/venv/bin/ranger --copy-config=rifle`);
+    await runCommand(`/home/hexh/local/bin/ranger --copy-config=rifle`);
 
     const addition = readFileSync(
       `${dotfilesPath}/.config/ranger/rifle.conf`
