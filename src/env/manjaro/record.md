@@ -16,10 +16,11 @@
 1. `hexh-config manjaro basic resetPacmanKey`
 1. `hexh-config manjaro basic needed`
 1. 重启
-~~1. `python -m venv /home/hexh/venv`~~
-~~1. `python -m ensurepip`~~
-3. `source ~/.bashrc`
+1. ~~`python -m venv /home/hexh/venv`~~
+1. ~~`python -m ensurepip`~~
+1. `source ~/.bashrc`
 1. `yay -Syu --devel`
+1. `pip install pip==22.3.1 --break-system-packages`
 1. `hexh-config manjaro basic dkms`
 1. `hexh-config manjaro git`
 1. [gh ssh keys](https://github.com/settings/keys)
@@ -72,6 +73,7 @@
 1. `sudo systemctl enable input-remapper.service`
 1. `yay -S todesk-bin && sudo systemctl enable todeskd.service`
 1. `hexh-config manjaro service`
+1. `sudo mv /etc/xdg/autostart/xfce4-notifyd.desktop /etc/xdg/autostart/xfce4-notifyd.desktop.bak`
 1. ****** caution! `hexh-config manjaro system config`
 1. ****** caution! `hexh-config manjaro system init`
 1. ****** caution! `hexh-config manjaro system mime`
