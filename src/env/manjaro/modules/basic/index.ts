@@ -562,6 +562,10 @@ export default class Basic {
         pkg: "ruby",
         testCommand: "ruby",
       },
+      {
+        pkg: "mpd-mpris",
+        testCommand: "mpd-mpris",
+      },
     ];
 
     await runCommand(
