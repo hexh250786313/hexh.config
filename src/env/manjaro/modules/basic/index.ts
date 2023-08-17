@@ -566,6 +566,14 @@ export default class Basic {
         pkg: "mpd-mpris",
         testCommand: "mpd-mpris",
       },
+      {
+        pkg: "mpv-mpris",
+        testPath: "/etc/mpv/scripts/mpris.so",
+      },
+      {
+        pkg: "icu69",
+        testPath: "/usr/lib/libicutu.so.69",
+      },
     ];
 
     await runCommand(
