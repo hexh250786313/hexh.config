@@ -232,10 +232,10 @@ export default class Basic {
         pkg: "utools",
         testCommand: "utools",
       },
-      {
-        pkg: "pcmanfm-qt",
-        testCommand: "pcmanfm-qt",
-      },
+      // {
+      //   pkg: "pcmanfm-qt",
+      //   testCommand: "pcmanfm-qt",
+      // },
       {
         pkg: "telegram-desktop-bin",
         testCommand: "telegram-desktop",
