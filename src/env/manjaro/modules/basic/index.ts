@@ -225,7 +225,7 @@ export default class Basic {
         testCommand: "xunlei",
       },
       {
-        pkg: "landrop-git",
+        pkg: "landrop",
         testCommand: "landrop",
       },
       {
