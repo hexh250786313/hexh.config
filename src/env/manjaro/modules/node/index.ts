@@ -90,8 +90,8 @@ export default class Node {
         pkg.replace(/(├──\u0020)|(└──\u0020)|(@(?!(.*@.*)).*$)/g, "")
       );
     const pkgs = [
-      "@fsouza/prettierd",
       "@babel/eslint-parser",
+      "@fsouza/prettierd",
       "diagnostic-languageserver",
       "eslint_d",
       "eslint",
@@ -99,20 +99,20 @@ export default class Node {
       "git-cz",
       "http-server",
       "neovim",
+      "npm-check-updates",
       "nrm",
-      "prettier-plugin-sh",
-      "prettier",
-      "typescript-language-server",
-      "typescript",
-      "yarn",
       "pnpm",
-      "ts-node",
-      "stylelint",
-      "stylelint-config-standard-scss",
-      "stylelint-config-prettier-scss",
+      "prettier",
       "rc-config-loader",
       "source-map-support",
-      "npm-check-updates",
+      "stylelint-config-standard-scss",
+      "stylelint-config-prettier-scss",
+      "stylelint",
+      "ts-node",
+      "typescript-language-server",
+      "typescript",
+      "yalc",
+      "yarn",
     ];
     const promises = pkgs.reduce(async (promise: Promise<any>, pkg) => {
       if (allPkgs.includes(pkg)) {
