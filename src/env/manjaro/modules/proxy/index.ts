@@ -147,7 +147,7 @@ export default class Proxy {
 
     process.stdout.write("Fetching yaml file...\n");
     await runCommand(
-      `unset all_proxy && unset http_proxy && unset https_proxy && curl -L -o ${homedir()}/.config/clash/config.yaml https://api.dogeconfig.com/link/gBTCS4Rfy9y1Xr4z?clash=1`
+      `unset all_proxy && unset http_proxy && unset https_proxy && curl -L -o ${homedir()}/.config/clash/config.yaml https://qikapiu.hexh.xyz`
     );
 
     await runCommand(
