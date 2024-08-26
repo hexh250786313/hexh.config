@@ -154,6 +154,10 @@ export default class Proxy {
       `perl -0777 -i -pe "s/port(.*\n){8}.*dns:/${clashConfig}/gi" ${homedir()}/.config/clash/config.yaml`
     );
 
+    await runCommand(
+      `perl -0777 -i -pe 's/  -\\n    name: 📲Telegram\\n    type: select.*$/\nrules:\\n  - MATCH,🔰Proxy\\n/s' ${homedir()}/.config/clash/config.yaml`
+    );
+
     const command = this.proxyCommand.join(" && ");
     process.stdout.write("" + command + "\n");
     process.stdout.write("https://clash.razord.top/" + "\n");
