@@ -21,7 +21,7 @@ export async function run() {
       if (!existsSync(`${__dirname}/build`)) {
         await runCommand(`mkdir -p ${__dirname}/build`);
       } else {
-        await runCommand(`sudo rm -rf ${__dirname}/build`);
+        await runCommand(`rm -rf ${__dirname}/build`);
       }
 
       processer.run(args);
