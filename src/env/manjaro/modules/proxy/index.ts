@@ -143,7 +143,7 @@ export default class Proxy {
       /* handle error */
     }
 
-    await this.generate();
+    // await this.generate();
 
     process.stdout.write("Fetching yaml file...\n");
     await runCommand(
