@@ -115,6 +115,7 @@ export default class Node {
       "typescript",
       "yalc",
       "yarn",
+      "@styled/typescript-styled-plugin",
     ];
     const promises = pkgs.reduce(async (promise: Promise<any>, pkg) => {
       if (allPkgs.includes(pkg)) {
