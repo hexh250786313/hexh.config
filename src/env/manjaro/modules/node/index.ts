@@ -116,6 +116,8 @@ export default class Node {
       "yalc",
       "yarn",
       "@styled/typescript-styled-plugin",
+      "vscode-langservers-extracted",
+      "yaml-language-server",
     ];
     const promises = pkgs.reduce(async (promise: Promise<any>, pkg) => {
       if (allPkgs.includes(pkg)) {
