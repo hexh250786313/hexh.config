@@ -103,7 +103,7 @@ export default class Node {
       "neovim",
       "npm-check-updates",
       "nrm",
-      "pnpm",
+      // "pnpm", 使用 corepack 管理，如果当前 node 版本不使用 corepack 管理 pnpm 则手动自己安装
       "prettier",
       "pretty-ts-errors-markdown",
       "rc-config-loader",
