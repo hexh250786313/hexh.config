@@ -90,6 +90,7 @@ export default class Node {
         pkg.replace(/(├──\u0020)|(└──\u0020)|(@(?!(.*@.*)).*$)/g, "")
       );
     const pkgs = [
+      "corepace",
       "@babel/eslint-parser",
       "@fsouza/prettierd",
       "@vtsls/language-server",
